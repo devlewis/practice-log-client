@@ -1,0 +1,9 @@
+.day_box {
+  border: solid black 2px;
+  width: 100px;
+  height: 150px;
+}
+
+p {
+  font-size: 10px;
+}
