@@ -5,97 +5,18 @@ import Home from "../Home/Home";
 import Setup from "../Setup/Setup";
 import DayList from "../DayList/DayList";
 import DayForm from "../DayForm/DayForm";
-import Context from "/Users/Devree/projects/practice-log-client/src/Context.js";
+//import Context from "/Users/Devree/projects/practice-log-client/src/Context.js";
 import AfterLogin from "../AfterLogin/AfterLogin";
+import days100 from "/Users/Devree/projects/practice-log-client/src/STORE.js";
 
 class App extends PureComponent {
   state = {
     user: null,
-    goals: [{ id: 1, num_of_days: 7 }],
-    days: [
-      {
-        id: 1,
-        date: "March 22",
-        completed: "false",
-        hours_goal: 2,
-        default_goal: 2,
-        technique: "Hanon",
-        repertoire: "Prokofiev",
-        goal_id: 1
-      },
-      {
-        id: 2,
-        date: "March 23",
-        completed: "false",
-        hours_goal: null,
-        default_goal: 2,
-        technique: "",
-        repertoire: "",
-        goal_id: 1
-      },
-      {
-        id: 3,
-        date: "March 24",
-        completed: "false",
-        hours_goal: null,
-        default_goal: 2,
-        technique: "",
-        repertoire: "",
-        goal_id: 1
-      },
-      {
-        id: 4,
-        date: "March 25",
-        completed: "false",
-        hours_goal: null,
-        default_goal: 2,
-        technique: "",
-        repertoire: "",
-        goal_id: 1
-      },
-      {
-        id: 5,
-        date: "March 26",
-        completed: "false",
-        hours_goal: null,
-        default_goal: 2,
-        technique: "",
-        repertoire: "",
-        goal_id: 1
-      },
-      {
-        id: 6,
-        date: "March 27",
-        completed: "false",
-        hours_goal: null,
-        default_goal: 2,
-        technique: "",
-        repertoire: "",
-        goal_id: 1
-      },
-      {
-        id: 7,
-        date: "March 28",
-        completed: "false",
-        hours_goal: null,
-        default_goal: 2,
-        technique: "",
-        repertoire: "",
-        goal_id: 1
-      }
-    ]
+    days: [],
+    num_of_days: null,
+    total_hours: 0,
+    hours_goal: null
   };
-
-  //   state = {
-  //     days: {},
-  //     num_of_days: 7
-  //   }
-
-  //   data => {
-  //     data.length
-  //   }
-
-  // }
 
   handleLogin = () => {};
 
@@ -103,95 +24,107 @@ class App extends PureComponent {
     fetch();
   };
 
-  handleSubmit = () => {};
+  handleSubmit = (num_of_days, hours, start_date) => {
+    let newDays = days100.slice(0, num_of_days);
+    newDays.forEach(day => (day.actual_hours = hours));
 
-  handleSetDays = num_of_daysNew => {
     this.setState({
-      goals: [{ id: 1, num_of_days: num_of_daysNew }]
+      days: newDays,
+      num_of_days: num_of_days,
+      hours_goal: hours
     });
   };
 
-  handleChangeCompleted = e => {
-    this.setState({ days: [{ completed: e.target.value }] });
-  };
-
-  handleChangeTechnique = e => {
-    this.setState({ technique: e.target.value });
-  };
-
-  handleChangeRepertoire = e => {
-    this.setState({ repertoire: e.target.value });
+  handleDaySubmit = updatedDay => {
+    let hours;
+    if (updatedDay.completed === "true") {
+      hours = this.state.total_hours + updatedDay.actual_hours;
+    } else {
+      hours = this.state.total_hours;
+      updatedDay.actual_hours = 0;
+    }
+    this.setState({
+      days: this.state.days.map(day =>
+        day.id !== updatedDay.id ? day : updatedDay
+      ),
+      total_hours: hours
+    });
   };
 
   render() {
-    const value = {
-      num_of_days: this.state.goals.num_of_days,
-      days: this.state.days,
-      user: this.state.user,
-      handleLogin: this.handleLogin,
-      onLoginSuccess: this.onLoginSuccess,
-      handleSubmit: this.handleSubmit,
-      handleSetDays: this.handleSetDays,
-      handleChangeTechnique: this.handleChangeTechnique,
-      handleChangeRepertoire: this.handleChangeRepertoire
-    };
-
     return (
-      <Context.Provider value={value}>
-        <div className="App">
-          <header className="App_header">
-            <Link to="/">Practice Log</Link>
-          </header>
-          <Route
-            exact
-            path="/"
-            render={({ history }) => {
-              return <Home onClickSignIn={() => history.push("/afterlogin")} />;
-            }}
-          />
-          <Route
-            path="/setup"
-            render={({ history }) => {
-              return <Setup onClickCancel={() => history.push("/")} />;
-            }}
-          />
-          <Route
-            path="/daylist/:num_of_days"
-            render={props => {
-              const num_of_days = props.match.params.num_of_days;
-              return (
-                <DayList
-                  num_of_days={this.state.goals.num_of_days}
-                  days={this.state.days}
-                />
-              );
-            }}
-          />
-          <Route
-            path="/day/:dayId"
-            render={props => {
-              const dayId = props.match.params.dayId;
-              return (
-                <DayForm
-                  id={dayId}
-                  handleChangeCompleted={this.handleChangeCompleted}
-                />
-              );
-            }}
-          />
-          <Route
-            path="/afterlogin"
-            render={({ history }) => {
-              return (
-                <AfterLogin
-                  onClickCurrent={() => history.push("/daylist/:dayid")}
-                  onClickSetup={() => history.push("/setup")}
-                />
-              );
-            }}
-          />
-        </div>
-      </Context.Provider>
+      <div className="App">
+        <header className="App_header">
+          <Link to="/">Practice Log</Link>
+        </header>
+        <Route
+          exact
+          path="/"
+          render={({ history }) => {
+            return (
+              <Home
+                onClickSignIn={() => history.push("/afterlogin")}
+                onClickSetup={() => history.push("/setup")}
+              />
+            );
+          }}
+        />
+        <Route
+          path="/setup"
+          render={({ history }) => {
+            return (
+              <Setup
+                onHandleSubmit={this.handleSubmit}
+                onClickCancel={() => history.push("/")}
+                history={history}
+              />
+            );
+          }}
+        />
+        <Route
+          path="/daylist/:num_of_days"
+          render={props => {
+            const num_of_days = props.match.params.num_of_days;
+            return (
+              <DayList
+                num_of_days={num_of_days}
+                days={this.state.days}
+                total_hours={this.state.total_hours}
+                goal_hours={this.state.hours_goal}
+              />
+            );
+          }}
+        />
+        <Route
+          path="/day/:dayId"
+          render={props => {
+            const dayId = props.match.params.dayId;
+            return (
+              <DayForm
+                day={this.state.days[dayId - 1]}
+                id={dayId}
+                hours={this.state.hours_goal}
+                handleDaySubmit={this.handleDaySubmit}
+                onClickCancel={() => props.history.push("/")}
+                goBack={() =>
+                  props.history.push(`/daylist/${this.state.num_of_days}`)
+                }
+              />
+            );
+          }}
+        />
+        <Route
+          path="/afterlogin"
+          render={({ history }) => {
+            return (
+              <AfterLogin
+                onClickCurrent={() => history.push("/daylist/:dayid")}
+                onClickSetup={() => history.push("/setup")}
+              />
+            );
+          }}
+        />
+      </div>
     );
   }
 }

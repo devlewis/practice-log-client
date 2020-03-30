@@ -6,10 +6,16 @@ class Setup extends PureComponent {
     super(props);
 
     this.state = {
-      hours: { value: "", touched: true },
-      num_of_days: 7
+      num_of_days: null,
+      hours: null
     };
   }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.onHandleSubmit(this.state.num_of_days, this.state.hours);
+    this.props.history.push(`/daylist/${this.state.num_of_days}`);
+  };
 
   render() {
     return (
@@ -20,7 +26,9 @@ class Setup extends PureComponent {
               How Many Consecutive Days Will You Practice?
             </label>
             <select
-              onChange={e => this.setState({ num_of_days: e.target.value })}
+              onChange={e =>
+                this.setState({ num_of_days: parseFloat(e.target.value) })
+              }
               name="#ofDaysChoice"
               id="#ofDaysChoice"
               required
@@ -36,17 +44,14 @@ class Setup extends PureComponent {
             <input
               onChange={e =>
                 this.setState({
-                  hours: {
-                    value: e.target.value,
-                    touched: true
-                  }
+                  hours: parseFloat(e.target.value)
                 })
               }
               type="text"
               name="hours"
               id="hours"
               placeholder="# of hrs (ex. 2.5)"
-              autocomplete="off"
+              autoComplete="off"
               required
             />
           </div>

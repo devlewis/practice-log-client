@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
 import "../Home/Home.css";
-import { Redirect } from "react-router-dom";
 
 class Home extends PureComponent {
   state = { user: "", password: "" };
@@ -27,7 +26,7 @@ class Home extends PureComponent {
                 type="text"
                 name="user"
                 id="user"
-                autocomplete="off"
+                autoComplete="off"
                 required
               />
               <label htmlFor="password">Password</label>
@@ -43,13 +42,15 @@ class Home extends PureComponent {
                 type="text"
                 name="password"
                 id="password"
-                autocomplete="off"
+                autoComplete="off"
                 required
               />
               <button onClick={this.props.onClickSignIn}>Sign In</button>
             </div>
           </form>
-          <button className="login_new">Set up a new account!</button>
+          <button className="login_new" onClick={this.props.onClickSetup}>
+            Set up a new account!
+          </button>
         </div>
       </div>
     );

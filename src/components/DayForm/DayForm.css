@@ -1,0 +1,19 @@
+.italics {
+  font-style: italic;
+  font-size: 1em;
+}
+
+.required_box {
+  margin-bottom: 10px;
+}
+
+.optional_box {
+  border: solid black 2px;
+  width: fit-content;
+  margin-bottom: 10px;
+  padding: 2px;
+}
+
+form {
+  margin-left: 10px;
+}
