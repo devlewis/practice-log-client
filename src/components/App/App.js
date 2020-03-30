@@ -51,6 +51,11 @@ class App extends PureComponent {
     });
   };
 
+  handleRegistrationSuccess = user => {
+    const { history } = this.props;
+    history.push("/afterlogin");
+  };
+
   render() {
     return (
       <div className="App">
@@ -64,7 +69,7 @@ class App extends PureComponent {
             return (
               <Home
                 onClickSignIn={() => history.push("/afterlogin")}
-                onClickSetup={() => history.push("/setup")}
+                onClickRegister={() => history.push("/register")}
               />
             );
           }}
@@ -120,6 +125,16 @@ class App extends PureComponent {
               <AfterLogin
                 onClickCurrent={() => history.push("/daylist/:dayid")}
                 onClickSetup={() => history.push("/setup")}
+              />
+            );
+          }}
+        />
+        <Route
+          path="/register"
+          render={({ history }) => {
+            return (
+              <RegistrationForm
+                onRegistrationSuccess={this.handleRegistrationSuccess}
               />
             );
           }}

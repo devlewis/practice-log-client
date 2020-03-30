@@ -1,57 +1,29 @@
 import React, { PureComponent } from "react";
 import "../Home/Home.css";
+import { Button, Input } from "../Utils/Utils";
 
 class Home extends PureComponent {
-  state = { user: "", password: "" };
+  static defaultProps = {
+    location: {},
+    history: {
+      push: () => {}
+    }
+  };
+
+  handleLoginSuccess = () => {
+    const { location, history } = this.props;
+    const destination = (location.state || {}).from || "/";
+    history.push(destination);
+  };
+
   render() {
     return (
       <div className="container_home">
         <h2>PRACTICE LOG HOME PAGE</h2>
         <div className="container_login">
-          <form className="AddNote_form" onSubmit={this.handleSubmit}>
-            <div className="AddNote_error" role="alert">
-              {/* {error && <p>{error.message}</p>} */}
-            </div>
-            <div className="form">
-              <label htmlFor="user">User Name</label>
-              <input
-                onChange={e =>
-                  this.setState({
-                    user: {
-                      value: e.target.value,
-                      touched: true
-                    }
-                  })
-                }
-                type="text"
-                name="user"
-                id="user"
-                autoComplete="off"
-                required
-              />
-              <label htmlFor="password">Password</label>
-              <input
-                onChange={e =>
-                  this.setState({
-                    password: {
-                      value: e.target.value,
-                      touched: true
-                    }
-                  })
-                }
-                type="text"
-                name="password"
-                id="password"
-                autoComplete="off"
-                required
-              />
-              <button onClick={this.props.onClickSignIn}>Sign In</button>
-            </div>
-          </form>
-          <button className="login_new" onClick={this.props.onClickSetup}>
-            Set up a new account!
-          </button>
+          <LoginForm onLoginSuccess={this.handleLoginSuccess} />
         </div>
+        <button onClickRegister={this.props.onClickRegister} />
       </div>
     );
   }
