@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import AuthApiService from "../../services/auth-api-service";
 
 export default class RegistrationForm extends Component {
   static defaultProps = {
@@ -7,16 +8,28 @@ export default class RegistrationForm extends Component {
 
   state = { error: null };
 
+  handleRegistrationSuccess = user => {
+    const { history } = this.props;
+    history.push("/");
+  };
+
   handleSubmit = ev => {
     ev.preventDefault();
     const { user_name, password } = ev.target;
 
-    console.log("registration form submitted");
-    console.log({ user_name, password });
-
-    user_name.value = "";
-    password.value = "";
-    this.props.onRegistrationSuccess();
+    this.setState({ error: null });
+    AuthApiService.postUser({
+      user_name: user_name.value,
+      password: password.value
+    })
+      .then(user => {
+        user_name.value = "";
+        password.value = "";
+        this.handleRegistrationSuccess();
+      })
+      .catch(res => {
+        this.setState({ error: res.error });
+      });
   };
 
   render() {

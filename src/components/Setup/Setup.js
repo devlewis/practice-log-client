@@ -7,13 +7,18 @@ class Setup extends PureComponent {
 
     this.state = {
       num_of_days: null,
-      hours: null
+      hours: null,
+      user: ""
     };
   }
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onHandleSubmit(this.state.num_of_days, this.state.hours);
+    this.props.onHandleSubmit(
+      this.state.num_of_days,
+      this.state.hours,
+      this.state.user
+    );
     this.props.history.push(`/daylist/${this.state.num_of_days}`);
   };
 
@@ -21,6 +26,22 @@ class Setup extends PureComponent {
     return (
       <div>
         <form className="Setup_form" onSubmit={this.handleSubmit}>
+          <div>
+            <label htmlFor="user"> What's your user name? </label>
+            <input
+              onChange={e =>
+                this.setState({
+                  user: e.target.value
+                })
+              }
+              type="text"
+              name="user"
+              id="user"
+              placeholder="username"
+              autoComplete="off"
+              required
+            />
+          </div>
           <div>
             <label htmlFor="#ofDaysChoice">
               How Many Consecutive Days Will You Practice?

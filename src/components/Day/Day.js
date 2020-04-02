@@ -24,17 +24,17 @@ class Day extends PureComponent {
         })
       : (mystyle = {});
 
-    const dayId = this.props.id;
+    const day_num = this.props.day_num;
     const date = this.props.date;
 
     return (
       <div className="day_box" style={mystyle}>
-        <p>Day #{dayId}</p>
+        <p>Day #{day_num}</p>
         <p>{date}</p>
         {this.props.touched === false ? (
-          <Link to={`/day/${dayId}`}>Did you practice today?</Link>
+          <Link to={`/day/${day_num}`}>Did you practice today?</Link>
         ) : (
-          <Link to={`/day/${dayId}`}>Edit Practice Details</Link>
+          <Link to={`/day/${day_num}`}>Edit Practice Details</Link>
         )}
       </div>
     );

@@ -1,8 +1,9 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import "../Home/Home.css";
-import { Button, Input } from "../Utils/Utils";
+import LoginForm from "../LoginForm/LoginForm";
+import { withRouter } from "react-router";
 
-class Home extends PureComponent {
+class Home extends Component {
   static defaultProps = {
     location: {},
     history: {
@@ -11,9 +12,9 @@ class Home extends PureComponent {
   };
 
   handleLoginSuccess = () => {
-    const { location, history } = this.props;
-    const destination = (location.state || {}).from || "/";
-    history.push(destination);
+    console.log("called?");
+    const { history } = this.props;
+    history.push("/afterlogin");
   };
 
   render() {
@@ -23,10 +24,12 @@ class Home extends PureComponent {
         <div className="container_login">
           <LoginForm onLoginSuccess={this.handleLoginSuccess} />
         </div>
-        <button onClickRegister={this.props.onClickRegister} />
+        <button onClick={this.props.onClickRegister}>
+          Make a new account!
+        </button>
       </div>
     );
   }
 }
 
-export default Home;
+export default withRouter(Home);

@@ -2,11 +2,16 @@ import React, { PureComponent } from "react";
 import Day from "../Day/Day";
 import "./DayList.css";
 import FinalView from "../FinalView/FinalView";
+import TokenService from "../../services/token-service";
+import { Link } from "react-router-dom";
 
 class DayList extends PureComponent {
   //state= { page: 0 }
   render() {
-    console.log(this.props.days);
+    // handleLogoutClick = () => {
+    //   TokenService.clearAuthToken();
+    // };
+
     const days = this.props.days.map(day => (
       <Day key={day.id} {...day} goal_hours={this.props.goal_hours} />
     ));
@@ -26,6 +31,11 @@ class DayList extends PureComponent {
             hours_goal={this.props.hours_goal}
             onClickSetup={({ history }) => history.push("/setup")}
           />
+        )}
+        {TokenService.hasAuthToken() && (
+          <Link onClick={this.handleLogoutClick} to="/">
+            <button>Logout</button>
+          </Link>
         )}
       </div>
     );

@@ -1,44 +1,60 @@
 import React, { Component } from "react";
-import { Button, Input } from "../Utils/Utils";
+import TokenService from "../../services/token-service";
+import AuthApiService from "../../services/auth-api-service";
 
 export default class LoginForm extends Component {
   static defaultProps = {
     onLoginSuccess: () => {}
   };
 
-  state = { error: null };
+  state = { error: null, user_name: "", password: "" };
 
-  handleSubmitBasicAuth = ev => {
+  handleSubmitJwtAuth = ev => {
     ev.preventDefault();
-    const { user_name, password } = ev.target;
+    this.setState({ error: null });
+    const { user_name, password } = this.state;
 
-    console.log("login form submitted");
-    console.log({ user_name, password });
-
-    user_name.value = "";
-    password.value = "";
-    this.props.onLoginSuccess();
+    AuthApiService.postLogin({
+      user_name: user_name,
+      password: password
+    })
+      .then(res => {
+        this.setState({ user_name: "", password: "" });
+        TokenService.saveAuthToken(res.authToken);
+        this.props.onLoginSuccess();
+      })
+      .catch(res => {
+        this.setState({
+          error: res.error
+        });
+      });
   };
 
   render() {
     const { error } = this.state;
     return (
-      <form className="LoginForm" onSubmit={this.handleSubmitBasicAuth}>
+      <form className="LoginForm" onSubmit={this.handleSubmitJwtAuth}>
         <div role="alert">{error && <p className="red">{error}</p>}</div>
         <div className="user_name">
           <label htmlFor="LoginForm__user_name">User name</label>
-          <Input required name="user_name" id="LoginForm__user_name"></Input>
+          <input
+            required
+            name="user_name"
+            id="LoginForm__user_name"
+            onChange={e => this.setState({ user_name: e.target.value })}
+          ></input>
         </div>
         <div className="password">
           <label htmlFor="LoginForm__password">Password</label>
-          <Input
+          <input
             required
             name="password"
             type="password"
             id="LoginForm__password"
-          ></Input>
+            onChange={e => this.setState({ password: e.target.value })}
+          ></input>
         </div>
-        <Button type="submit">Login</Button>
+        <button type="submit">Login</button>
       </form>
     );
   }
