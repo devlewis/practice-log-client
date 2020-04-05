@@ -7,7 +7,7 @@ import DayList from "../DayList/DayList";
 import DayForm from "../DayForm/DayForm";
 //import Context from "/Users/Devree/projects/practice-log-client/src/Context.js";
 import AfterLogin from "../AfterLogin/AfterLogin";
-import days100 from "/Users/Devree/projects/practice-log-client/src/STORE.js";
+//import days100 from "/Users/Devree/projects/practice-log-client/src/STORE.js";
 //import PrivateRoute from "../Utils/PrivateRoute";
 //import PublicOnlyRoute from "../Utils/PublicOnlyRoute";
 import RegistrationForm from "../RegistrationForm/RegistrationForm";
@@ -30,21 +30,17 @@ class App extends PureComponent {
   };
 
   handleSubmit = (num_of_days, hours, user) => {
-    DaysApiService.postGoal(user);
-    // I need an error here?
-    //    .catch()
-
-    let newDays = days100.slice(0, num_of_days);
-    newDays.forEach(day => (day.actual_hours = hours));
-
     this.setState({
-      days: newDays,
+      user: user,
       num_of_days: num_of_days,
       hours_goal: hours
     });
 
-    DaysApiService.postDays(num_of_days, hours);
-
+    DaysApiService.postDays(num_of_days, hours, user).then(days =>
+      this.setState({
+        days: days
+      })
+    );
     // I need an error here?
     //    .catch()
   };

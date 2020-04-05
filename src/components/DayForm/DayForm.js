@@ -11,18 +11,19 @@ class DayForm extends Component {
     dayId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     day: PropTypes.shape({
       id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      day_num: PropTypes.number,
       date: PropTypes.string,
       completed: PropTypes.string,
       technique: "",
       repertoire: "",
       actual_hours: PropTypes.number,
       goal_id: PropTypes.number,
-      touched: PropTypes.bool
-    })
+      touched: PropTypes.bool,
+    }),
   };
 
   static defaultProps = {
-    day: {}
+    day: {},
   };
 
   state = {
@@ -32,10 +33,10 @@ class DayForm extends Component {
     actual_hours: this.props.day.actual_hours,
     completed: this.props.day.completed,
     technique: this.props.day.technique,
-    repertoire: this.props.day.repertoire
+    repertoire: this.props.day.repertoire,
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     const {
       id,
@@ -44,7 +45,7 @@ class DayForm extends Component {
       actual_hours,
       goal_id,
       technique,
-      repertoire
+      repertoire,
     } = this.state;
 
     const updatedDay = {
@@ -55,7 +56,7 @@ class DayForm extends Component {
       goal_id,
       technique,
       repertoire,
-      touched: true
+      touched: true,
     };
 
     this.props.handleDaySubmit(updatedDay);
@@ -63,21 +64,21 @@ class DayForm extends Component {
     this.props.goBack();
   };
 
-  handleChangeCompleted = e => {
+  handleChangeCompleted = (e) => {
     this.setState({
-      completed: e.target.value
+      completed: e.target.value,
     });
   };
 
-  handleChangeHours = e => {
+  handleChangeHours = (e) => {
     this.setState({ actual_hours: parseFloat(e.target.value) });
   };
 
-  handleChangeTechnique = e => {
+  handleChangeTechnique = (e) => {
     this.setState({ technique: e.target.value });
   };
 
-  handleChangeRepertoire = e => {
+  handleChangeRepertoire = (e) => {
     this.setState({ repertoire: e.target.value });
   };
 
