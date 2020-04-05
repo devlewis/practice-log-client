@@ -1,10 +1,8 @@
 import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
 import "../Day/Day.css";
-import Context from "../../Context";
 
 class Day extends PureComponent {
-  static contextType = Context;
   render() {
     let mystyle = {};
     this.props.touched && this.props.completed === "false"
@@ -38,7 +36,7 @@ class Day extends PureComponent {
         ) : (
           <section className="completed_box">
             <p>Hours Practiced: {this.props.actual_hours}</p>
-            <p>Goal Hours: {this.context.hours_goal}</p>
+            <p>Goal Hours: {this.props.hours_goal}</p>
             {/* {this.props.technique || this.props.repertoire && (
             <p>Practice Details:<br>
             Technique: {this.props.technique}<br>
