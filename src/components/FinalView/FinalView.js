@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import "./FinalView.css";
 import { Link } from "react-router-dom";
+import Context from "../../Context";
 
 class FinalView extends PureComponent {
   constructor(props) {
@@ -9,15 +10,17 @@ class FinalView extends PureComponent {
     this.state = {};
   }
 
-  render() {
-    console.log(this.props.days[0].actual_hours);
-    console.log(this.props.hours_goal);
+  static contextType = Context;
 
-    const daysCompleted = this.props.days.filter(
-      day => day.completed === "true"
+  render() {
+    console.log(this.context.days[0].actual_hours);
+    console.log(this.context.hours_goal);
+
+    const daysCompleted = this.context.days.filter(
+      (day) => day.completed === "true"
     );
-    const daysCompletedHours = this.props.days.filter(
-      day => day.actual_hours >= this.props.hours_goal
+    const daysCompletedHours = this.context.days.filter(
+      (day) => day.actual_hours >= this.props.hours_goal
     );
 
     console.log(daysCompletedHours);
@@ -25,13 +28,13 @@ class FinalView extends PureComponent {
     const techniqueArr = [];
     const repertoireArr = [];
 
-    this.props.days.forEach(day => {
+    this.context.days.forEach((day) => {
       if (day.technique !== "" && !techniqueArr.includes(day.technique)) {
         techniqueArr.push(day.technique);
       }
     });
 
-    this.props.days.forEach(day => {
+    this.context.days.forEach((day) => {
       if (!repertoireArr.includes(day.repertoire) && day.repertoire !== "") {
         repertoireArr.push(day.repertoire);
       }
@@ -41,27 +44,27 @@ class FinalView extends PureComponent {
       <main>
         <h1>YOU DID IT!</h1>
         <p className="finalview_p">
-          You practiced {daysCompleted.length} out of {this.props.totalDays}{" "}
+          You practiced {daysCompleted.length} out of {this.context.totalDays}{" "}
           goal days!
         </p>
         <p className="finalview_p">
           You reached your practice hourly goal {daysCompletedHours.length} out
-          of {this.props.totalDays} days.
+          of {this.context.totalDays} days.
         </p>
         <p className="finalview_p">
           {" "}
-          You practiced a total of {this.props.total_hours} hours during your{" "}
-          {this.props.totalDays}-day goal.
+          You practiced a total of {this.context.total_hours} hours during your{" "}
+          {this.context.totalDays}-day goal.
         </p>
         <p className="finalview_p">Technique items recorded:</p>
         <ul className="technique_list">
-          {techniqueArr.map(item => (
+          {techniqueArr.map((item) => (
             <li>{item}</li>
           ))}
         </ul>
         <p className="finalview_p">Repertoire items recorded:</p>
         <ul className="repertoire_list">
-          {repertoireArr.map(item => (
+          {repertoireArr.map((item) => (
             <li>{item}</li>
           ))}
         </ul>

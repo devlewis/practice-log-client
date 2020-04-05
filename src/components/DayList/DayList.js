@@ -4,37 +4,38 @@ import "./DayList.css";
 import FinalView from "../FinalView/FinalView";
 import TokenService from "../../services/token-service";
 import { Link } from "react-router-dom";
+import Context from "../../Context";
 
 class DayList extends PureComponent {
   //state= { page: 0 }
-  render() {
-    // handleLogoutClick = () => {
-    //   TokenService.clearAuthToken();
-    // };
 
-    const days = this.props.days.map(day => (
-      <Day key={day.id} {...day} goal_hours={this.props.goal_hours} />
+  static contextType = Context;
+
+  handleLogoutClick = () => {
+    TokenService.clearAuthToken();
+  };
+
+  render() {
+    const days = this.context.days.map((day) => (
+      <Day key={day.id} {...day} goal_hours={this.context.hours_goal} />
     ));
+
     return (
       <div>
         <div>
           Total Hours:
-          {this.props.total_hours}
+          {this.context.total_hours}
         </div>
         <div className="container">{days}</div>
-        {this.props.days.filter(day => day.touched).length ===
-          this.props.days.length && (
+        {this.context.days[this.context.days.length - 1].completed === true && (
           <FinalView
             totalDays={this.props.num_of_days}
-            total_hours={this.props.total_hours}
-            days={this.props.days}
-            hours_goal={this.props.hours_goal}
             onClickSetup={({ history }) => history.push("/setup")}
           />
         )}
         {TokenService.hasAuthToken() && (
-          <Link onClick={this.handleLogoutClick} to="/">
-            <button>Logout</button>
+          <Link to="/">
+            <button onClick={this.handleLogoutClick}>Logout</button>
           </Link>
         )}
       </div>

@@ -1,26 +1,28 @@
 import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
 import "../Day/Day.css";
+import Context from "../../Context";
 
 class Day extends PureComponent {
+  static contextType = Context;
   render() {
     let mystyle = {};
     this.props.touched && this.props.completed === "false"
       ? (mystyle = {
           color: "white",
-          backgroundColor: "red"
+          backgroundColor: "red",
         })
       : this.props.touched &&
         this.props.completed === "true" &&
         this.props.actual_hours < this.props.goal_hours
       ? (mystyle = {
           color: "black",
-          backgroundColor: "yellow"
+          backgroundColor: "yellow",
         })
       : this.props.touched && this.props.completed === "true"
       ? (mystyle = {
           color: "white",
-          backgroundColor: "green"
+          backgroundColor: "green",
         })
       : (mystyle = {});
 
@@ -34,7 +36,15 @@ class Day extends PureComponent {
         {this.props.touched === false ? (
           <Link to={`/day/${day_num}`}>Did you practice today?</Link>
         ) : (
-          <Link to={`/day/${day_num}`}>Edit Practice Details</Link>
+          <section className="completed_box">
+            <p>Hours Practiced: {this.props.actual_hours}</p>
+            <p>Goal Hours: {this.context.hours_goal}</p>
+            {/* {this.props.technique || this.props.repertoire && (
+            <p>Practice Details:<br>
+            Technique: {this.props.technique}<br>
+            Repertoire: {this.props.repertoire}</p>)} */}
+            <Link to={`/day/${day_num}`}>Edit Practice Details</Link>
+          </section>
         )}
       </div>
     );
