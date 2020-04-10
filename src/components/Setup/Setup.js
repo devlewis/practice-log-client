@@ -9,7 +9,7 @@ class Setup extends PureComponent {
     this.state = {
       num_of_days: null,
       hours: null,
-      user: "",
+      // user: "",
     };
   }
 
@@ -20,7 +20,7 @@ class Setup extends PureComponent {
     this.context.onHandleSubmit(
       this.state.num_of_days,
       this.state.hours,
-      this.state.user,
+      //  this.state.user,
       this.props.history
     );
   };
@@ -29,8 +29,8 @@ class Setup extends PureComponent {
     return (
       <div>
         <form className="Setup_form" onSubmit={this.handleSubmit}>
-          <div>
-            <label htmlFor="user"> What's your user name? </label>
+          {/* <div> */}
+          {/* <label htmlFor="user"> What's your user name? </label>
             <input
               onChange={(e) =>
                 this.setState({
@@ -44,7 +44,7 @@ class Setup extends PureComponent {
               autoComplete="off"
               required
             />
-          </div>
+          </div> */}
           <div>
             <label htmlFor="#ofDaysChoice">
               How Many Consecutive Days Will You Practice?

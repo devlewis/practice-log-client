@@ -56,10 +56,12 @@ const DaysApiService = {
   },
 
   updateGoal(updatedGoal, goalId) {
+    console.log("updatedGoal in service", updatedGoal);
+    console.log("updatedGoal.num_of_days", updatedGoal.num_of_days);
     return fetch(`${config.API_ENDPOINT}prlog/updategoal/`, {
       method: "POST",
       headers: {
-        "Content-Type": "application.json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify({
@@ -68,7 +70,7 @@ const DaysApiService = {
         hours_goal: updatedGoal.hours_goal,
         goal_id: goalId,
       }),
-    }).then((res) => res.status(204).end());
+    }).then((res) => console.log(res));
   },
 };
 

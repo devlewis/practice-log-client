@@ -47,16 +47,16 @@ class App extends PureComponent {
       .then(() => history.push(`/daylist/${this.state.num_of_days}`));
   };
 
-  handleSubmit = (num_of_days, hours, user, history) => {
-    DaysApiService.postDays(num_of_days, hours, user)
+  handleSubmit = (num_of_days, hours, history) => {
+    DaysApiService.postDays(num_of_days, hours)
       .then((days) => {
         console.log(days);
 
         this.setState({
           days: days,
-          user: user,
           num_of_days: num_of_days,
           hours_goal: parseFloat(hours),
+          total_hours: 0,
         });
       })
       .then(() => history.push(`/daylist/${this.state.num_of_days}`));
@@ -70,6 +70,8 @@ class App extends PureComponent {
       hours = this.state.total_hours;
       updatedDay.actual_hours = 0;
     }
+
+    console.log("hours in daysubmit", hours);
 
     this.setState({
       total_hours: hours,
@@ -98,10 +100,8 @@ class App extends PureComponent {
       total_hours: this.state.total_hours,
     };
     const goalId = this.state.goal_id;
-    debugger;
-    DaysApiService.updateGoal(updatedGoal, goalId).then((res) =>
-      console.log(res)
-    );
+
+    DaysApiService.updateGoal(updatedGoal, goalId);
   };
 
   render() {
@@ -123,9 +123,9 @@ class App extends PureComponent {
             <Link to="/">Practice Log</Link>
           </header>
           <Switch>
-            <Route exact path="/">
+            <PublicOnlyRoute exact path="/">
               <Home />
-            </Route>
+            </PublicOnlyRoute>
 
             <PrivateRoute path="/setup" component={Setup} />
 
@@ -135,7 +135,7 @@ class App extends PureComponent {
 
             <PrivateRoute path="/afterlogin" component={AfterLogin} />
 
-            <PublicOnlyRoute path="/register" component={RegistrationForm} />
+            <Route path="/register" component={RegistrationForm} />
             <Route component={NotFoundPage} />
           </Switch>
         </div>
