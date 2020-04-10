@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import "../Setup/Setup.css";
+import Context from "../../Context";
 
 class Setup extends PureComponent {
   constructor(props) {
@@ -8,18 +9,20 @@ class Setup extends PureComponent {
     this.state = {
       num_of_days: null,
       hours: null,
-      user: ""
+      user: "",
     };
   }
 
-  handleSubmit = e => {
+  static contextType = Context;
+
+  handleSubmit = (e) => {
     e.preventDefault();
-    this.props.onHandleSubmit(
+    this.context.onHandleSubmit(
       this.state.num_of_days,
       this.state.hours,
-      this.state.user
+      this.state.user,
+      this.props.history
     );
-    this.props.history.push(`/daylist/${this.state.num_of_days}`);
   };
 
   render() {
@@ -29,9 +32,9 @@ class Setup extends PureComponent {
           <div>
             <label htmlFor="user"> What's your user name? </label>
             <input
-              onChange={e =>
+              onChange={(e) =>
                 this.setState({
-                  user: e.target.value
+                  user: e.target.value,
                 })
               }
               type="text"
@@ -47,7 +50,7 @@ class Setup extends PureComponent {
               How Many Consecutive Days Will You Practice?
             </label>
             <select
-              onChange={e =>
+              onChange={(e) =>
                 this.setState({ num_of_days: parseFloat(e.target.value) })
               }
               name="#ofDaysChoice"
@@ -63,9 +66,9 @@ class Setup extends PureComponent {
           <div>
             <label htmlFor="hours"> How Many Hours Per Day? </label>
             <input
-              onChange={e =>
+              onChange={(e) =>
                 this.setState({
-                  hours: parseFloat(e.target.value)
+                  hours: parseFloat(e.target.value),
                 })
               }
               type="text"

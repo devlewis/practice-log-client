@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import "./FinalView.css";
 import { Link } from "react-router-dom";
+import Context from "../../Context";
 
 class FinalView extends PureComponent {
   constructor(props) {
@@ -9,15 +10,14 @@ class FinalView extends PureComponent {
     this.state = {};
   }
 
-  render() {
-    console.log(this.props.days[0].actual_hours);
-    console.log(this.props.hours_goal);
+  static contextType = Context;
 
-    const daysCompleted = this.props.days.filter(
+  render() {
+    const daysCompleted = this.context.days.filter(
       (day) => day.completed === "true"
     );
-    const daysCompletedHours = this.props.days.filter(
-      (day) => day.actual_hours >= this.props.hours_goal
+    const daysCompletedHours = this.context.days.filter(
+      (day) => day.actual_hours >= this.context.hours_goal
     );
 
     console.log(daysCompletedHours);
@@ -25,13 +25,13 @@ class FinalView extends PureComponent {
     const techniqueArr = [];
     const repertoireArr = [];
 
-    this.props.days.forEach((day) => {
+    this.context.days.forEach((day) => {
       if (day.technique !== "" && !techniqueArr.includes(day.technique)) {
         techniqueArr.push(day.technique);
       }
     });
 
-    this.props.days.forEach((day) => {
+    this.context.days.forEach((day) => {
       if (!repertoireArr.includes(day.repertoire) && day.repertoire !== "") {
         repertoireArr.push(day.repertoire);
       }
@@ -50,7 +50,7 @@ class FinalView extends PureComponent {
         </p>
         <p className="finalview_p">
           {" "}
-          You practiced a total of {this.props.total_hours} hours during your{" "}
+          You practiced a total of {this.context.total_hours} hours during your{" "}
           {this.props.totalDays}-day goal.
         </p>
         <p className="finalview_p">Technique items recorded:</p>

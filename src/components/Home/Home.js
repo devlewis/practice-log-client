@@ -2,15 +2,21 @@ import React, { Component } from "react";
 import "../Home/Home.css";
 import LoginForm from "../LoginForm/LoginForm";
 import { withRouter } from "react-router";
+import Context from "../../Context";
 
 class Home extends Component {
   static defaultProps = {
     location: {},
     history: {
-      push: () => {}
-    }
+      push: () => {},
+    },
   };
 
+  static contextType = Context;
+
+  onClickRegister = () => {
+    this.props.history.push("/register");
+  };
   handleLoginSuccess = () => {
     console.log("called?");
     const { history } = this.props;
@@ -24,9 +30,7 @@ class Home extends Component {
         <div className="container_login">
           <LoginForm onLoginSuccess={this.handleLoginSuccess} />
         </div>
-        <button onClick={this.props.onClickRegister}>
-          Make a new account!
-        </button>
+        <button onClick={this.onClickRegister}>Make a new account!</button>
       </div>
     );
   }

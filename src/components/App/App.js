@@ -5,11 +5,10 @@ import Home from "../Home/Home";
 import Setup from "../Setup/Setup";
 import DayList from "../DayList/DayList";
 import DayForm from "../DayForm/DayForm";
-//import Context from "/Users/Devree/projects/practice-log-client/src/Context.js";
+import Context from "/Users/Devree/projects/practice-log-client/src/Context.js";
 import AfterLogin from "../AfterLogin/AfterLogin";
-//import days100 from "/Users/Devree/projects/practice-log-client/src/STORE.js";
-//import PrivateRoute from "../Utils/PrivateRoute";
-//import PublicOnlyRoute from "../Utils/PublicOnlyRoute";
+import PrivateRoute from "../Utils/PrivateRoute";
+import PublicOnlyRoute from "../Utils/PublicOnlyRoute";
 import RegistrationForm from "../RegistrationForm/RegistrationForm";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import DaysApiService from "../../services/days-api-service";
@@ -20,32 +19,50 @@ class App extends PureComponent {
     days: [],
     num_of_days: null,
     total_hours: 0,
-    hours_goal: null
+    hours_goal: null,
+    goal_id: null,
   };
 
-  handleLogin = () => {};
+  handleLoginFetch = (history) => {
+    DaysApiService.getGoal().then((goal) => {
+      console.log(goal);
 
-  onLoginSuccess = () => {
-    fetch();
-  };
-
-  handleSubmit = (num_of_days, hours, user) => {
-    this.setState({
-      user: user,
-      num_of_days: num_of_days,
-      hours_goal: hours
+      this.setState({
+        user: goal.user_id,
+        num_of_days: goal.num_of_days,
+        total_hours: goal.total_hours,
+        hours_goal: goal.hours_goal,
+        goal_id: goal.id,
+      });
     });
 
-    DaysApiService.postDays(num_of_days, hours, user).then(days =>
-      this.setState({
-        days: days
+    DaysApiService.getDays()
+      .then((days) => {
+        console.log(days);
+
+        this.setState({
+          days: days,
+        });
       })
-    );
-    // I need an error here?
-    //    .catch()
+      .then(() => history.push(`/daylist/${this.state.num_of_days}`));
   };
 
-  handleDaySubmit = updatedDay => {
+  handleSubmit = (num_of_days, hours, user, history) => {
+    DaysApiService.postDays(num_of_days, hours, user)
+      .then((days) => {
+        console.log(days);
+
+        this.setState({
+          days: days,
+          user: user,
+          num_of_days: num_of_days,
+          hours_goal: parseFloat(hours),
+        });
+      })
+      .then(() => history.push(`/daylist/${this.state.num_of_days}`));
+  };
+
+  handleDaySubmit = (updatedDay, dayId, history) => {
     let hours;
     if (updatedDay.completed === "true") {
       hours = this.state.total_hours + updatedDay.actual_hours;
@@ -53,97 +70,76 @@ class App extends PureComponent {
       hours = this.state.total_hours;
       updatedDay.actual_hours = 0;
     }
+
     this.setState({
-      days: this.state.days.map(day =>
-        day.id !== updatedDay.id ? day : updatedDay
-      ),
-      total_hours: hours
+      total_hours: hours,
+    });
+
+    console.log("updatedDay in client", updatedDay);
+    console.log("dayId in client", dayId);
+
+    DaysApiService.updateDay(dayId, updatedDay).then(() => {
+      console.log("SERVER??");
+    });
+
+    DaysApiService.getDays().then((days) => {
+      console.log(days);
+
+      this.setState({
+        days: days,
+      });
     });
   };
 
+  updateDataGoal = () => {
+    const updatedGoal = {
+      num_of_days: this.state.num_of_days,
+      hours_goal: this.state.hours_goal,
+      total_hours: this.state.total_hours,
+    };
+    const goalId = this.state.goal_id;
+    debugger;
+    DaysApiService.updateGoal(updatedGoal, goalId).then((res) =>
+      console.log(res)
+    );
+  };
+
   render() {
+    const value = {
+      user: this.state.user,
+      days: this.state.days,
+      num_of_days: this.state.num_of_days,
+      total_hours: this.state.total_hours,
+      hours_goal: this.state.hours_goal,
+      onHandleSubmit: this.handleSubmit,
+      onHandleDaySubmit: this.handleDaySubmit,
+      onHandleLoginFetch: this.handleLoginFetch,
+      updateDataGoal: this.updateDataGoal,
+    };
     return (
-      <div className="App">
-        <header className="App_header">
-          <Link to="/">Practice Log</Link>
-        </header>
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={({ history }) => {
-              return (
-                <Home
-                  onClickSignIn={() => history.push("/afterlogin")}
-                  onClickRegister={() => history.push("/register")}
-                />
-              );
-            }}
-          />
-          <Route
-            path="/setup"
-            render={({ history }) => {
-              return (
-                <Setup
-                  onHandleSubmit={this.handleSubmit}
-                  onClickCancel={() => history.push("/")}
-                  history={history}
-                />
-              );
-            }}
-          />
-          <Route
-            path="/daylist/:num_of_days"
-            render={props => {
-              const num_of_days = props.match.params.num_of_days;
-              return (
-                <DayList
-                  num_of_days={num_of_days}
-                  days={this.state.days}
-                  total_hours={this.state.total_hours}
-                  goal_hours={this.state.hours_goal}
-                />
-              );
-            }}
-          />
-          <Route
-            path="/day/:dayId"
-            render={props => {
-              const dayId = props.match.params.dayId;
-              return (
-                <DayForm
-                  day={this.state.days[dayId - 1]}
-                  id={dayId}
-                  hours={this.state.hours_goal}
-                  handleDaySubmit={this.handleDaySubmit}
-                  onClickCancel={() => props.history.push("/")}
-                  goBack={() =>
-                    props.history.push(`/daylist/${this.state.num_of_days}`)
-                  }
-                />
-              );
-            }}
-          />
-          <Route
-            path="/afterlogin"
-            render={({ history }) => {
-              return (
-                <AfterLogin
-                  onClickCurrent={() => history.push("/daylist/:dayid")}
-                  onClickSetup={() => history.push("/setup")}
-                />
-              );
-            }}
-          />
-          <Route
-            path="/register"
-            render={({ history }) => {
-              return <RegistrationForm history={history} />;
-            }}
-          />
-          <Route component={NotFoundPage} />
-        </Switch>
-      </div>
+      <Context.Provider value={value}>
+        <div className="App">
+          <header className="App_header">
+            <Link to="/">Practice Log</Link>
+          </header>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+
+            <PrivateRoute path="/setup" component={Setup} />
+
+            <PrivateRoute path="/daylist/" component={DayList} />
+
+            <PrivateRoute path="/day/:dayNum" component={DayForm} />
+
+            <PrivateRoute path="/afterlogin" component={AfterLogin} />
+
+            <PublicOnlyRoute path="/register" component={RegistrationForm} />
+            <Route component={NotFoundPage} />
+          </Switch>
+        </div>
+      </Context.Provider>
     );
   }
 }

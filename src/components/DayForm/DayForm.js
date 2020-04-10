@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "./DayForm.css";
+import Context from "../../Context";
 
 class DayForm extends Component {
   static propTypes = {
@@ -26,42 +27,77 @@ class DayForm extends Component {
     day: {},
   };
 
+  static contextType = Context;
+
   state = {
-    id: parseFloat(this.props.id),
-    date: this.props.day.date,
-    goal_id: 1,
-    actual_hours: this.props.day.actual_hours,
-    completed: this.props.day.completed,
-    technique: this.props.day.technique,
-    repertoire: this.props.day.repertoire,
+    id: "",
+    day_num: "",
+    day_date: "",
+    completed: "",
+    technique: "",
+    repertoire: "",
+    actual_hours: "",
+    touched: "",
+    goal_id: "",
+    user_id: "",
+    goal_hours: "",
   };
+
+  componentDidMount() {
+    console.log(this.context);
+    const dayNum = this.props.location.pathname.split("/")[2];
+    const day = this.context.days[dayNum - 1];
+    this.setState({
+      id: day.id,
+      day_num: day.day_num,
+      day_date: day.date,
+      completed: day.completed,
+      technique: day.technique,
+      repertoire: day.repertoire,
+      actual_hours: day.actual_hours,
+      touched: day.touched,
+      goal_id: day.goal_id,
+      user_id: day.user_id,
+      goal_hours: day.goal_hours,
+    });
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
     const {
       id,
-      date,
+      day_num,
+      day_date,
       completed,
-      actual_hours,
-      goal_id,
       technique,
       repertoire,
+      actual_hours,
+      goal_id,
+      user_id,
+      goal_hours,
     } = this.state;
 
     const updatedDay = {
       id,
-      date,
+      day_num,
+      day_date,
       completed,
-      actual_hours,
-      goal_id,
       technique,
       repertoire,
+      actual_hours,
       touched: true,
+      goal_id,
+      user_id,
+      goal_hours,
     };
 
-    this.props.handleDaySubmit(updatedDay);
+    const dayId = id;
 
-    this.props.goBack();
+    this.context.onHandleDaySubmit(updatedDay, dayId);
+
+    this.context.updateDataGoal();
+
+    this.props.history.goBack();
   };
 
   handleChangeCompleted = (e) => {
@@ -83,8 +119,10 @@ class DayForm extends Component {
   };
 
   render() {
+    const dayNum = this.props.location.pathname.split("/")[2];
+
     const { error } = this.props;
-    const { id, actual_hours, technique, repertoire } = this.state;
+    const { id, technique, repertoire, actual_hours } = this.state;
 
     return (
       <form className="DayForm__form" onSubmit={this.handleSubmit}>
@@ -93,9 +131,9 @@ class DayForm extends Component {
         </div>
         {id && <input type="hidden" name="id" value={id} />}
         <div className="required_box">
-          <h1>Practice Day #{this.props.id}</h1>
-          <h2>{this.props.day.date}</h2>
-
+          <h1>Practice Day #{dayNum}</h1>
+          <h2>{this.state.day_date}</h2>
+          <h3>Goal Number of Hours:{this.state.goal_hours}</h3>
           <label htmlFor="completed">Did you practice today?</label>
           <select
             onChange={this.handleChangeCompleted}
@@ -109,18 +147,18 @@ class DayForm extends Component {
         </div>
         {this.state.completed === "true" && (
           <section>
-            <p className="italics">Optional:</p>
+            <div>
+              <label htmlFor="actual_hours">How Many Hours?</label>
+              <input
+                type="number"
+                name="actual_hours"
+                id="actual_hours"
+                value={actual_hours}
+                onChange={this.handleChangeHours}
+              />
+            </div>
             <div className="optional_box">
-              <div>
-                <label htmlFor="actual_hours">How Many Hours?</label>
-                <input
-                  type="number"
-                  name="actual_hours"
-                  id="actual_hours"
-                  value={actual_hours}
-                  onChange={this.handleChangeHours}
-                />
-              </div>
+              <p className="italics">Optional:</p>
 
               <div>
                 <label htmlFor="technique">Technique:</label>

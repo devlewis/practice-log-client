@@ -3,30 +3,30 @@ import AuthApiService from "../../services/auth-api-service";
 
 export default class RegistrationForm extends Component {
   static defaultProps = {
-    onRegistrationSuccess: () => {}
+    onRegistrationSuccess: () => {},
   };
 
   state = { error: null, user_name: "", password: "" };
 
-  handleRegistrationSuccess = user => {
+  handleRegistrationSuccess = (user) => {
     const { history } = this.props;
     history.push("/");
   };
 
-  handleSubmit = ev => {
+  handleSubmit = (ev) => {
     ev.preventDefault();
     const { user_name, password } = this.state;
 
     this.setState({ error: null });
     AuthApiService.postUser({
       user_name: user_name,
-      password: password
+      password: password,
     })
-      .then(user => {
+      .then((user) => {
         this.setState({ user_name: "", password: "" });
         this.handleRegistrationSuccess();
       })
-      .catch(res => {
+      .catch((res) => {
         this.setState({ error: res.error });
       });
   };
@@ -43,7 +43,7 @@ export default class RegistrationForm extends Component {
             type="text"
             required
             id="RegistrationForm__user_name"
-            onChange={e => this.setState({ user_name: e.target.value })}
+            onChange={(e) => this.setState({ user_name: e.target.value })}
           ></input>
         </div>
         <div className="password">
@@ -53,10 +53,11 @@ export default class RegistrationForm extends Component {
             type="password"
             required
             id="RegistrationForm__password"
-            onChange={e => this.setState({ password: e.target.value })}
+            onChange={(e) => this.setState({ password: e.target.value })}
           ></input>
         </div>
         <button type="submit">Register</button>
+        <button onClick={(e) => this.props.history.push("/")}>Cancel</button>
       </form>
     );
   }
