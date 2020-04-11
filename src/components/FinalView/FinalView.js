@@ -55,9 +55,9 @@ class FinalView extends PureComponent {
         </p>
         <p className="finalview_p">Technique items recorded:</p>
         <ul className="technique_list">
-          {techniqueArr.map((item) => (
-            <li>{item}</li>
-          ))}
+          {techniqueArr.map((item) => {
+            return <li>{item}</li>;
+          })}
         </ul>
         <p className="finalview_p">Repertoire items recorded:</p>
         <ul className="repertoire_list">

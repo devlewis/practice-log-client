@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "name": "practice-log-app",
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/.*", "dest": "/index.html" }
+  ]
+}
