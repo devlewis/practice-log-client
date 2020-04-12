@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Day component renders a .Day by default 1`] = `
+<div
+  className="day_box"
+  style={Object {}}
+>
+  <p>
+    Day #
+  </p>
+  <p />
+  <section
+    className="completed_box"
+  >
+    <p>
+      Hours Practiced: 
+    </p>
+    <p>
+      Goal Hours: 
+    </p>
+    <Link
+      className="small"
+      to="/day/undefined"
+    >
+      Edit Practice Details
+    </Link>
+  </section>
+</div>
+`;
+
+exports[`Day component renders the Day given props of touched 1`] = `
+<div
+  className="day_box"
+  style={
+    Object {
+      "backgroundColor": "green",
+      "color": "white",
+    }
+  }
+>
+  <p>
+    Day #
+    2
+  </p>
+  <p />
+  <section
+    className="completed_box"
+  >
+    <p>
+      Hours Practiced: 
+      2
+    </p>
+    <p>
+      Goal Hours: 
+      3
+    </p>
+    <p>
+      Practice Details:
+    </p>
+    <p>
+      Technique: 
+      Hanon
+    </p>
+    <Link
+      className="small"
+      to="/day/2"
+    >
+      Edit Practice Details
+    </Link>
+  </section>
+</div>
+`;
+
+exports[`Day component renders the Day given props of untouched 1`] = `
+<div
+  className="day_box"
+  style={Object {}}
+>
+  <p>
+    Day #
+    1
+  </p>
+  <p />
+  <PrivateRoute>
+    <Link
+      to="/day/1"
+    >
+      Did you practice today?
+    </Link>
+  </PrivateRoute>
+</div>
+`;

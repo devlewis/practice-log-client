@@ -44,8 +44,8 @@ class DayForm extends Component {
   };
 
   componentDidMount() {
-    console.log(this.context);
     const dayNum = this.props.location.pathname.split("/")[2];
+    console.log(dayNum);
     const day = this.context.days[dayNum - 1];
     this.setState({
       id: day.id,
@@ -185,7 +185,7 @@ class DayForm extends Component {
           </section>
         )}
         <div className="DayForm__buttons">
-          <button type="button" onClick={this.props.onClickCancel}>
+          <button type="button" onClick={this.props.history.goBack()}>
             Cancel
           </button>{" "}
           <button type="submit">Save</button>

@@ -3,14 +3,19 @@ import Day from "../Day/Day";
 import "./DayList.css";
 import FinalView from "../FinalView/FinalView";
 import TokenService from "../../services/token-service";
+import IdleService from "../../services/idle-service";
 import { Link } from "react-router-dom";
 import Context from "../../Context";
 
 class DayList extends PureComponent {
   //state= { page: 0 }
 
-  handleLogoutClick = () => {
+  handleLogout = () => {
     TokenService.clearAuthToken();
+    /* when logging out, clear the callbacks to the refresh api and idle auto logout */
+    TokenService.clearCallbackBeforeExpiry();
+    IdleService.unRegisterIdleResets();
+    this.props.history.push("/");
   };
 
   static contextType = Context;
@@ -35,7 +40,7 @@ class DayList extends PureComponent {
         <div className="container">{days}</div>
         {TokenService.hasAuthToken() && (
           <Link to="/">
-            <button onClick={this.handleLogoutClick}>Logout</button>
+            <button onClick={this.handleLogout}>Logout</button>
           </Link>
         )}
       </div>

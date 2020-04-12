@@ -12,6 +12,9 @@ import PublicOnlyRoute from "../Utils/PublicOnlyRoute";
 import RegistrationForm from "../RegistrationForm/RegistrationForm";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import DaysApiService from "../../services/days-api-service";
+import TokenService from "../../services/token-service";
+import AuthApiService from "../../services/auth-api-service";
+import IdleService from "../../services/idle-service";
 
 class App extends PureComponent {
   state = {
@@ -22,29 +25,86 @@ class App extends PureComponent {
     hours_goal: null,
     goal_id: null,
   };
+  componentDidMount() {
+    /*
+      set the function (callback) to call when a user goes idle
+      we'll set this to logout a user when they're idle
+    */
+    IdleService.setIdleCallback(this.logoutFromIdle);
+
+    /* if a user is logged in */
+    if (TokenService.hasAuthToken()) {
+      /*
+        tell the idle service to register event listeners
+        the event listeners are fired when a user does something, e.g. move their mouse
+        if the user doesn't trigger one of these event listeners,
+          the idleCallback (logout) will be invoked
+      */
+      IdleService.registerIdleTimerResets();
+
+      /*
+        Tell the token service to read the JWT, looking at the exp value
+        and queue a timeout just before the token expires
+      */
+      TokenService.queueCallbackBeforeExpiry(() => {
+        /* the timoue will call this callback just before the token expires */
+        AuthApiService.postRefreshToken();
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    /*
+      when the app unmounts,
+      stop the event listeners that auto logout (clear the token from storage)
+    */
+    IdleService.unRegisterIdleResets();
+    /*
+      and remove the refresh endpoint request
+    */
+    TokenService.clearCallbackBeforeExpiry();
+  }
+
+  logoutFromIdle = () => {
+    console.log("loggedout from Idle!");
+    /* remove the token from localStorage */
+    TokenService.clearAuthToken();
+    /* remove any queued calls to the refresh endpoint */
+    TokenService.clearCallbackBeforeExpiry();
+    /* remove the timeouts that auto logout when idle */
+    IdleService.unRegisterIdleResets();
+    /*
+      react won't know the token has been removed from local storage,
+      so we need to tell React to rerender
+    */
+    this.forceUpdate();
+  };
 
   handleLoginFetch = (history) => {
-    DaysApiService.getGoal().then((goal) => {
-      console.log(goal);
-
-      this.setState({
-        user: goal.user_id,
-        num_of_days: goal.num_of_days,
-        total_hours: goal.total_hours,
-        hours_goal: goal.hours_goal,
-        goal_id: goal.id,
-      });
-    });
-
-    DaysApiService.getDays()
-      .then((days) => {
-        console.log(days);
+    console.log("handleLoginFetch called");
+    DaysApiService.getGoal()
+      .then((goal) => {
+        console.log(goal);
 
         this.setState({
-          days: days,
+          user: goal.user_id,
+          num_of_days: goal.num_of_days,
+          total_hours: goal.total_hours,
+          hours_goal: goal.hours_goal,
+          goal_id: goal.id,
         });
       })
-      .then(() => history.push(`/daylist/${this.state.num_of_days}`));
+      .then(() => {
+        DaysApiService.getDays()
+          .then((days) => {
+            console.log(days);
+
+            this.setState({
+              days: days,
+            });
+          })
+          .then(() => history.push(`/daylist/${this.state.num_of_days}`));
+      });
   };
 
   handleSubmit = (num_of_days, hours, history) => {
@@ -111,6 +171,7 @@ class App extends PureComponent {
       num_of_days: this.state.num_of_days,
       total_hours: this.state.total_hours,
       hours_goal: this.state.hours_goal,
+      goal_id: this.state.goal_id,
       onHandleSubmit: this.handleSubmit,
       onHandleDaySubmit: this.handleDaySubmit,
       onHandleLoginFetch: this.handleLoginFetch,
@@ -123,9 +184,7 @@ class App extends PureComponent {
             <Link to="/">Practice Log</Link>
           </header>
           <Switch>
-            <PublicOnlyRoute exact path="/">
-              <Home />
-            </PublicOnlyRoute>
+            <PublicOnlyRoute exact path="/" component={Home} />
 
             <PrivateRoute path="/setup" component={Setup} />
 
@@ -136,6 +195,7 @@ class App extends PureComponent {
             <PrivateRoute path="/afterlogin" component={AfterLogin} />
 
             <Route path="/register" component={RegistrationForm} />
+
             <Route component={NotFoundPage} />
           </Switch>
         </div>

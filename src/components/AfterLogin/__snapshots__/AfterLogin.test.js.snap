@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AfterLogin component renders form.AfterLogin by default 1`] = `
+<div>
+  <button
+    onClick={[Function]}
+  >
+    Take me to my current goal!
+  </button>
+  <button
+    onClick={[Function]}
+  >
+    Set up a new goal!
+  </button>
+  <button
+    onClick={[Function]}
+  >
+    Logout
+  </button>
+</div>
+`;
+
+exports[`AfterLogin component renders the AfterLogin given props 1`] = `
+<div>
+  <button
+    onClick={[Function]}
+  >
+    Take me to my current goal!
+  </button>
+  <button
+    onClick={[Function]}
+  >
+    Set up a new goal!
+  </button>
+  <button
+    onClick={[Function]}
+  >
+    Logout
+  </button>
+</div>
+`;

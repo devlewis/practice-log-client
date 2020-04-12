@@ -9,7 +9,6 @@ class Setup extends PureComponent {
     this.state = {
       num_of_days: null,
       hours: null,
-      // user: "",
     };
   }
 
@@ -20,31 +19,18 @@ class Setup extends PureComponent {
     this.context.onHandleSubmit(
       this.state.num_of_days,
       this.state.hours,
-      //  this.state.user,
       this.props.history
     );
+  };
+
+  onClickCancel = (e) => {
+    this.props.history.goBack();
   };
 
   render() {
     return (
       <div>
         <form className="Setup_form" onSubmit={this.handleSubmit}>
-          {/* <div> */}
-          {/* <label htmlFor="user"> What's your user name? </label>
-            <input
-              onChange={(e) =>
-                this.setState({
-                  user: e.target.value,
-                })
-              }
-              type="text"
-              name="user"
-              id="user"
-              placeholder="username"
-              autoComplete="off"
-              required
-            />
-          </div> */}
           <div>
             <label htmlFor="#ofDaysChoice">
               How Many Consecutive Days Will You Practice?
@@ -80,7 +66,7 @@ class Setup extends PureComponent {
             />
           </div>
           <div className="Setup_buttons">
-            <button type="button" onClick={this.props.onClickCancel}>
+            <button type="button" onClick={this.onClickCancel}>
               Cancel
             </button>
             {""}

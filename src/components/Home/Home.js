@@ -19,8 +19,7 @@ class Home extends Component {
   };
   handleLoginSuccess = () => {
     console.log("called?");
-    const { history } = this.props;
-    history.push("/afterlogin");
+    this.props.history.push("/afterlogin");
   };
 
   render() {
