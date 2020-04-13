@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
 import "../Day/Day.css";
-import PrivateRoute from "../Utils/PrivateRoute";
 
 class Day extends PureComponent {
   render() {
@@ -27,15 +26,12 @@ class Day extends PureComponent {
 
     const day_num = this.props.day_num;
     const date = this.props.day_date;
-
     return (
       <div className="day_box" style={mystyle}>
         <p>Day #{day_num}</p>
         <p>{date}</p>
         {this.props.touched === false ? (
-          <PrivateRoute>
-            <Link to={`/day/${day_num}`}>Did you practice today?</Link>
-          </PrivateRoute>
+          <Link to={`/day/${day_num}`}>Did you practice today?</Link>
         ) : (
           <section className="completed_box">
             <p>Hours Practiced: {this.props.actual_hours}</p>

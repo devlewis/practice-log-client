@@ -60,6 +60,7 @@ const AuthApiService = {
         */
         TokenService.saveAuthToken(res.authToken);
         TokenService.queueCallbackBeforeExpiry(() => {
+          console.log("postingRefreshToken");
           AuthApiService.postRefreshToken();
         });
         return res;

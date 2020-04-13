@@ -6,7 +6,7 @@ import Setup from "../Setup/Setup";
 import DayList from "../DayList/DayList";
 import DayForm from "../DayForm/DayForm";
 import Context from "/Users/Devree/projects/practice-log-client/src/Context.js";
-import AfterLogin from "../AfterLogin/AfterLogin";
+//import AfterLogin from "../AfterLogin/AfterLogin";
 import PrivateRoute from "../Utils/PrivateRoute";
 import PublicOnlyRoute from "../Utils/PublicOnlyRoute";
 import RegistrationForm from "../RegistrationForm/RegistrationForm";
@@ -25,6 +25,7 @@ class App extends PureComponent {
     hours_goal: null,
     goal_id: null,
   };
+
   componentDidMount() {
     /*
       set the function (callback) to call when a user goes idle
@@ -48,6 +49,7 @@ class App extends PureComponent {
       */
       TokenService.queueCallbackBeforeExpiry(() => {
         /* the timoue will call this callback just before the token expires */
+        console.log("queueCallbackBeforeExpiry");
         AuthApiService.postRefreshToken();
       });
     }
@@ -81,37 +83,33 @@ class App extends PureComponent {
   };
 
   handleLoginFetch = (history) => {
-    console.log("handleLoginFetch called");
-    DaysApiService.getGoal()
-      .then((goal) => {
-        console.log(goal);
-
+    DaysApiService.getGoal().then((goal) => {
+      if (goal.length === 0) {
+        return history.push("/setup");
+      } else {
         this.setState({
           user: goal.user_id,
           num_of_days: goal.num_of_days,
           total_hours: goal.total_hours,
-          hours_goal: goal.hours_goal,
+          hours_goal: parseFloat(goal.hours_goal),
           goal_id: goal.id,
         });
-      })
-      .then(() => {
-        DaysApiService.getDays()
-          .then((days) => {
-            console.log(days);
-
-            this.setState({
-              days: days,
-            });
-          })
-          .then(() => history.push(`/daylist/${this.state.num_of_days}`));
-      });
+        if (this.state.goal_id) {
+          DaysApiService.getDays()
+            .then((days) => {
+              this.setState({
+                days: days,
+              });
+            })
+            .then(() => history.push(`/daylist/${this.state.num_of_days}`));
+        }
+      }
+    });
   };
 
   handleSubmit = (num_of_days, hours, history) => {
     DaysApiService.postDays(num_of_days, hours)
       .then((days) => {
-        console.log(days);
-
         this.setState({
           days: days,
           num_of_days: num_of_days,
@@ -125,28 +123,19 @@ class App extends PureComponent {
   handleDaySubmit = (updatedDay, dayId, history) => {
     let hours;
     if (updatedDay.completed === "true") {
-      hours = this.state.total_hours + updatedDay.actual_hours;
+      hours = this.state.total_hours + parseFloat(updatedDay.actual_hours);
     } else {
       hours = this.state.total_hours;
       updatedDay.actual_hours = 0;
     }
 
-    console.log("hours in daysubmit", hours);
-
     this.setState({
       total_hours: hours,
     });
 
-    console.log("updatedDay in client", updatedDay);
-    console.log("dayId in client", dayId);
-
-    DaysApiService.updateDay(dayId, updatedDay).then(() => {
-      console.log("SERVER??");
-    });
+    DaysApiService.updateDay(dayId, updatedDay).then(() => {});
 
     DaysApiService.getDays().then((days) => {
-      console.log(days);
-
       this.setState({
         days: days,
       });
@@ -188,11 +177,11 @@ class App extends PureComponent {
 
             <PrivateRoute path="/setup" component={Setup} />
 
-            <PrivateRoute path="/daylist/" component={DayList} />
-
             <PrivateRoute path="/day/:dayNum" component={DayForm} />
 
-            <PrivateRoute path="/afterlogin" component={AfterLogin} />
+            <PrivateRoute path="/daylist" component={DayList} />
+
+            {/* <PrivateRoute path="/afterlogin" component={AfterLogin} /> */}
 
             <Route path="/register" component={RegistrationForm} />
 

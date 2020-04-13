@@ -81,12 +81,10 @@ exports[`Day component renders the Day given props of untouched 1`] = `
     1
   </p>
   <p />
-  <PrivateRoute>
-    <Link
-      to="/day/1"
-    >
-      Did you practice today?
-    </Link>
-  </PrivateRoute>
+  <Link
+    to="/day/1"
+  >
+    Did you practice today?
+  </Link>
 </div>
 `;

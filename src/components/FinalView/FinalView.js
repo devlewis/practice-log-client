@@ -20,8 +20,6 @@ class FinalView extends PureComponent {
       (day) => day.actual_hours >= this.context.hours_goal
     );
 
-    console.log(daysCompletedHours);
-
     const techniqueArr = [];
     const repertoireArr = [];
 

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "./DayForm.css";
 import Context from "../../Context";
+import ValidationError from "../Utils/ValidationError";
 
 class DayForm extends Component {
   static propTypes = {
@@ -30,13 +31,14 @@ class DayForm extends Component {
   static contextType = Context;
 
   state = {
+    error: null,
     id: "",
     day_num: "",
     day_date: "",
     completed: "",
     technique: "",
     repertoire: "",
-    actual_hours: "",
+    actual_hours: { value: "", touched: false },
     touched: "",
     goal_id: "",
     user_id: "",
@@ -45,8 +47,10 @@ class DayForm extends Component {
 
   componentDidMount() {
     const dayNum = this.props.location.pathname.split("/")[2];
-    console.log(dayNum);
     const day = this.context.days[dayNum - 1];
+    console.log(dayNum);
+    console.log(this.context);
+    console.log(day);
     this.setState({
       id: day.id,
       day_num: day.day_num,
@@ -54,12 +58,16 @@ class DayForm extends Component {
       completed: day.completed,
       technique: day.technique,
       repertoire: day.repertoire,
-      actual_hours: day.actual_hours,
+      actual_hours: { value: day.actual_hours },
       touched: day.touched,
       goal_id: day.goal_id,
       user_id: day.user_id,
       goal_hours: day.goal_hours,
     });
+  }
+
+  componentWillUnmount() {
+    this.context.updateDataGoal();
   }
 
   handleSubmit = (e) => {
@@ -84,7 +92,7 @@ class DayForm extends Component {
       completed,
       technique,
       repertoire,
-      actual_hours,
+      actual_hours: actual_hours.value.toFixed(4),
       touched: true,
       goal_id,
       user_id,
@@ -95,19 +103,28 @@ class DayForm extends Component {
 
     this.context.onHandleDaySubmit(updatedDay, dayId);
 
-    this.context.updateDataGoal();
-
     this.props.history.goBack();
   };
+
+  validateHours() {
+    const hours = this.state.actual_hours;
+    if (isNaN(hours) || hours < 0 || hours > 24) {
+      return "please enter a number of hours between 0 and 24";
+    } else {
+    }
+  }
 
   handleChangeCompleted = (e) => {
     this.setState({
       completed: e.target.value,
+      actual_hours: { value: this.state.goal_hours },
     });
   };
 
   handleChangeHours = (e) => {
-    this.setState({ actual_hours: parseFloat(e.target.value) });
+    this.setState({
+      actual_hours: { value: parseFloat(e.target.value), touched: true },
+    });
   };
 
   handleChangeTechnique = (e) => {
@@ -119,9 +136,9 @@ class DayForm extends Component {
   };
 
   render() {
+    const hoursError = this.validateHours();
     const dayNum = this.props.location.pathname.split("/")[2];
-
-    const { error } = this.props;
+    const { error } = this.state;
     const { id, technique, repertoire, actual_hours } = this.state;
 
     return (
@@ -134,6 +151,9 @@ class DayForm extends Component {
           <h1>Practice Day #{dayNum}</h1>
           <h2>{this.state.day_date}</h2>
           <h3>Goal Number of Hours:{this.state.goal_hours}</h3>
+          <div className="error" role="alert">
+            {error && <p>{error.message}</p>}
+          </div>
           <label htmlFor="completed">Did you practice today?</label>
           <select
             onChange={this.handleChangeCompleted}
@@ -153,9 +173,12 @@ class DayForm extends Component {
                 type="number"
                 name="actual_hours"
                 id="actual_hours"
-                value={actual_hours}
+                value={actual_hours.value}
                 onChange={this.handleChangeHours}
               />
+              {this.state.actual_hours.touched && (
+                <ValidationError message={hoursError} />
+              )}
             </div>
             <div className="optional_box">
               <p className="italics">Optional:</p>
@@ -185,7 +208,7 @@ class DayForm extends Component {
           </section>
         )}
         <div className="DayForm__buttons">
-          <button type="button" onClick={this.props.history.goBack()}>
+          <button type="button" onClick={(e) => this.props.history.goBack()}>
             Cancel
           </button>{" "}
           <button type="submit">Save</button>

@@ -8,8 +8,6 @@ export default function PrivateRoute({ component, ...props }) {
     <Route
       {...props}
       render={(componentProps) => {
-        console.log({ ...props }, componentProps);
-
         return TokenService.hasAuthToken() ? (
           <Component {...props} {...componentProps} />
         ) : (

@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import DayForm from "./DayForm";
 import Context from "../../Context";
@@ -37,7 +37,7 @@ let value = {
 
 describe(`DayForm component`, () => {
   const props = {
-    location: { pathname: "/dayform/3" },
+    location: { pathname: "/dayform/1" },
     history: { goBack: () => {} },
     className: "test-class-name",
     children: <p>test children</p>,
@@ -45,7 +45,11 @@ describe(`DayForm component`, () => {
   };
 
   it("renders a form.DayForm by default", () => {
-    const wrapper = shallow(<DayForm />);
+    const wrapper = mount(
+      <Context.Provider value={value}>
+        <DayForm {...props} />)
+      </Context.Provider>
+    );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 

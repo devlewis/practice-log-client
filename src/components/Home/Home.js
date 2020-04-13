@@ -17,9 +17,9 @@ class Home extends Component {
   onClickRegister = () => {
     this.props.history.push("/register");
   };
+
   handleLoginSuccess = () => {
-    console.log("called?");
-    this.props.history.push("/afterlogin");
+    this.context.onHandleLoginFetch(this.props.history);
   };
 
   render() {

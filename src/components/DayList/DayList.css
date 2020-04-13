@@ -4,3 +4,12 @@
   flex-wrap: wrap;
   align-content: space-evenly;
 }
+
+.navigators {
+  display: flex;
+  justify-content: space-between;
+}
+
+.seenext {
+  align-self: flex-end;
+}

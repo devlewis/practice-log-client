@@ -7,10 +7,6 @@ import IdleService from "../../services/idle-service";
 class AfterLogin extends PureComponent {
   static contextType = Context;
 
-  handleLoginFetch = () => {
-    this.context.onHandleLoginFetch(this.props.history);
-  };
-
   handleLogout = () => {
     TokenService.clearAuthToken();
     /* when logging out, clear the callbacks to the refresh api and idle auto logout */
@@ -22,7 +18,7 @@ class AfterLogin extends PureComponent {
   render() {
     return (
       <div>
-        <button onClick={() => this.handleLoginFetch()}>
+        <button onClick={() => this.props.history.push("/daylist")}>
           Take me to my current goal!
         </button>
 
