@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
-import DayList from "./DayList";
+import FinalView from "./FinalView";
 import Context from "../../Context";
 import { Route, BrowserRouter } from "react-router-dom";
 
@@ -39,31 +39,21 @@ let value = {
   num_of_days: 2,
 };
 
-describe(`DayList component`, () => {
+describe(`FinalView component`, () => {
   const props = {
+    history: {},
+    totalDays: 2,
     className: "test-class-name",
     children: <p>test children</p>,
     "data-other": "test-other-prop",
   };
 
-  it("renders a list DayList by default", () => {
+  it("renders a list FinalView given props", () => {
     const wrapper = mount(
       <BrowserRouter>
         <Route>
           <Context.Provider value={value}>
-            <DayList />
-          </Context.Provider>
-        </Route>{" "}
-      </BrowserRouter>
-    );
-    expect(toJson(wrapper)).toMatchSnapshot();
-  });
-  it("renders a list DayList given props", () => {
-    const wrapper = mount(
-      <BrowserRouter>
-        <Route>
-          <Context.Provider value={value}>
-            <DayList {...props} />
+            <FinalView {...props} />
           </Context.Provider>
         </Route>
       </BrowserRouter>
