@@ -6,5 +6,9 @@
 }
 
 .rgstrbutton {
-  margin-top: 50px;
+  margin: 50px;
+}
+
+.pinfo {
+  width: 50%;
 }

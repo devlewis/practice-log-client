@@ -76,20 +76,25 @@ class DayList extends PureComponent {
           Total Hours:
           {this.context.total_hours}
         </div>
+        <button onClick={(e) => this.props.history.push("/setup")}>
+          Start over with a new goal!
+        </button>
         <div className="viewbox">
-          View:
           {this.context.num_of_days > 7 && !this.state.see_all_days && (
-            <button
-              onClick={() =>
-                this.setState({
-                  see_all_days: true,
-                })
-              }
-            >
-              See all days
-            </button>
+            <div>
+              View:
+              <button
+                onClick={() =>
+                  this.setState({
+                    see_all_days: true,
+                  })
+                }
+              >
+                See all days
+              </button>
+            </div>
           )}
-          {this.state.see_all_days && (
+          {this.state.see_all_days && this.context.num_of_days > 7 && (
             <button onClick={this.paginate}>See 7 days at a time</button>
           )}
         </div>

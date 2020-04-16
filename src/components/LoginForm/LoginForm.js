@@ -43,6 +43,7 @@ export default class LoginForm extends Component {
             id="LoginForm__user_name"
             onChange={(e) => this.setState({ user_name: e.target.value })}
           ></input>
+          <p>demo username: YoYoMa77!</p>
         </div>
         <div className="password">
           <label htmlFor="LoginForm__password">Password</label>
@@ -53,6 +54,7 @@ export default class LoginForm extends Component {
             id="LoginForm__password"
             onChange={(e) => this.setState({ password: e.target.value })}
           ></input>
+          <p>demo password: Cello123!</p>
         </div>
         <button type="submit">Login</button>
       </form>
