@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFoundPage component renders form.NotFoundPage by default 1`] = `
+<section
+  className="NotFoundPage"
+>
+  <h2>
+    404 - Page not found
+  </h2>
+  <p>
+    Try going back to your previous page.
+  </p>
+</section>
+`;
+
+exports[`NotFoundPage component renders the NotFoundPage given props 1`] = `
+<section
+  className="NotFoundPage"
+>
+  <h2>
+    404 - Page not found
+  </h2>
+  <p>
+    Try going back to your previous page.
+  </p>
+</section>
+`;

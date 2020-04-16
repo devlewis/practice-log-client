@@ -3,6 +3,7 @@ function make100Days() {
   for (let i = 0; i < 100; i++) {
     days100[i] = {
       id: i + 1,
+      day_num: i + 1,
       date: "March 22",
       completed: "false",
       technique: "",

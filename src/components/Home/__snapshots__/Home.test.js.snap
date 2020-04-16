@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home component renders form.Home by default 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;
+
+exports[`Home component renders the Home given props 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;

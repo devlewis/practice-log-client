@@ -1,0 +1,465 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DayList component renders a list DayList by default 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Route>
+      <DayList>
+        <div>
+          <FinalView
+            onClickSetup={[Function]}
+            totalDays={2}
+          >
+            <main>
+              <h1>
+                YOU DID IT!
+              </h1>
+              <p
+                className="finalview_p"
+              >
+                You practiced 
+                1
+                 out of 
+                2
+                 
+                goal days!
+              </p>
+              <p
+                className="finalview_p"
+              >
+                You reached your practice hourly goal 
+                0
+                 out of 
+                2
+                 days.
+              </p>
+              <p
+                className="finalview_p"
+              >
+                 
+                You practiced a total of 
+                5
+                 hours during your
+                 
+                2
+                -day goal.
+              </p>
+              <p
+                className="finalview_p"
+              >
+                Technique items recorded:
+              </p>
+              <ul
+                className="technique_list"
+              >
+                <li
+                  key="0"
+                >
+                  Hanon
+                </li>
+              </ul>
+              <p
+                className="finalview_p"
+              >
+                Repertoire items recorded:
+              </p>
+              <ul
+                className="repertoire_list"
+              />
+              <Link
+                to="/setup"
+              >
+                <LinkAnchor
+                  href="/setup"
+                  navigate={[Function]}
+                >
+                  <a
+                    href="/setup"
+                    onClick={[Function]}
+                  >
+                    <button>
+                      Set up a new goal!
+                    </button>
+                  </a>
+                </LinkAnchor>
+              </Link>
+            </main>
+          </FinalView>
+          <div>
+            Total Hours:
+            5
+          </div>
+          <div
+            className="container"
+          >
+            <Day
+              actual_hours={0}
+              completed="false"
+              date="March 22"
+              day_num={1}
+              goal_hours={3}
+              goal_id={1}
+              hours_goal={3}
+              id={1}
+              key="1"
+              repertoire=""
+              technique=""
+              touched={false}
+              user_id={1}
+            >
+              <div
+                className="day_box"
+                style={Object {}}
+              >
+                <p>
+                  Day #
+                  1
+                </p>
+                <p />
+                <Link
+                  to="/day/1"
+                >
+                  <LinkAnchor
+                    href="/day/1"
+                    navigate={[Function]}
+                  >
+                    <a
+                      href="/day/1"
+                      onClick={[Function]}
+                    >
+                      Did you practice today?
+                    </a>
+                  </LinkAnchor>
+                </Link>
+              </div>
+            </Day>
+            <Day
+              actual_hours={2}
+              completed="true"
+              date="March 23"
+              day_num={2}
+              goal_hours={3}
+              goal_id={1}
+              hours_goal={3}
+              id={2}
+              key="2"
+              repertoire=""
+              technique="Hanon"
+              touched={true}
+              user_id={1}
+            >
+              <div
+                className="day_box"
+                style={
+                  Object {
+                    "backgroundColor": "yellow",
+                    "color": "black",
+                  }
+                }
+              >
+                <p>
+                  Day #
+                  2
+                </p>
+                <p />
+                <section
+                  className="completed_box"
+                >
+                  <p>
+                    Hours Practiced: 
+                    2
+                  </p>
+                  <p>
+                    Goal Hours: 
+                    3
+                  </p>
+                  <p>
+                    Practice Details:
+                  </p>
+                  <p>
+                    Technique: 
+                    Hanon
+                  </p>
+                  <Link
+                    className="small"
+                    to="/day/2"
+                  >
+                    <LinkAnchor
+                      className="small"
+                      href="/day/2"
+                      navigate={[Function]}
+                    >
+                      <a
+                        className="small"
+                        href="/day/2"
+                        onClick={[Function]}
+                      >
+                        Edit Practice Details
+                      </a>
+                    </LinkAnchor>
+                  </Link>
+                </section>
+              </div>
+            </Day>
+          </div>
+        </div>
+      </DayList>
+    </Route>
+     
+  </Router>
+</BrowserRouter>
+`;
+
+exports[`DayList component renders a list DayList given props 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Route>
+      <DayList
+        className="test-class-name"
+        data-other="test-other-prop"
+      >
+        <div>
+          <FinalView
+            onClickSetup={[Function]}
+            totalDays={2}
+          >
+            <main>
+              <h1>
+                YOU DID IT!
+              </h1>
+              <p
+                className="finalview_p"
+              >
+                You practiced 
+                1
+                 out of 
+                2
+                 
+                goal days!
+              </p>
+              <p
+                className="finalview_p"
+              >
+                You reached your practice hourly goal 
+                0
+                 out of 
+                2
+                 days.
+              </p>
+              <p
+                className="finalview_p"
+              >
+                 
+                You practiced a total of 
+                5
+                 hours during your
+                 
+                2
+                -day goal.
+              </p>
+              <p
+                className="finalview_p"
+              >
+                Technique items recorded:
+              </p>
+              <ul
+                className="technique_list"
+              >
+                <li
+                  key="0"
+                >
+                  Hanon
+                </li>
+              </ul>
+              <p
+                className="finalview_p"
+              >
+                Repertoire items recorded:
+              </p>
+              <ul
+                className="repertoire_list"
+              />
+              <Link
+                to="/setup"
+              >
+                <LinkAnchor
+                  href="/setup"
+                  navigate={[Function]}
+                >
+                  <a
+                    href="/setup"
+                    onClick={[Function]}
+                  >
+                    <button>
+                      Set up a new goal!
+                    </button>
+                  </a>
+                </LinkAnchor>
+              </Link>
+            </main>
+          </FinalView>
+          <div>
+            Total Hours:
+            5
+          </div>
+          <div
+            className="container"
+          >
+            <Day
+              actual_hours={0}
+              completed="false"
+              date="March 22"
+              day_num={1}
+              goal_hours={3}
+              goal_id={1}
+              hours_goal={3}
+              id={1}
+              key="1"
+              repertoire=""
+              technique=""
+              touched={false}
+              user_id={1}
+            >
+              <div
+                className="day_box"
+                style={Object {}}
+              >
+                <p>
+                  Day #
+                  1
+                </p>
+                <p />
+                <Link
+                  to="/day/1"
+                >
+                  <LinkAnchor
+                    href="/day/1"
+                    navigate={[Function]}
+                  >
+                    <a
+                      href="/day/1"
+                      onClick={[Function]}
+                    >
+                      Did you practice today?
+                    </a>
+                  </LinkAnchor>
+                </Link>
+              </div>
+            </Day>
+            <Day
+              actual_hours={2}
+              completed="true"
+              date="March 23"
+              day_num={2}
+              goal_hours={3}
+              goal_id={1}
+              hours_goal={3}
+              id={2}
+              key="2"
+              repertoire=""
+              technique="Hanon"
+              touched={true}
+              user_id={1}
+            >
+              <div
+                className="day_box"
+                style={
+                  Object {
+                    "backgroundColor": "yellow",
+                    "color": "black",
+                  }
+                }
+              >
+                <p>
+                  Day #
+                  2
+                </p>
+                <p />
+                <section
+                  className="completed_box"
+                >
+                  <p>
+                    Hours Practiced: 
+                    2
+                  </p>
+                  <p>
+                    Goal Hours: 
+                    3
+                  </p>
+                  <p>
+                    Practice Details:
+                  </p>
+                  <p>
+                    Technique: 
+                    Hanon
+                  </p>
+                  <Link
+                    className="small"
+                    to="/day/2"
+                  >
+                    <LinkAnchor
+                      className="small"
+                      href="/day/2"
+                      navigate={[Function]}
+                    >
+                      <a
+                        className="small"
+                        href="/day/2"
+                        onClick={[Function]}
+                      >
+                        Edit Practice Details
+                      </a>
+                    </LinkAnchor>
+                  </Link>
+                </section>
+              </div>
+            </Day>
+          </div>
+        </div>
+      </DayList>
+    </Route>
+  </Router>
+</BrowserRouter>
+`;

@@ -1,0 +1,184 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DayForm component renders a form.DayForm by default 1`] = `
+Array [
+  <DayForm
+    className="test-class-name"
+    data-other="test-other-prop"
+    history={
+      Object {
+        "goBack": [Function],
+      }
+    }
+    location={
+      Object {
+        "pathname": "/dayform/1",
+      }
+    }
+  >
+    <form
+      className="DayForm__form"
+      onSubmit={[Function]}
+    >
+      <div
+        className="DayForm__error"
+        role="alert"
+      />
+      <input
+        name="id"
+        type="hidden"
+        value={1}
+      />
+      <div
+        className="required_box"
+      >
+        <h1>
+          Practice Day #
+          1
+        </h1>
+        <h2>
+          March 22
+        </h2>
+        <h3>
+          Goal Number of Hours:
+          3
+        </h3>
+        <div
+          className="error"
+          role="alert"
+        />
+        <label
+          htmlFor="completed"
+        >
+          Did you practice today?
+        </label>
+        <select
+          id="completed"
+          name="completed"
+          onChange={[Function]}
+          required={true}
+          value="false"
+        >
+          <option
+            value="false"
+          >
+            No. :-(
+          </option>
+          <option
+            value="true"
+          >
+            Yes!!!
+          </option>
+        </select>
+      </div>
+      <div
+        className="DayForm__buttons"
+      >
+        <button
+          onClick={[Function]}
+          type="button"
+        >
+          Cancel
+        </button>
+         
+        <button
+          type="submit"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </DayForm>,
+  ")",
+]
+`;
+
+exports[`DayForm component renders the DayForm given props 1`] = `
+<DayForm
+  className="test-class-name"
+  data-other="test-other-prop"
+  history={
+    Object {
+      "goBack": [Function],
+    }
+  }
+  location={
+    Object {
+      "pathname": "/dayform/1",
+    }
+  }
+>
+  <form
+    className="DayForm__form"
+    onSubmit={[Function]}
+  >
+    <div
+      className="DayForm__error"
+      role="alert"
+    />
+    <input
+      name="id"
+      type="hidden"
+      value={1}
+    />
+    <div
+      className="required_box"
+    >
+      <h1>
+        Practice Day #
+        1
+      </h1>
+      <h2>
+        March 22
+      </h2>
+      <h3>
+        Goal Number of Hours:
+        3
+      </h3>
+      <div
+        className="error"
+        role="alert"
+      />
+      <label
+        htmlFor="completed"
+      >
+        Did you practice today?
+      </label>
+      <select
+        id="completed"
+        name="completed"
+        onChange={[Function]}
+        required={true}
+        value="false"
+      >
+        <option
+          value="false"
+        >
+          No. :-(
+        </option>
+        <option
+          value="true"
+        >
+          Yes!!!
+        </option>
+      </select>
+    </div>
+    <div
+      className="DayForm__buttons"
+    >
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        Cancel
+      </button>
+       
+      <button
+        type="submit"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</DayForm>
+`;

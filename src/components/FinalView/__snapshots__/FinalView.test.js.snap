@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FinalView component renders a list FinalView given props 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Route>
+      <FinalView
+        className="test-class-name"
+        data-other="test-other-prop"
+        history={Object {}}
+        totalDays={2}
+      >
+        <main>
+          <h1>
+            YOU DID IT!
+          </h1>
+          <p
+            className="finalview_p"
+          >
+            You practiced 
+            1
+             out of 
+            2
+             
+            goal days!
+          </p>
+          <p
+            className="finalview_p"
+          >
+            You reached your practice hourly goal 
+            0
+             out of 
+            2
+             days.
+          </p>
+          <p
+            className="finalview_p"
+          >
+             
+            You practiced a total of 
+            5
+             hours during your
+             
+            2
+            -day goal.
+          </p>
+          <p
+            className="finalview_p"
+          >
+            Technique items recorded:
+          </p>
+          <ul
+            className="technique_list"
+          >
+            <li
+              key="0"
+            >
+              Hanon
+            </li>
+          </ul>
+          <p
+            className="finalview_p"
+          >
+            Repertoire items recorded:
+          </p>
+          <ul
+            className="repertoire_list"
+          />
+          <Link
+            to="/setup"
+          >
+            <LinkAnchor
+              href="/setup"
+              navigate={[Function]}
+            >
+              <a
+                href="/setup"
+                onClick={[Function]}
+              >
+                <button>
+                  Set up a new goal!
+                </button>
+              </a>
+            </LinkAnchor>
+          </Link>
+        </main>
+      </FinalView>
+    </Route>
+  </Router>
+</BrowserRouter>
+`;

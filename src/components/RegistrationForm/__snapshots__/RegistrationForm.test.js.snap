@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RegistrationForm component renders form.RegistrationForm by default 1`] = `
+<form
+  className="RegistrationForm"
+  onSubmit={[Function]}
+>
+  <div
+    role="alert"
+  />
+  <div
+    className="user_name"
+  >
+    <label
+      htmlFor="RegistrationForm__user_name"
+    >
+      User name
+    </label>
+    <input
+      id="RegistrationForm__user_name"
+      name="user_name"
+      onChange={[Function]}
+      required={true}
+      type="text"
+    />
+  </div>
+  <div
+    className="password"
+  >
+    <label
+      htmlFor="RegistrationForm__password"
+    >
+      Password
+    </label>
+    <input
+      id="RegistrationForm__password"
+      name="password"
+      onChange={[Function]}
+      required={true}
+      type="password"
+    />
+  </div>
+  <button
+    type="submit"
+  >
+    Register
+  </button>
+  <button
+    onClick={[Function]}
+  >
+    Cancel
+  </button>
+</form>
+`;
+
+exports[`RegistrationForm component renders the RegistrationForm given props 1`] = `
+<form
+  className="RegistrationForm"
+  onSubmit={[Function]}
+>
+  <div
+    role="alert"
+  />
+  <div
+    className="user_name"
+  >
+    <label
+      htmlFor="RegistrationForm__user_name"
+    >
+      User name
+    </label>
+    <input
+      id="RegistrationForm__user_name"
+      name="user_name"
+      onChange={[Function]}
+      required={true}
+      type="text"
+    />
+  </div>
+  <div
+    className="password"
+  >
+    <label
+      htmlFor="RegistrationForm__password"
+    >
+      Password
+    </label>
+    <input
+      id="RegistrationForm__password"
+      name="password"
+      onChange={[Function]}
+      required={true}
+      type="password"
+    />
+  </div>
+  <button
+    type="submit"
+  >
+    Register
+  </button>
+  <button
+    onClick={[Function]}
+  >
+    Cancel
+  </button>
+</form>
+`;

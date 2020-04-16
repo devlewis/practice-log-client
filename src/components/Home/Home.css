@@ -4,3 +4,11 @@
   justify-content: center;
   align-items: center;
 }
+
+.rgstrbutton {
+  margin: 50px;
+}
+
+.pinfo {
+  width: 50%;
+}

@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import "../Setup/Setup.css";
+import Context from "../../Context";
 
 class Setup extends PureComponent {
   constructor(props) {
@@ -7,14 +8,23 @@ class Setup extends PureComponent {
 
     this.state = {
       num_of_days: null,
-      hours: null
+      hours: null,
     };
   }
 
-  handleSubmit = e => {
+  static contextType = Context;
+
+  handleSubmit = (e) => {
     e.preventDefault();
-    this.props.onHandleSubmit(this.state.num_of_days, this.state.hours);
-    this.props.history.push(`/daylist/${this.state.num_of_days}`);
+    this.context.onHandleSubmit(
+      this.state.num_of_days,
+      this.state.hours,
+      this.props.history
+    );
+  };
+
+  onClickCancel = (e) => {
+    this.props.history.goBack();
   };
 
   render() {
@@ -26,7 +36,7 @@ class Setup extends PureComponent {
               How Many Consecutive Days Will You Practice?
             </label>
             <select
-              onChange={e =>
+              onChange={(e) =>
                 this.setState({ num_of_days: parseFloat(e.target.value) })
               }
               name="#ofDaysChoice"
@@ -42,9 +52,9 @@ class Setup extends PureComponent {
           <div>
             <label htmlFor="hours"> How Many Hours Per Day? </label>
             <input
-              onChange={e =>
+              onChange={(e) =>
                 this.setState({
-                  hours: parseFloat(e.target.value)
+                  hours: parseFloat(e.target.value),
                 })
               }
               type="text"
@@ -56,7 +66,7 @@ class Setup extends PureComponent {
             />
           </div>
           <div className="Setup_buttons">
-            <button type="button" onClick={this.props.onClickCancel}>
+            <button type="button" onClick={this.onClickCancel}>
               Cancel
             </button>
             {""}
