@@ -39,6 +39,7 @@ const DaysApiService = {
   },
 
   updateDay(dayId, dayToUpdate) {
+    console.log("updatedDay in service", dayToUpdate);
     return fetch(`${config.API_ENDPOINT}prlog/days/`, {
       method: "POST",
       headers: {
