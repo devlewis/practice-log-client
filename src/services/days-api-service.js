@@ -15,7 +15,9 @@ const DaysApiService = {
         actual_hours: hours,
         total_hours: 0,
       }),
-    }).then((res) => res.json());
+    }).then((res) =>
+      !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
+    );
   },
 
   getDays() {
@@ -25,7 +27,9 @@ const DaysApiService = {
         "Content-Type": "application/json",
         Authorization: `Bearer ${TokenService.getAuthToken()}`,
       },
-    }).then((res) => res.json());
+    }).then((res) =>
+      !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
+    );
   },
 
   getGoal() {
@@ -35,7 +39,9 @@ const DaysApiService = {
         "Content-Type": "application.json",
         Authorization: `Bearer ${TokenService.getAuthToken()}`,
       },
-    }).then((res) => res.json());
+    }).then((res) =>
+      !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
+    );
   },
 
   updateDay(dayId, dayToUpdate) {
@@ -56,6 +62,8 @@ const DaysApiService = {
   },
 
   updateGoal(updatedGoal, goalId) {
+    console.log("updatedGoal in service", updatedGoal);
+    console.log("goalID in service", goalId);
     return fetch(`${config.API_ENDPOINT}prlog/updategoal/`, {
       method: "POST",
       headers: {

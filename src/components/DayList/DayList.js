@@ -33,9 +33,6 @@ class DayList extends PureComponent {
   };
 
   seeNumOfDays = () => {
-    console.log(this.state.page);
-    console.log(this.context.num_of_days);
-
     if (this.context.num_of_days == 30 && this.state.page <= 3) {
       this.setState({ page: this.state.page + 1 });
     } else if (this.context.num_of_days == 100 && this.state.page <= 12)
@@ -48,23 +45,23 @@ class DayList extends PureComponent {
   static contextType = Context;
 
   render() {
-    // let days = [];
-    // if (this.state.see_all_days) {
-    //   console.log("see_all_days is true");
-    let days = this.context.days.map((day) => (
-      <Day key={day.id} {...day} hours_goal={this.context.hours_goal} />
-    ));
-    // } else {
-    //   console.log("see_all_days is false");
-    // days = this.context.days
-    //   .slice(
-    //     this.state.page * this.state.num_of_days,
-    //     this.state.num_of_days * (this.state.page + 1)
-    //   )
-    //   .map((day) => (
-    //     <Day key={day.id} {...day} hours_goal={this.context.hours_goal} />
-    //   ));
-    // }
+    let days = [];
+    if (this.state.see_all_days) {
+      console.log("see_all_days is true");
+      days = this.context.days.map((day) => (
+        <Day key={day.id} {...day} hours_goal={this.context.hours_goal} />
+      ));
+    } else {
+      console.log("see_all_days is false");
+      days = this.context.days
+        .slice(
+          this.state.page * this.state.num_of_days,
+          this.state.num_of_days * (this.state.page + 1)
+        )
+        .map((day) => (
+          <Day key={day.id} {...day} hours_goal={this.context.hours_goal} />
+        ));
+    }
 
     return (
       <div>
@@ -74,11 +71,12 @@ class DayList extends PureComponent {
             onClickSetup={({ history }) => history.push("/setup")}
           />
         )}
+
         <div>
           Total Hours:
           {this.context.total_hours}
         </div>
-        {/* <div className="viewbox">
+        <div className="viewbox">
           View:
           {this.context.num_of_days > 7 && !this.state.see_all_days && (
             <button
@@ -97,22 +95,23 @@ class DayList extends PureComponent {
         </div>
 
         <div className="navigators">
-          {this.state.page > 0 &&
-            !this.state.see_all_days(
-              <button onClick={this.goBackDays}>See last 7 days!</button>
-            )}
+          {this.state.page > 0 && !this.state.see_all_days && (
+            <button onClick={this.goBackDays}>See last 7 days!</button>
+          )}
 
           {this.context.num_of_days > 7 && !this.state.see_all_days && (
             <button className="seenext" onClick={this.seeNumOfDays}>
               See next 7 days!
             </button>
           )}
-        </div> */}
+        </div>
 
         <div className="container">{days}</div>
         {TokenService.hasAuthToken() && (
           <Link to="/">
-            <button onClick={this.handleLogout}>Logout</button>
+            <button className="logout_btn" onClick={this.handleLogout}>
+              Logout
+            </button>
           </Link>
         )}
       </div>

@@ -56,6 +56,7 @@ class App extends PureComponent {
   }
 
   componentWillUnmount() {
+    this.updateDataGoal();
     /*
       when the app unmounts,
       stop the event listeners that auto logout (clear the token from storage)
@@ -115,31 +116,35 @@ class App extends PureComponent {
           num_of_days: num_of_days,
           hours_goal: parseFloat(hours),
           total_hours: 0,
+          goal_id: days[0].goal_id,
         });
       })
       .then(() => history.push(`/daylist/${this.state.num_of_days}`));
   };
 
   handleDaySubmit = (updatedDay, dayId, history) => {
-    let hours;
-    if (updatedDay.completed === "true") {
-      hours = this.state.total_hours + parseFloat(updatedDay.actual_hours);
-    } else {
-      hours = this.state.total_hours;
+    if (updatedDay.completed === "false") {
       updatedDay.actual_hours = 0;
     }
 
-    this.setState({
-      total_hours: hours,
-    });
+    DaysApiService.updateDay(dayId, updatedDay).then(
+      DaysApiService.getDays()
+        .then((days) => {
+          this.setState({
+            days: days,
+          });
+        })
+        .then(() => {
+          const hoursArray = this.state.days.map((day) => day.actual_hours);
 
-    DaysApiService.updateDay(dayId, updatedDay).then(() => {});
+          const hours = hoursArray.reduce((a, b) => a + b, 0);
 
-    DaysApiService.getDays().then((days) => {
-      this.setState({
-        days: days,
-      });
-    });
+          this.setState({
+            total_hours: hours,
+          });
+        })
+        .then(() => this.updateDataGoal())
+    );
   };
 
   updateDataGoal = () => {
@@ -148,6 +153,7 @@ class App extends PureComponent {
       hours_goal: this.state.hours_goal,
       total_hours: this.state.total_hours,
     };
+
     const goalId = this.state.goal_id;
 
     DaysApiService.updateGoal(updatedGoal, goalId);
@@ -170,7 +176,9 @@ class App extends PureComponent {
       <Context.Provider value={value}>
         <div className="App">
           <header className="App_header">
-            <Link to="/">Practice Log</Link>
+            <Link className="header_link" to="/">
+              Practice Log
+            </Link>
           </header>
           <Switch>
             <PublicOnlyRoute exact path="/" component={Home} />
@@ -180,8 +188,6 @@ class App extends PureComponent {
             <PrivateRoute path="/day/:dayNum" component={DayForm} />
 
             <PrivateRoute path="/daylist" component={DayList} />
-
-            {/* <PrivateRoute path="/afterlogin" component={AfterLogin} /> */}
 
             <Route path="/register" component={RegistrationForm} />
 

@@ -5,9 +5,25 @@
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   text-decoration: none;
   color: black;
+  background-color: aliceblue;
 }
 
-.App_header:visited {
+.header_link:hover .header_link:visited {
+  color: darkblue;
+}
+
+.header_link {
   text-decoration: none;
   color: black;
+}
+
+button {
+  border: 1px solid black;
+  color: black;
+  background-color: aliceblue;
+}
+
+button:hover {
+  color: white;
+  background-color: darkblue;
 }

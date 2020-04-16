@@ -1,0 +1,151 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Setup component renders form.Setup by default 1`] = `
+<div>
+  <form
+    className="Setup_form"
+    onSubmit={[Function]}
+  >
+    <div>
+      <label
+        htmlFor="#ofDaysChoice"
+      >
+        How Many Consecutive Days Will You Practice?
+      </label>
+      <select
+        id="#ofDaysChoice"
+        name="#ofDaysChoice"
+        onChange={[Function]}
+        required={true}
+      >
+        <option
+          value=""
+        >
+          Select Length of Goal
+        </option>
+        <option
+          value="7"
+        >
+          7 Days
+        </option>
+        <option
+          value="30"
+        >
+          30 Days
+        </option>
+        <option
+          value="100"
+        >
+          100 Days
+        </option>
+      </select>
+    </div>
+    <div>
+      <label
+        htmlFor="hours"
+      >
+         How Many Hours Per Day? 
+      </label>
+      <input
+        autoComplete="off"
+        id="hours"
+        name="hours"
+        onChange={[Function]}
+        placeholder="# of hrs (ex. 2.5)"
+        required={true}
+        type="text"
+      />
+    </div>
+    <div
+      className="Setup_buttons"
+    >
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        Cancel
+      </button>
+      <button
+        type="submit"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>
+`;
+
+exports[`Setup component renders the Setup given props 1`] = `
+<div>
+  <form
+    className="Setup_form"
+    onSubmit={[Function]}
+  >
+    <div>
+      <label
+        htmlFor="#ofDaysChoice"
+      >
+        How Many Consecutive Days Will You Practice?
+      </label>
+      <select
+        id="#ofDaysChoice"
+        name="#ofDaysChoice"
+        onChange={[Function]}
+        required={true}
+      >
+        <option
+          value=""
+        >
+          Select Length of Goal
+        </option>
+        <option
+          value="7"
+        >
+          7 Days
+        </option>
+        <option
+          value="30"
+        >
+          30 Days
+        </option>
+        <option
+          value="100"
+        >
+          100 Days
+        </option>
+      </select>
+    </div>
+    <div>
+      <label
+        htmlFor="hours"
+      >
+         How Many Hours Per Day? 
+      </label>
+      <input
+        autoComplete="off"
+        id="hours"
+        name="hours"
+        onChange={[Function]}
+        placeholder="# of hrs (ex. 2.5)"
+        required={true}
+        type="text"
+      />
+    </div>
+    <div
+      className="Setup_buttons"
+    >
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        Cancel
+      </button>
+      <button
+        type="submit"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>
+`;

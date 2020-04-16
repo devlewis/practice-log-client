@@ -1,22 +1,22 @@
 import React from "react";
 import { shallow } from "enzyme";
 import toJson from "enzyme-to-json";
-import Home from "./Home";
+import NotFoundPage from "./NotFoundPage";
 
-describe(`Home component`, () => {
+describe(`NotFoundPage component`, () => {
   const props = {
     className: "test-class-name",
     children: <p>test children</p>,
     "data-other": "test-other-prop",
   };
 
-  it("renders form.Home by default", () => {
-    const wrapper = shallow(<Home />);
+  it("renders form.NotFoundPage by default", () => {
+    const wrapper = shallow(<NotFoundPage />);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  it("renders the Home given props", () => {
-    const wrapper = shallow(<Home {...props} />);
+  it("renders the NotFoundPage given props", () => {
+    const wrapper = shallow(<NotFoundPage {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

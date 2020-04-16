@@ -5,7 +5,6 @@ Array [
   <DayForm
     className="test-class-name"
     data-other="test-other-prop"
-    day={Object {}}
     history={
       Object {
         "goBack": [Function],
@@ -58,6 +57,7 @@ Array [
           name="completed"
           onChange={[Function]}
           required={true}
+          value="false"
         >
           <option
             value="false"
@@ -97,7 +97,6 @@ exports[`DayForm component renders the DayForm given props 1`] = `
 <DayForm
   className="test-class-name"
   data-other="test-other-prop"
-  day={Object {}}
   history={
     Object {
       "goBack": [Function],
@@ -150,6 +149,7 @@ exports[`DayForm component renders the DayForm given props 1`] = `
         name="completed"
         onChange={[Function]}
         required={true}
+        value="false"
       >
         <option
           value="false"

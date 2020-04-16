@@ -1,22 +1,22 @@
 import React from "react";
 import { shallow } from "enzyme";
 import toJson from "enzyme-to-json";
-import Home from "./Home";
+import RegistrationForm from "./RegistrationForm";
 
-describe(`Home component`, () => {
+describe(`RegistrationForm component`, () => {
   const props = {
     className: "test-class-name",
     children: <p>test children</p>,
     "data-other": "test-other-prop",
   };
 
-  it("renders form.Home by default", () => {
-    const wrapper = shallow(<Home />);
+  it("renders form.RegistrationForm by default", () => {
+    const wrapper = shallow(<RegistrationForm />);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  it("renders the Home given props", () => {
-    const wrapper = shallow(<Home {...props} />);
+  it("renders the RegistrationForm given props", () => {
+    const wrapper = shallow(<RegistrationForm {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

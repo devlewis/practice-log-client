@@ -29,7 +29,9 @@ class Home extends Component {
         <div className="container_login">
           <LoginForm onLoginSuccess={this.handleLoginSuccess} />
         </div>
-        <button onClick={this.onClickRegister}>Make a new account!</button>
+        <button className="rgstrbutton" onClick={this.onClickRegister}>
+          Make a new account!
+        </button>
       </div>
     );
   }

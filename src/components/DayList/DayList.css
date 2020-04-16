@@ -3,13 +3,18 @@
   justify-content: space-around;
   flex-wrap: wrap;
   align-content: space-evenly;
+  margin-bottom: 30px;
 }
 
-.navigators {
+.logout_btn {
+  margin-bottom: 15px;
+}
+
+/* .navigators {
   display: flex;
   justify-content: space-between;
 }
 
 .seenext {
   align-self: flex-end;
-}
+} */
