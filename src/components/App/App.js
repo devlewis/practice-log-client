@@ -122,12 +122,12 @@ class App extends PureComponent {
       .then(() => history.push(`/daylist/${this.state.num_of_days}`));
   };
 
-  handleDaySubmit = (updatedDay, dayId, history) => {
+  handleDaySubmit = (updatedDay, history) => {
     if (updatedDay.completed === "false") {
       updatedDay.actual_hours = 0;
     }
 
-    DaysApiService.updateDay(dayId, updatedDay).then(
+    DaysApiService.updateDay(updatedDay).then(
       DaysApiService.getDays()
         .then((days) => {
           this.setState({

@@ -36,8 +36,10 @@ class Home extends Component {
           This app is for logging hours and basic details for your daily
           practice. Users may choose goal lengths of 7, 30, or 100 consecutive
           days of practice, choose a daily number of hours goal, and log/edit
-          their hours and practice notes accordingly. To try out the demo
-          account, please sign in with the demo login provided above.
+          their hours and practice notes accordingly.
+          <br></br>
+          To try out the demo account, please sign in with the demo login
+          provided above.
         </p>
       </div>
     );

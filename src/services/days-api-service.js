@@ -44,16 +44,15 @@ const DaysApiService = {
     );
   },
 
-  updateDay(dayId, dayToUpdate) {
+  updateDay(dayToUpdate) {
     console.log("updatedDay in service", dayToUpdate);
     return fetch(`${config.API_ENDPOINT}prlog/days/`, {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify({
-        dayId: dayId,
         dayToUpdate: dayToUpdate,
       }),
     }).then((res) => {
@@ -65,7 +64,7 @@ const DaysApiService = {
     console.log("updatedGoal in service", updatedGoal);
     console.log("goalID in service", goalId);
     return fetch(`${config.API_ENDPOINT}prlog/updategoal/`, {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${TokenService.getAuthToken()}`,
