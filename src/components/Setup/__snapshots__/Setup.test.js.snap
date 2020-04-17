@@ -1,7 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Setup component renders form.Setup by default 1`] = `
-<div>
+<div
+  className="Setup_container"
+>
+  <h2>
+    Set up your new practice goal!
+  </h2>
   <form
     className="Setup_form"
     onSubmit={[Function]}
@@ -60,15 +65,16 @@ exports[`Setup component renders form.Setup by default 1`] = `
       className="Setup_buttons"
     >
       <button
+        type="submit"
+      >
+        Start my goal today!
+      </button>
+      <button
+        className="Setup_logout"
         onClick={[Function]}
         type="button"
       >
-        Cancel
-      </button>
-      <button
-        type="submit"
-      >
-        Save
+        Logout
       </button>
     </div>
   </form>
@@ -76,7 +82,12 @@ exports[`Setup component renders form.Setup by default 1`] = `
 `;
 
 exports[`Setup component renders the Setup given props 1`] = `
-<div>
+<div
+  className="Setup_container"
+>
+  <h2>
+    Set up your new practice goal!
+  </h2>
   <form
     className="Setup_form"
     onSubmit={[Function]}
@@ -135,15 +146,16 @@ exports[`Setup component renders the Setup given props 1`] = `
       className="Setup_buttons"
     >
       <button
+        type="submit"
+      >
+        Start my goal today!
+      </button>
+      <button
+        className="Setup_logout"
         onClick={[Function]}
         type="button"
       >
-        Cancel
-      </button>
-      <button
-        type="submit"
-      >
-        Save
+        Logout
       </button>
     </div>
   </form>

@@ -1,6 +1,8 @@
 import React, { PureComponent } from "react";
 import "../Setup/Setup.css";
 import Context from "../../Context";
+import TokenService from "../../services/token-service";
+import IdleService from "../../services/idle-service";
 
 class Setup extends PureComponent {
   constructor(props) {
@@ -23,13 +25,18 @@ class Setup extends PureComponent {
     );
   };
 
-  onClickCancel = (e) => {
-    this.props.history.goBack();
+  handleLogout = () => {
+    TokenService.clearAuthToken();
+    /* when logging out, clear the callbacks to the refresh api and idle auto logout */
+    TokenService.clearCallbackBeforeExpiry();
+    IdleService.unRegisterIdleResets();
+    this.props.history.push("/");
   };
 
   render() {
     return (
-      <div>
+      <div className="Setup_container">
+        <h2>Set up your new practice goal!</h2>
         <form className="Setup_form" onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor="#ofDaysChoice">
@@ -66,11 +73,14 @@ class Setup extends PureComponent {
             />
           </div>
           <div className="Setup_buttons">
-            <button type="button" onClick={this.onClickCancel}>
-              Cancel
+            <button type="submit">Start my goal today!</button>
+            <button
+              className="Setup_logout"
+              type="button"
+              onClick={this.handleLogout}
+            >
+              Logout
             </button>
-            {""}
-            <button type="submit">Save</button>
           </div>
         </form>
       </div>

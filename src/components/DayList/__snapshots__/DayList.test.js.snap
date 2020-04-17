@@ -110,6 +110,17 @@ exports[`DayList component renders a list DayList by default 1`] = `
             Total Hours:
             5
           </div>
+          <button
+            onClick={[Function]}
+          >
+            Start over with a new goal!
+          </button>
+          <div
+            className="viewbox"
+          />
+          <div
+            className="navigators"
+          />
           <div
             className="container"
           >
@@ -344,6 +355,17 @@ exports[`DayList component renders a list DayList given props 1`] = `
             Total Hours:
             5
           </div>
+          <button
+            onClick={[Function]}
+          >
+            Start over with a new goal!
+          </button>
+          <div
+            className="viewbox"
+          />
+          <div
+            className="navigators"
+          />
           <div
             className="container"
           >

@@ -22,6 +22,9 @@ exports[`LoginForm component renders form.LoginForm by default 1`] = `
       onChange={[Function]}
       required={true}
     />
+    <p>
+      demo username: YoYoMa77!
+    </p>
   </div>
   <div
     className="password"
@@ -38,6 +41,9 @@ exports[`LoginForm component renders form.LoginForm by default 1`] = `
       required={true}
       type="password"
     />
+    <p>
+      demo password: Cello123!
+    </p>
   </div>
   <button
     type="submit"
@@ -69,6 +75,9 @@ exports[`LoginForm component renders the LoginForm given props 1`] = `
       onChange={[Function]}
       required={true}
     />
+    <p>
+      demo username: YoYoMa77!
+    </p>
   </div>
   <div
     className="password"
@@ -85,6 +94,9 @@ exports[`LoginForm component renders the LoginForm given props 1`] = `
       required={true}
       type="password"
     />
+    <p>
+      demo password: Cello123!
+    </p>
   </div>
   <button
     type="submit"

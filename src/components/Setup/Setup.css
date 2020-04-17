@@ -1,0 +1,18 @@
+.Setup_container {
+  display: flex;
+  flex-direction: column;
+  max-width: 75%;
+  width: fit-content;
+  margin: auto;
+}
+
+.Setup_buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  width: auto;
+}
+
+.Setup_logout {
+  margin-left: 10px;
+}
