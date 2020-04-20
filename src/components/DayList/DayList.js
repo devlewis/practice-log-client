@@ -71,18 +71,29 @@ class DayList extends PureComponent {
             onClickSetup={({ history }) => history.push("/setup")}
           />
         )}
-
-        <div>
-          Total Hours:
-          {this.context.total_hours}
+        <div className="banner">
+          <h1 className="centered">
+            #{this.context.num_of_days} Days of Practice
+          </h1>
+          <div className="toprow">
+            <p>Total Hours: {this.context.total_hours}</p>
+            <button onClick={(e) => this.props.history.push("/setup")}>
+              Start over with a new goal!
+            </button>
+            {TokenService.hasAuthToken() && (
+              <Link to="/">
+                <button className="day_logout_btn" onClick={this.handleLogout}>
+                  Logout
+                </button>
+              </Link>
+            )}
+          </div>
         </div>
-        <button onClick={(e) => this.props.history.push("/setup")}>
-          Start over with a new goal!
-        </button>
+
         <div className="viewbox">
+          {" "}
           {this.context.num_of_days > 7 && !this.state.see_all_days && (
             <div>
-              View:
               <button
                 onClick={() =>
                   this.setState({
@@ -95,30 +106,31 @@ class DayList extends PureComponent {
             </div>
           )}
           {this.state.see_all_days && this.context.num_of_days > 7 && (
-            <button onClick={this.paginate}>See 7 days at a time</button>
-          )}
-        </div>
-
-        <div className="navigators">
-          {this.state.page > 0 && !this.state.see_all_days && (
-            <button onClick={this.goBackDays}>See last 7 days!</button>
-          )}
-
-          {this.context.num_of_days > 7 && !this.state.see_all_days && (
-            <button className="seenext" onClick={this.seeNumOfDays}>
-              See next 7 days!
+            <button className="viewbtn" onClick={this.paginate}>
+              See 7 days at a time
             </button>
           )}
+        </div>
+        <div className="navigators">
+          {!this.state.see_all_days && (
+            <i
+              onClick={this.goBackDays}
+              class="fas fa-arrow-circle-left fa-2x"
+            ></i>
+          )}
+
+          {this.context.num_of_days > 7 &&
+            !this.state.see_all_days &&
+            ((this.context.num_of_days == 100 && this.state.page <= 12) ||
+              (this.context.num_of_days == 30 && this.state.page <= 3)) && (
+              <i
+                onClick={this.seeNumOfDays}
+                class="fas fa-arrow-circle-right fa-2x"
+              ></i>
+            )}
         </div>
 
         <div className="container">{days}</div>
-        {TokenService.hasAuthToken() && (
-          <Link to="/">
-            <button className="logout_btn" onClick={this.handleLogout}>
-              Logout
-            </button>
-          </Link>
-        )}
       </div>
     );
   }

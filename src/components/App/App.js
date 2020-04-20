@@ -181,7 +181,7 @@ class App extends PureComponent {
             </Link>
           </header>
           <Switch>
-            <PublicOnlyRoute exact path="/" component={Home} />
+            <Route exact path="/" component={Home} />
 
             <PrivateRoute path="/setup" component={Setup} />
 
@@ -189,7 +189,7 @@ class App extends PureComponent {
 
             <PrivateRoute path="/daylist" component={DayList} />
 
-            <Route path="/register" component={RegistrationForm} />
+            <PublicOnlyRoute path="/register" component={RegistrationForm} />
 
             <Route component={NotFoundPage} />
           </Switch>

@@ -122,10 +122,10 @@ class DayForm extends Component {
         <div className="required_box">
           <h1>Practice Day #{dayNum}</h1>
           <h2>{this.state.day_date}</h2>
-          <h3>Goal Number of Hours:{this.state.goal_hours}</h3>
+          <h3>Goal Number of Hours: {this.state.goal_hours}</h3>
           <div className="error" role="alert">
             {error && <p>{error.message}</p>}
-          </div>
+          </div>{" "}
           <label htmlFor="completed">Did you practice today?</label>
           <select
             onChange={this.handleChangeCompleted}
@@ -159,7 +159,7 @@ class DayForm extends Component {
               <div>
                 <label htmlFor="technique">Technique:</label>
                 <input
-                  type="text"
+                  type="textarea"
                   name="technique"
                   id="technique"
                   placeholder="ex. Hanon No. 1"
@@ -170,7 +170,7 @@ class DayForm extends Component {
               <div>
                 <label htmlFor="repertoire">Repertoire:</label>
                 <input
-                  type="text"
+                  type="textarea"
                   name="repertoire"
                   id="repertoire"
                   value={repertoire}

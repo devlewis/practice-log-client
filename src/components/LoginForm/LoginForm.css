@@ -1,0 +1,45 @@
+.LoginForm {
+  margin: 0 5% 5% 5%;
+  padding: 0 5% 5% 5%;
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.LoginForm p {
+  margin: 0;
+  color: black;
+}
+.LoginForm div {
+  margin-bottom: 1em;
+}
+.LoginForm button {
+  width: fit-content;
+  align-self: flex-end;
+}
+
+.LoginForm label {
+  font-weight: 700;
+  color: black;
+  margin-bottom: 5px;
+}
+.LoginForm input,
+label {
+  width: 90%;
+  font-size: 1.25em;
+}
+.LoginForm input {
+  border: 1px solid black;
+}
+
+.daybox_DECO a {
+  text-decoration: none;
+}
+
+@media screen and (min-width: 415px) {
+  .LoginForm p,
+  label {
+    font-size: 0.75em;
+  }
+}

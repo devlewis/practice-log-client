@@ -2,19 +2,49 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  align-content: space-evenly;
+  align-content: flex-start;
   margin-bottom: 30px;
+}
+
+.container a {
+  text-decoration: none;
+  color: black;
 }
 
 .logout_btn {
   margin-bottom: 15px;
 }
 
-/* .navigators {
+.viewbox {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
-.seenext {
-  align-self: flex-end;
-} */
+.viewbtn {
+  margin-bottom: 32px;
+}
+
+.navigators {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.fa-2x:hover {
+  color: gray;
+}
+
+.toprow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 10px;
+}
+
+.day_logout_btn {
+  margin-top: 4px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 0;
+}
