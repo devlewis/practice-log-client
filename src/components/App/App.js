@@ -34,7 +34,6 @@ class App extends PureComponent {
 
     /* if a user is logged in */
     if (TokenService.hasAuthToken()) {
-      this.handleLoginFetch();
       /*
         tell the idle service to register event listeners
         the event listeners are fired when a user does something, e.g. move their mouse

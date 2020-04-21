@@ -36,7 +36,7 @@ class Setup extends PureComponent {
   render() {
     return (
       <div className="Setup_container">
-        <h2>Set up your new practice goal!</h2>
+        <h2>Setup</h2>
         <form className="Setup_form" onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor="#ofDaysChoice">
@@ -74,13 +74,6 @@ class Setup extends PureComponent {
           </div>
           <div className="Setup_buttons">
             <button type="submit">Start my goal today!</button>
-            <button
-              className="Setup_logout"
-              type="button"
-              onClick={this.handleLogout}
-            >
-              Logout
-            </button>
           </div>
         </form>
       </div>

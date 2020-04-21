@@ -6,13 +6,38 @@
   margin: auto;
 }
 
+.Setup_container h2 {
+  margin: 20px auto;
+}
+
+.Setup_container select {
+  margin-left: 5px;
+}
+
 .Setup_buttons {
   display: flex;
   justify-content: flex-end;
-  margin-top: 20px;
   width: auto;
+}
+
+.Setup_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: aliceblue;
+  padding: 10px;
+  height: 200px;
 }
 
 .Setup_logout {
   margin-left: 10px;
+}
+
+.Setup_form input {
+  width: 30%;
+}
+@media screen and (min-width: 415px) {
+  .Setup_form input {
+    width: 10%;
+  }
 }
