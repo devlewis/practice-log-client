@@ -3,13 +3,9 @@
   padding-right: 5px;
   border: solid black 1px;
   border-radius: 2%;
-  width: 100px;
-  height: 150px;
+  width: 80px;
+  height: 120px;
   margin-bottom: 10px;
-}
-
-.day_box:hover {
-  background-color: aliceblue;
 }
 
 .bold {
@@ -49,8 +45,26 @@
   color: white;
 }
 
+.fa-pencil-alt:hover {
+  color: black;
+}
+
 .topline {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+@media screen and (min-width: 640px) {
+  .day_box {
+    width: 100px;
+    height: 150px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .day_box {
+    width: 90px;
+    height: 135px;
+  }
 }

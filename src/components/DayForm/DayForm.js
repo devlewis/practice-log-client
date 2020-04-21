@@ -31,7 +31,7 @@ class DayForm extends Component {
     this.setState({
       id: day.id,
       day_num: day.day_num,
-      day_date: day.date,
+      day_date: day.day_date,
       completed: day.completed,
       technique: day.technique,
       repertoire: day.repertoire,
@@ -61,7 +61,7 @@ class DayForm extends Component {
     const updatedDay = {
       id,
       day_num,
-      day_date,
+      day_date: new Date(day_date + "2020").toISOString(),
       completed,
       technique,
       repertoire,
@@ -72,11 +72,7 @@ class DayForm extends Component {
       goal_hours,
     };
 
-    const dayId = id;
-
-    this.context.onHandleDaySubmit(updatedDay, dayId);
-
-    this.props.history.goBack();
+    this.context.onHandleDaySubmit(updatedDay, this.props.history);
   };
 
   validateHours() {

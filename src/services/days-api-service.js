@@ -21,6 +21,7 @@ const DaysApiService = {
   },
 
   getDays() {
+    console.log("getDays");
     return fetch(`${config.API_ENDPOINT}prlog/alldays`, {
       method: "GET",
       headers: {

@@ -89,12 +89,19 @@ class Home extends Component {
             <div className="container_home">
               {TokenService.hasAuthToken() ? (
                 <div className="container_loggedin">
-                  <button onClick={this.onClickCurrent}>
-                    Take me to my current practice goal!
-                  </button>
-                  <button onClick={(e) => this.props.history.push("/setup")}>
-                    Start over with a new goal!
-                  </button>
+                  <button onClick={this.onClickCurrent}>Current goal</button>
+                  <div>
+                    <button
+                      className="start"
+                      onClick={(e) => this.props.history.push("/setup")}
+                    >
+                      Start over
+                    </button>
+                    <p className="tiny">
+                      Be careful, this will erase your current goal!
+                    </p>
+                  </div>
+
                   <button className="rgstrbutton" onClick={this.handleLogout}>
                     Logout
                   </button>
@@ -108,21 +115,25 @@ class Home extends Component {
               )}
             </div>
           </div>
-          <button className="rgstrbutton" onClick={this.onClickRegister}>
-            Make a new account!
-          </button>
-          <section className="pinfo">
-            <p>
-              This app is for logging hours and basic details for your daily
-              practice. Users may choose goal lengths of 7, 30, or 100
-              consecutive days of practice, choose a daily number of hours goal,
-              and log/edit their hours and practice notes accordingly.
-            </p>
-            <p>
-              To try out the demo account, please sign in with the demo login
-              provided above.
-            </p>
-          </section>
+          {!TokenService.hasAuthToken() && (
+            <button className="rgstrbutton" onClick={this.onClickRegister}>
+              Make a new account
+            </button>
+          )}
+          {!TokenService.hasAuthToken() && (
+            <section className="pinfo">
+              <p>
+                This app is for logging hours and basic details for your daily
+                practice. Users may choose goal lengths of 7, 30, or 100
+                consecutive days of practice, choose a daily number of hours
+                goal, and log/edit their hours and practice notes accordingly.
+              </p>
+              <p>
+                To try out the demo account, please sign in with the demo login
+                provided above.
+              </p>
+            </section>
+          )}
         </div>
       </div>
     );

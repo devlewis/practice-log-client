@@ -37,7 +37,7 @@ export default class RegistrationForm extends Component {
     return (
       <form className="RegistrationForm" onSubmit={this.handleSubmit}>
         <div role="alert">{error && <p className="red">{error}</p>}</div>
-
+        <h2>Register a new account</h2>
         <div className="user_name">
           <label htmlFor="RegistrationForm__user_name">User name</label>
           <input
@@ -58,8 +58,10 @@ export default class RegistrationForm extends Component {
             onChange={(e) => this.setState({ password: e.target.value })}
           ></input>
         </div>
-        <button type="submit">Register</button>
-        <button onClick={(e) => this.props.history.push("/")}>Cancel</button>
+        <div className="restrbuttonrow">
+          <button onClick={(e) => this.props.history.push("/")}>Cancel</button>
+          <button type="submit">Register</button>
+        </div>
       </form>
     );
   }

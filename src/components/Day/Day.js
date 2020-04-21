@@ -19,10 +19,7 @@ class Day extends PureComponent {
     let mystyle = {};
 
     this.state.hover
-      ? (mystyle = {
-          color: "black",
-          backgroundColor: "aliceblue",
-        })
+      ? (mystyle = { color: "black", backgroundColor: "aliceblue" })
       : this.props.touched && this.props.completed === "false"
       ? (mystyle = {
           color: "white",
@@ -47,28 +44,31 @@ class Day extends PureComponent {
 
     return (
       <Link to={`/day/${day_num}`}>
-        <div
-          className="day_box"
-          style={mystyle}
-          onMouseEnter={this.toggleHover}
-          onMouseLeave={this.toggleHover}
-        >
+        <div className="day_box" style={mystyle}>
           <div className="bold">
             <div className="topline">
               <p className="big">Day #{day_num}</p>
-              <i className="fas fa-pencil-alt fa-sm"></i>
+              <i
+                className="fas fa-pencil-alt fa-sm"
+                style={mystyle}
+                onMouseEnter={this.toggleHover}
+                onMouseLeave={this.toggleHover}
+              ></i>
             </div>
             <p className="big">{date}</p>
           </div>
           {this.props.touched === false ? (
             <div className="qubox">
-              <i class="fas fa-question fa-3x"></i>
+              <i
+                className="fas fa-question fa-3x"
+                onMouseEnter={this.toggleHover}
+                onMouseLeave={this.toggleHover}
+              ></i>
             </div>
           ) : (
             <section className="completed_box">
               <p>
-                Hours Practiced: {this.props.actual_hours}/
-                {this.props.goal_hours}
+                {this.props.actual_hours}/{this.props.goal_hours} hours
               </p>
               {(this.props.technique || this.props.repertoire) && (
                 <p className="bold">Practice Details:</p>

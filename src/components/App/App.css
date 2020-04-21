@@ -1,11 +1,11 @@
 .App_header {
   display: flex;
-  justify-content: center;
-  padding-left: 10px;
+  justify-content: space-between;
+  align-items: center;
   padding-top: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   font-family: "Bellota", cursive;
-  text-decoration: none;
+  text-decoration: underline;
   font-weight: 1000;
   color: black;
 }
@@ -15,15 +15,26 @@
 }
 
 .header_link {
+  clear: right;
   text-decoration: none;
   color: black;
+  width: fit-content;
+}
+
+.toprowbtns {
+  align-self: baseline;
+  font-size: 0.75em;
+  height: auto;
+  width: fit-content;
+  margin-right: 5px;
 }
 
 button {
   border: 1px solid black;
   color: white;
   background-color: black;
-  font-size: 1.25em;
+  font-size: 1em;
+  border-radius: 3%;
 }
 
 button:hover {
@@ -31,8 +42,22 @@ button:hover {
   background-color: white;
 }
 
+.start {
+  border: 2px solid red;
+}
+
 body {
   padding-left: 10px;
   padding-right: 10px;
   font-family: "Roboto", serif;
+}
+
+@media screen and (min-width: 415px) {
+  button {
+    font-size: 0.9em;
+  }
+
+  .App_header {
+    margin-bottom: 0;
+  }
 }

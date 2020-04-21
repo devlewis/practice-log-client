@@ -6,7 +6,6 @@ import Setup from "../Setup/Setup";
 import DayList from "../DayList/DayList";
 import DayForm from "../DayForm/DayForm";
 import Context from "/Users/Devree/projects/practice-log-client/src/Context.js";
-//import AfterLogin from "../AfterLogin/AfterLogin";
 import PrivateRoute from "../Utils/PrivateRoute";
 import PublicOnlyRoute from "../Utils/PublicOnlyRoute";
 import RegistrationForm from "../RegistrationForm/RegistrationForm";
@@ -35,6 +34,7 @@ class App extends PureComponent {
 
     /* if a user is logged in */
     if (TokenService.hasAuthToken()) {
+      this.handleLoginFetch();
       /*
         tell the idle service to register event listeners
         the event listeners are fired when a user does something, e.g. move their mouse
@@ -102,7 +102,10 @@ class App extends PureComponent {
                 days: days,
               });
             })
-            .then(() => history.push(`/daylist/${this.state.num_of_days}`));
+            .then(() => {
+              console.log(this.state.days);
+              history.push(`/daylist/${this.state.num_of_days}`);
+            });
         }
       }
     });
@@ -127,24 +130,29 @@ class App extends PureComponent {
       updatedDay.actual_hours = 0;
     }
 
-    DaysApiService.updateDay(updatedDay).then(
-      DaysApiService.getDays()
-        .then((days) => {
-          this.setState({
-            days: days,
-          });
-        })
-        .then(() => {
-          const hoursArray = this.state.days.map((day) => day.actual_hours);
+    DaysApiService.updateDay(updatedDay)
+      .then(() => {
+        DaysApiService.getDays()
+          .then((days) => {
+            this.setState({
+              days: days,
+            });
+          })
+          .then(() => {
+            const hoursArray = this.state.days.map((day) => day.actual_hours);
 
-          const hours = hoursArray.reduce((a, b) => a + b, 0);
+            const hours = hoursArray.reduce((a, b) => a + b, 0);
 
-          this.setState({
-            total_hours: hours,
-          });
-        })
-        .then(() => this.updateDataGoal())
-    );
+            this.setState({
+              total_hours: hours,
+            });
+          })
+          .then(() => this.updateDataGoal());
+      })
+      .then(() => {
+        console.log("state in App", this.state.days);
+        history.goBack();
+      });
   };
 
   updateDataGoal = () => {
@@ -157,6 +165,14 @@ class App extends PureComponent {
     const goalId = this.state.goal_id;
 
     DaysApiService.updateGoal(updatedGoal, goalId);
+  };
+
+  handleLogout = () => {
+    TokenService.clearAuthToken();
+    /* when logging out, clear the callbacks to the refresh api and idle auto logout */
+    TokenService.clearCallbackBeforeExpiry();
+    IdleService.unRegisterIdleResets();
+    this.forceUpdate();
   };
 
   render() {
@@ -175,11 +191,26 @@ class App extends PureComponent {
     return (
       <Context.Provider value={value}>
         <div className="App">
-          <header className="App_header">
-            <Link className="header_link" to="/">
-              Practice Log
-            </Link>
-          </header>
+          {!TokenService.hasAuthToken() && (
+            <header className="App_header">
+              <Link className="header_link" to="/">
+                Practice Log
+              </Link>
+            </header>
+          )}
+          {TokenService.hasAuthToken() && (
+            <header className="App_header">
+              <Link className="header_link" to="/">
+                Practice Log
+              </Link>
+
+              <Link to="/">
+                <button className="toprowbtns" onClick={this.handleLogout}>
+                  Logout
+                </button>
+              </Link>
+            </header>
+          )}
           <Switch>
             <Route exact path="/" component={Home} />
 

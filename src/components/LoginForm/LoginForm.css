@@ -19,18 +19,15 @@
   align-self: flex-end;
 }
 
-.LoginForm label {
+label {
   font-weight: 700;
   color: black;
   margin-bottom: 5px;
 }
-.LoginForm input,
+input,
 label {
   width: 90%;
-  font-size: 1.25em;
-}
-.LoginForm input {
-  border: 1px solid black;
+  font-size: 1em;
 }
 
 .daybox_DECO a {
@@ -39,7 +36,8 @@ label {
 
 @media screen and (min-width: 415px) {
   .LoginForm p,
-  label {
-    font-size: 0.75em;
+  label,
+  input {
+    font-size: 0.9em;
   }
 }
