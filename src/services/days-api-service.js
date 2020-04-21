@@ -76,7 +76,9 @@ const DaysApiService = {
         hours_goal: updatedGoal.hours_goal,
         goal_id: goalId,
       }),
-    }).then((res) => console.log(res));
+    }).then((res) => {
+      console.log(res);
+    });
   },
 };
 

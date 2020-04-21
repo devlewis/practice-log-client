@@ -106,9 +106,9 @@ class DayForm extends Component {
   render() {
     const hoursError = this.validateHours();
     const dayNum = this.props.location.pathname.split("/")[2];
-    const { error } = this.state;
+    const error = this.context.error;
     const { id, completed, technique, repertoire, actual_hours } = this.state;
-
+    console.log("error in DayForm", error);
     return (
       <form className="DayForm__form" onSubmit={this.handleSubmit}>
         <div className="DayForm__error" role="alert">

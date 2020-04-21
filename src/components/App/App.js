@@ -17,6 +17,7 @@ import IdleService from "../../services/idle-service";
 
 class App extends PureComponent {
   state = {
+    error: null,
     user: null,
     days: [],
     num_of_days: null,
@@ -174,6 +175,11 @@ class App extends PureComponent {
     this.forceUpdate();
   };
 
+  setError = (error) => {
+    console.error(error);
+    this.setState({ error });
+  };
+
   render() {
     const value = {
       user: this.state.user,
@@ -182,11 +188,14 @@ class App extends PureComponent {
       total_hours: this.state.total_hours,
       hours_goal: this.state.hours_goal,
       goal_id: this.state.goal_id,
+      error: this.state.error,
+      setError: this.setError,
       onHandleSubmit: this.handleSubmit,
       onHandleDaySubmit: this.handleDaySubmit,
       onHandleLoginFetch: this.handleLoginFetch,
       updateDataGoal: this.updateDataGoal,
     };
+
     return (
       <Context.Provider value={value}>
         <div className="App">
@@ -210,19 +219,21 @@ class App extends PureComponent {
               </Link>
             </header>
           )}
-          <Switch>
-            <Route exact path="/" component={Home} />
+          <main className="App_main">
+            <Switch>
+              <Route exact path="/" component={Home} />
 
-            <PrivateRoute path="/setup" component={Setup} />
+              <PrivateRoute path="/setup" component={Setup} />
 
-            <PrivateRoute path="/day/:dayNum" component={DayForm} />
+              <PrivateRoute path="/day/:dayNum" component={DayForm} />
 
-            <PrivateRoute path="/daylist" component={DayList} />
+              <PrivateRoute path="/daylist" component={DayList} />
 
-            <PublicOnlyRoute path="/register" component={RegistrationForm} />
+              <PublicOnlyRoute path="/register" component={RegistrationForm} />
 
-            <Route component={NotFoundPage} />
-          </Switch>
+              <Route component={NotFoundPage} />
+            </Switch>
+          </main>
         </div>
       </Context.Provider>
     );
