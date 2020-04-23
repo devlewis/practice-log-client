@@ -152,6 +152,9 @@ class App extends PureComponent {
       .then(() => {
         console.log("state in App", this.state.days);
         history.goBack();
+      })
+      .catch((res) => {
+        this.setError(res);
       });
   };
 

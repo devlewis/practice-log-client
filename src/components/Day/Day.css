@@ -12,12 +12,14 @@
   font-weight: bold;
 }
 
-.big {
+.day_box .big {
   font-size: 12px;
+  margin-bottom: 0;
+  margin-top: 3px;
 }
 
 .day_box p {
-  font-size: 10px;
+  font-size: 9px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -36,12 +38,14 @@
 }
 
 .qubox {
+  margin-top: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .fa-pencil-alt {
+  margin-top: 6px;
   color: white;
 }
 
