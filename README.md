@@ -16,13 +16,6 @@ If you want to discard your current goal and start a new one, click the "Practic
 
 ##### Screenshots
 
-[Screen Shot 2020-04-25 at 4.57.52 PM](/Users/Devree/Library/Application Support/typora-user-images/Screen Shot 2020-04-25 at 4.57.52 PM.png)
-
-[Screen Shot 2020-04-25 at 4.59.01 PM](/Users/Devree/Library/Application Support/typora-user-images/Screen Shot 2020-04-25 at 4.59.01 PM.png)
-
-![Screen Shot 2020-04-25 at 4.59.35 PM](/Users/Devree/Library/Application Support/typora-user-images/Screen Shot 2020-04-25 at 4.59.35 PM.png)
-
-[Screen Shot 2020-04-25 at 4.59.35 PM](/Users/Devree/Library/Application Support/typora-user-images/Screen Shot 2020-04-25 at 5.03.59 PM.png)
 
 ##### Summary
 
