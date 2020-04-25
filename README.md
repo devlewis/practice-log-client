@@ -1,30 +1,31 @@
-Practice Log App
-Practice Log App: Live Site
+# Practice Log App	
 
-Documentation
+### [Practice Log App: Live Site](https://practice-log-app.devreelewis.now.sh/)
 
-To use this app, please create an account or use the demo account provided.
+##### Documentation
 
-After login, you will be directed to the most recent goal.
+To use this app, please create an account or use the demo account provided. 
 
-If you have not created a goal, you will be directed to Setup where you can choose the details for your new practice goal.
+After login, you will be directed to the most recent goal. 
 
-At the goal page, you can interact with each day of your goal to confirm hours practiced and other optional details.
+If you have not created a goal, you will be directed to Setup where you can choose the details for your new practice goal. 
 
-If you want to discard your current goal and start a new one, click the "Practice Log" home link and select "Start over".
+At the goal page, you can interact with each day of your goal to confirm hours practiced and other optional details. 
 
-Screenshots
+If you want to discard your current goal and start a new one, click the "Practice Log" home link and select "Start over". 
 
-Screen Shot 2020-04-25 at 4.57.52 PM
+##### Screenshots
 
-Screen Shot 2020-04-25 at 4.59.01 PMScreen Shot 2020-04-25 at 4.59.35 PM
+![Screen Shot 2020-04-25 at 4.57.52 PM](/Users/Devree/Library/Application Support/typora-user-images/Screen Shot 2020-04-25 at 4.57.52 PM.png)
 
-Screen Shot 2020-04-25 at 4.59.35 PM
+![Screen Shot 2020-04-25 at 4.59.01 PM](/Users/Devree/Library/Application Support/typora-user-images/Screen Shot 2020-04-25 at 4.59.01 PM.png)![Screen Shot 2020-04-25 at 4.59.35 PM](/Users/Devree/Library/Application Support/typora-user-images/Screen Shot 2020-04-25 at 4.59.35 PM.png)
 
-Summary
+![Screen Shot 2020-04-25 at 4.59.35 PM](/Users/Devree/Library/Application Support/typora-user-images/Screen Shot 2020-04-25 at 5.03.59 PM.png)
+
+##### Summary
 
 This app is for logging hours and basic details for your daily practice. Users may choose goal lengths of 7, 30, or 100 consecutive days of practice, choose a daily number of hours goal, and log/edit their hours and practice notes accordingly.
 
-Technologies
+##### Technologies
 
-HTML / CSS / JS / React / Node / PostgresQL
+HTML / CSS / JS / React / Node / PostgresQL  
