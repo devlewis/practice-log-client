@@ -83,8 +83,9 @@ class App extends PureComponent {
   };
 
   handleLoginFetch = async (history) => {
+    //fetch the user's most recent goal
     const goal = await DaysApiService.getGoal();
-
+    // if the logged-in user has not created a goal yet, push to setup page
     if (goal.length === 0) {
       return history.push("/setup");
     } else {
@@ -95,7 +96,7 @@ class App extends PureComponent {
         hours_goal: parseFloat(goal.hours_goal),
         goal_id: goal.id,
       });
-
+      // fetch the days with fetched goal's id
       const days = await DaysApiService.getDays();
 
       this.setState(
@@ -110,6 +111,7 @@ class App extends PureComponent {
   };
 
   handleSubmit = (num_of_days, hours, history) => {
+    //submit details for a new goal; postDays creates goal and days in one service
     DaysApiService.postDays(num_of_days, hours)
       .then((days) => {
         this.setState({
