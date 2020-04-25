@@ -5,17 +5,19 @@ exports[`Setup component renders form.Setup by default 1`] = `
   className="Setup_container"
 >
   <h2>
-    Set up your new practice goal!
+    Setup
   </h2>
   <form
     className="Setup_form"
     onSubmit={[Function]}
   >
-    <div>
+    <div
+      className="Select_box"
+    >
       <label
         htmlFor="#ofDaysChoice"
       >
-        How Many Consecutive Days Will You Practice?
+        # of Practice Days
       </label>
       <select
         id="#ofDaysChoice"
@@ -49,14 +51,14 @@ exports[`Setup component renders form.Setup by default 1`] = `
       <label
         htmlFor="hours"
       >
-         How Many Hours Per Day? 
+         Hours Per Day 
       </label>
       <input
         autoComplete="off"
         id="hours"
         name="hours"
         onChange={[Function]}
-        placeholder="# of hrs (ex. 2.5)"
+        placeholder="# of hrs"
         required={true}
         type="text"
       />
@@ -68,13 +70,6 @@ exports[`Setup component renders form.Setup by default 1`] = `
         type="submit"
       >
         Start my goal today!
-      </button>
-      <button
-        className="Setup_logout"
-        onClick={[Function]}
-        type="button"
-      >
-        Logout
       </button>
     </div>
   </form>
@@ -86,17 +81,19 @@ exports[`Setup component renders the Setup given props 1`] = `
   className="Setup_container"
 >
   <h2>
-    Set up your new practice goal!
+    Setup
   </h2>
   <form
     className="Setup_form"
     onSubmit={[Function]}
   >
-    <div>
+    <div
+      className="Select_box"
+    >
       <label
         htmlFor="#ofDaysChoice"
       >
-        How Many Consecutive Days Will You Practice?
+        # of Practice Days
       </label>
       <select
         id="#ofDaysChoice"
@@ -130,14 +127,14 @@ exports[`Setup component renders the Setup given props 1`] = `
       <label
         htmlFor="hours"
       >
-         How Many Hours Per Day? 
+         Hours Per Day 
       </label>
       <input
         autoComplete="off"
         id="hours"
         name="hours"
         onChange={[Function]}
-        placeholder="# of hrs (ex. 2.5)"
+        placeholder="# of hrs"
         required={true}
         type="text"
       />
@@ -149,13 +146,6 @@ exports[`Setup component renders the Setup given props 1`] = `
         type="submit"
       >
         Start my goal today!
-      </button>
-      <button
-        className="Setup_logout"
-        onClick={[Function]}
-        type="button"
-      >
-        Logout
       </button>
     </div>
   </form>

@@ -3,7 +3,6 @@ import config from "../config";
 
 const DaysApiService = {
   postDays(num_of_days, hours) {
-    console.log(num_of_days, hours);
     return fetch(`${config.API_ENDPOINT}prlog/goal`, {
       method: "POST",
       headers: {
@@ -21,7 +20,6 @@ const DaysApiService = {
   },
 
   getDays() {
-    console.log("getDays");
     return fetch(`${config.API_ENDPOINT}prlog/alldays`, {
       method: "GET",
       headers: {
@@ -46,7 +44,6 @@ const DaysApiService = {
   },
 
   updateDay(dayToUpdate) {
-    console.log("updatedDay in service", dayToUpdate);
     return fetch(`${config.API_ENDPOINT}prlog/days/`, {
       method: "PUT",
       headers: {
@@ -57,13 +54,11 @@ const DaysApiService = {
         dayToUpdate: dayToUpdate,
       }),
     }).then((res) => {
-      !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json();
+      !res.ok ? res.json().then((e) => Promise.reject(e)) : console.log(res);
     });
   },
 
   updateGoal(updatedGoal, goalId) {
-    console.log("updatedGoal in service", updatedGoal);
-    console.log("goalID in service", goalId);
     return fetch(`${config.API_ENDPOINT}prlog/updategoal/`, {
       method: "PUT",
       headers: {

@@ -27,7 +27,6 @@ class Setup extends PureComponent {
 
   handleLogout = () => {
     TokenService.clearAuthToken();
-    /* when logging out, clear the callbacks to the refresh api and idle auto logout */
     TokenService.clearCallbackBeforeExpiry();
     IdleService.unRegisterIdleResets();
     this.props.history.push("/");
@@ -38,10 +37,8 @@ class Setup extends PureComponent {
       <div className="Setup_container">
         <h2>Setup</h2>
         <form className="Setup_form" onSubmit={this.handleSubmit}>
-          <div>
-            <label htmlFor="#ofDaysChoice">
-              How Many Consecutive Days Will You Practice?
-            </label>
+          <div className="Select_box">
+            <label htmlFor="#ofDaysChoice"># of Practice Days</label>
             <select
               onChange={(e) =>
                 this.setState({ num_of_days: parseFloat(e.target.value) })
@@ -57,7 +54,7 @@ class Setup extends PureComponent {
             </select>
           </div>
           <div>
-            <label htmlFor="hours"> How Many Hours Per Day? </label>
+            <label htmlFor="hours"> Hours Per Day </label>
             <input
               onChange={(e) =>
                 this.setState({
@@ -67,7 +64,7 @@ class Setup extends PureComponent {
               type="text"
               name="hours"
               id="hours"
-              placeholder="# of hrs (ex. 2.5)"
+              placeholder="# of hrs"
               autoComplete="off"
               required
             />

@@ -1,13 +1,15 @@
-@keyframes yellow {
+@keyframes turnyellow {
   from {
     background-color: white;
+    color: black;
   }
   to {
     background-color: yellow;
+    color: black;
   }
 }
 
-@keyframes red {
+@keyframes turnred {
   from {
     background-color: white;
     color: black;
@@ -18,7 +20,7 @@
   }
 }
 
-@keyframes green {
+@keyframes turngreen {
   from {
     background-color: white;
     color: black;
@@ -42,38 +44,34 @@
   }
 }
 
-/* The element to apply the animation to */
-.day_box_DECO:first-child {
+.num1 {
   border: solid black 1px;
   background-color: white;
   color: black;
-  animation-name: yellow;
+  animation-name: turnyellow;
   animation-duration: 1s;
-  animation-delay: 1s;
+  animation-delay: 3s;
   animation-fill-mode: forwards;
-  /* animation-iteration-count: infinite; */
 }
 
 .day_box_DECO:nth-child(2) {
   border: solid black 1px;
   background-color: white;
   color: black;
-  animation-name: red;
+  animation-name: turnred;
   animation-duration: 1s;
-  animation-delay: 3s;
+  animation-delay: 5s;
   animation-fill-mode: forwards;
-  /* animation-iteration-count: infinite; */
 }
 
 .day_box_DECO:nth-child(3) {
   border: solid black 1px;
   background-color: white;
   color: black;
-  animation-name: green;
+  animation-name: turngreen;
   animation-duration: 1s;
-  animation-delay: 5s;
+  animation-delay: 7s;
   animation-fill-mode: forwards;
-  /* animation-iteration-count: infinite; */
 }
 
 .day_box_DECO:nth-child(4) {
@@ -82,9 +80,8 @@
   border-color: solid white 1px;
   animation-name: appear;
   animation-duration: 1s;
-  animation-delay: 6s;
+  animation-delay: 8s;
   animation-fill-mode: forwards;
-  /* animation-iteration-count: infinite; */
 }
 
 .container_page {
@@ -103,6 +100,7 @@
 .container_heading h2 {
   font-size: 2.5em;
 }
+
 .container_home {
   display: flex;
   flex-direction: column;
@@ -176,6 +174,7 @@ h1 {
   justify-content: center;
   margin-bottom: 30px;
 }
+
 .stand {
   height: 80px;
   margin-top: 0.75em;

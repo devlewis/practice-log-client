@@ -15,7 +15,6 @@ class DayList extends PureComponent {
 
   handleLogout = () => {
     TokenService.clearAuthToken();
-    /* when logging out, clear the callbacks to the refresh api and idle auto logout */
     TokenService.clearCallbackBeforeExpiry();
     IdleService.unRegisterIdleResets();
     this.props.history.push("/");
@@ -116,7 +115,6 @@ class DayList extends PureComponent {
               ></i>
             )}
         </div>
-
         <div className="container">{days}</div>
       </div>
     );

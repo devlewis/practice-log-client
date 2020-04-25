@@ -11,9 +11,11 @@
   margin: 0;
   color: black;
 }
+
 .LoginForm div {
   margin-bottom: 1em;
 }
+
 .LoginForm button {
   width: fit-content;
   align-self: flex-end;
@@ -24,10 +26,18 @@ label {
   color: black;
   margin-bottom: 5px;
 }
+
 input,
 label {
   width: 90%;
   font-size: 1em;
+}
+
+.LoginForm .red {
+  color: red;
+  font-size: 0.65em;
+  margin: 0;
+  padding: 0;
 }
 
 .daybox_DECO a {

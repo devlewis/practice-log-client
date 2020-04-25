@@ -5,7 +5,7 @@ import Home from "../Home/Home";
 import Setup from "../Setup/Setup";
 import DayList from "../DayList/DayList";
 import DayForm from "../DayForm/DayForm";
-import Context from "/Users/Devree/projects/practice-log-client/src/Context.js";
+import Context from "../../Context.js";
 import PrivateRoute from "../Utils/PrivateRoute";
 import PublicOnlyRoute from "../Utils/PublicOnlyRoute";
 import RegistrationForm from "../RegistrationForm/RegistrationForm";
@@ -49,7 +49,7 @@ class App extends PureComponent {
       */
       TokenService.queueCallbackBeforeExpiry(() => {
         /* the timoue will call this callback just before the token expires */
-        console.log("queueCallbackBeforeExpiry");
+
         AuthApiService.postRefreshToken();
       });
     }
@@ -69,7 +69,6 @@ class App extends PureComponent {
   }
 
   logoutFromIdle = () => {
-    console.log("loggedout from Idle!");
     /* remove the token from localStorage */
     TokenService.clearAuthToken();
     /* remove any queued calls to the refresh endpoint */
@@ -83,32 +82,31 @@ class App extends PureComponent {
     this.forceUpdate();
   };
 
-  handleLoginFetch = (history) => {
-    DaysApiService.getGoal().then((goal) => {
-      if (goal.length === 0) {
-        return history.push("/setup");
-      } else {
-        this.setState({
-          user: goal.user_id,
-          num_of_days: goal.num_of_days,
-          total_hours: goal.total_hours,
-          hours_goal: parseFloat(goal.hours_goal),
-          goal_id: goal.id,
-        });
-        if (this.state.goal_id) {
-          DaysApiService.getDays()
-            .then((days) => {
-              this.setState({
-                days: days,
-              });
-            })
-            .then(() => {
-              console.log(this.state.days);
-              history.push(`/daylist/${this.state.num_of_days}`);
-            });
+  handleLoginFetch = async (history) => {
+    const goal = await DaysApiService.getGoal();
+
+    if (goal.length === 0) {
+      return history.push("/setup");
+    } else {
+      this.setState({
+        user: goal.user_id,
+        num_of_days: goal.num_of_days,
+        total_hours: goal.total_hours,
+        hours_goal: parseFloat(goal.hours_goal),
+        goal_id: goal.id,
+      });
+
+      const days = await DaysApiService.getDays();
+
+      this.setState(
+        {
+          days: days,
+        },
+        () => {
+          history.push(`/daylist/${this.state.num_of_days}`);
         }
-      }
-    });
+      );
+    }
   };
 
   handleSubmit = (num_of_days, hours, history) => {
@@ -150,11 +148,7 @@ class App extends PureComponent {
           .then(() => this.updateDataGoal());
       })
       .then(() => {
-        console.log("state in App", this.state.days);
         history.goBack();
-      })
-      .catch((res) => {
-        this.setError(res);
       });
   };
 
@@ -185,7 +179,6 @@ class App extends PureComponent {
 
   render() {
     const value = {
-      user: this.state.user,
       days: this.state.days,
       num_of_days: this.state.num_of_days,
       total_hours: this.state.total_hours,

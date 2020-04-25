@@ -23,10 +23,9 @@
 
 .toprowbtns {
   align-self: baseline;
-  font-size: 0.75em;
+  font-size: 0.9em;
   height: auto;
   width: fit-content;
-  margin-right: 5px;
 }
 
 button {
@@ -37,9 +36,8 @@ button {
   border-radius: 3%;
 }
 
-button:hover {
-  color: black;
-  background-color: white;
+button[disabled] {
+  background-color: red;
 }
 
 .start {
@@ -59,5 +57,10 @@ body {
 
   .App_header {
     margin-bottom: 0;
+  }
+
+  button:hover {
+    color: black;
+    background-color: white;
   }
 }

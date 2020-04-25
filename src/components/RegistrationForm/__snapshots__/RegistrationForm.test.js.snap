@@ -8,6 +8,9 @@ exports[`RegistrationForm component renders form.RegistrationForm by default 1`]
   <div
     role="alert"
   />
+  <h2>
+    Register a new account
+  </h2>
   <div
     className="user_name"
   >
@@ -40,16 +43,20 @@ exports[`RegistrationForm component renders form.RegistrationForm by default 1`]
       type="password"
     />
   </div>
-  <button
-    type="submit"
+  <div
+    className="restrbuttonrow"
   >
-    Register
-  </button>
-  <button
-    onClick={[Function]}
-  >
-    Cancel
-  </button>
+    <button
+      onClick={[Function]}
+    >
+      Cancel
+    </button>
+    <button
+      type="submit"
+    >
+      Register
+    </button>
+  </div>
 </form>
 `;
 
@@ -61,6 +68,9 @@ exports[`RegistrationForm component renders the RegistrationForm given props 1`]
   <div
     role="alert"
   />
+  <h2>
+    Register a new account
+  </h2>
   <div
     className="user_name"
   >
@@ -93,15 +103,19 @@ exports[`RegistrationForm component renders the RegistrationForm given props 1`]
       type="password"
     />
   </div>
-  <button
-    type="submit"
+  <div
+    className="restrbuttonrow"
   >
-    Register
-  </button>
-  <button
-    onClick={[Function]}
-  >
-    Cancel
-  </button>
+    <button
+      onClick={[Function]}
+    >
+      Cancel
+    </button>
+    <button
+      type="submit"
+    >
+      Register
+    </button>
+  </div>
 </form>
 `;

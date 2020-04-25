@@ -106,18 +106,31 @@ exports[`DayList component renders a list DayList by default 1`] = `
               </Link>
             </main>
           </FinalView>
-          <div>
-            Total Hours:
-            5
-          </div>
-          <button
-            onClick={[Function]}
+          <div
+            className="banner"
           >
-            Start over with a new goal!
-          </button>
+            <h1
+              className="centered daylisth1"
+            >
+              2
+               Days of Practice
+            </h1>
+            <div
+              className="toprow"
+            >
+              <p
+                className="tothours"
+              >
+                Total Hours: 
+                5
+              </p>
+            </div>
+          </div>
           <div
             className="viewbox"
-          />
+          >
+             
+          </div>
           <div
             className="navigators"
           />
@@ -139,31 +152,57 @@ exports[`DayList component renders a list DayList by default 1`] = `
               touched={false}
               user_id={1}
             >
-              <div
-                className="day_box"
-                style={Object {}}
+              <Link
+                to="/day/1"
               >
-                <p>
-                  Day #
-                  1
-                </p>
-                <p />
-                <Link
-                  to="/day/1"
+                <LinkAnchor
+                  href="/day/1"
+                  navigate={[Function]}
                 >
-                  <LinkAnchor
+                  <a
                     href="/day/1"
-                    navigate={[Function]}
+                    onClick={[Function]}
                   >
-                    <a
-                      href="/day/1"
-                      onClick={[Function]}
+                    <div
+                      className="day_box"
+                      style={Object {}}
                     >
-                      Did you practice today?
-                    </a>
-                  </LinkAnchor>
-                </Link>
-              </div>
+                      <div
+                        className="bold"
+                      >
+                        <div
+                          className="topline"
+                        >
+                          <p
+                            className="big"
+                          >
+                            Day #
+                            1
+                          </p>
+                          <i
+                            className="fas fa-pencil-alt fa-sm"
+                            onMouseEnter={[Function]}
+                            onMouseLeave={[Function]}
+                            style={Object {}}
+                          />
+                        </div>
+                        <p
+                          className="big"
+                        />
+                      </div>
+                      <div
+                        className="qubox"
+                      >
+                        <i
+                          className="fas fa-question fa-3x"
+                          onMouseEnter={[Function]}
+                          onMouseLeave={[Function]}
+                        />
+                      </div>
+                    </div>
+                  </a>
+                </LinkAnchor>
+              </Link>
             </Day>
             <Day
               actual_hours={2}
@@ -180,58 +219,77 @@ exports[`DayList component renders a list DayList by default 1`] = `
               touched={true}
               user_id={1}
             >
-              <div
-                className="day_box"
-                style={
-                  Object {
-                    "backgroundColor": "yellow",
-                    "color": "black",
-                  }
-                }
+              <Link
+                to="/day/2"
               >
-                <p>
-                  Day #
-                  2
-                </p>
-                <p />
-                <section
-                  className="completed_box"
+                <LinkAnchor
+                  href="/day/2"
+                  navigate={[Function]}
                 >
-                  <p>
-                    Hours Practiced: 
-                    2
-                  </p>
-                  <p>
-                    Goal Hours: 
-                    3
-                  </p>
-                  <p>
-                    Practice Details:
-                  </p>
-                  <p>
-                    Technique: 
-                    Hanon
-                  </p>
-                  <Link
-                    className="small"
-                    to="/day/2"
+                  <a
+                    href="/day/2"
+                    onClick={[Function]}
                   >
-                    <LinkAnchor
-                      className="small"
-                      href="/day/2"
-                      navigate={[Function]}
+                    <div
+                      className="day_box"
+                      style={
+                        Object {
+                          "backgroundColor": "yellow",
+                          "color": "black",
+                        }
+                      }
                     >
-                      <a
-                        className="small"
-                        href="/day/2"
-                        onClick={[Function]}
+                      <div
+                        className="bold"
                       >
-                        Edit Practice Details
-                      </a>
-                    </LinkAnchor>
-                  </Link>
-                </section>
-              </div>
+                        <div
+                          className="topline"
+                        >
+                          <p
+                            className="big"
+                          >
+                            Day #
+                            2
+                          </p>
+                          <i
+                            className="fas fa-pencil-alt fa-sm"
+                            onMouseEnter={[Function]}
+                            onMouseLeave={[Function]}
+                            style={
+                              Object {
+                                "backgroundColor": "yellow",
+                                "color": "black",
+                              }
+                            }
+                          />
+                        </div>
+                        <p
+                          className="big"
+                        />
+                      </div>
+                      <section
+                        className="completed_box"
+                      >
+                        <p>
+                          2
+                          /
+                          3
+                           hours
+                        </p>
+                        <p
+                          className="bold"
+                        >
+                          Practice Details:
+                        </p>
+                        <p>
+                          Technique: 
+                          Hanon
+                        </p>
+                      </section>
+                    </div>
+                  </a>
+                </LinkAnchor>
+              </Link>
             </Day>
           </div>
         </div>
@@ -351,18 +409,31 @@ exports[`DayList component renders a list DayList given props 1`] = `
               </Link>
             </main>
           </FinalView>
-          <div>
-            Total Hours:
-            5
-          </div>
-          <button
-            onClick={[Function]}
+          <div
+            className="banner"
           >
-            Start over with a new goal!
-          </button>
+            <h1
+              className="centered daylisth1"
+            >
+              2
+               Days of Practice
+            </h1>
+            <div
+              className="toprow"
+            >
+              <p
+                className="tothours"
+              >
+                Total Hours: 
+                5
+              </p>
+            </div>
+          </div>
           <div
             className="viewbox"
-          />
+          >
+             
+          </div>
           <div
             className="navigators"
           />
@@ -384,31 +455,57 @@ exports[`DayList component renders a list DayList given props 1`] = `
               touched={false}
               user_id={1}
             >
-              <div
-                className="day_box"
-                style={Object {}}
+              <Link
+                to="/day/1"
               >
-                <p>
-                  Day #
-                  1
-                </p>
-                <p />
-                <Link
-                  to="/day/1"
+                <LinkAnchor
+                  href="/day/1"
+                  navigate={[Function]}
                 >
-                  <LinkAnchor
+                  <a
                     href="/day/1"
-                    navigate={[Function]}
+                    onClick={[Function]}
                   >
-                    <a
-                      href="/day/1"
-                      onClick={[Function]}
+                    <div
+                      className="day_box"
+                      style={Object {}}
                     >
-                      Did you practice today?
-                    </a>
-                  </LinkAnchor>
-                </Link>
-              </div>
+                      <div
+                        className="bold"
+                      >
+                        <div
+                          className="topline"
+                        >
+                          <p
+                            className="big"
+                          >
+                            Day #
+                            1
+                          </p>
+                          <i
+                            className="fas fa-pencil-alt fa-sm"
+                            onMouseEnter={[Function]}
+                            onMouseLeave={[Function]}
+                            style={Object {}}
+                          />
+                        </div>
+                        <p
+                          className="big"
+                        />
+                      </div>
+                      <div
+                        className="qubox"
+                      >
+                        <i
+                          className="fas fa-question fa-3x"
+                          onMouseEnter={[Function]}
+                          onMouseLeave={[Function]}
+                        />
+                      </div>
+                    </div>
+                  </a>
+                </LinkAnchor>
+              </Link>
             </Day>
             <Day
               actual_hours={2}
@@ -425,58 +522,77 @@ exports[`DayList component renders a list DayList given props 1`] = `
               touched={true}
               user_id={1}
             >
-              <div
-                className="day_box"
-                style={
-                  Object {
-                    "backgroundColor": "yellow",
-                    "color": "black",
-                  }
-                }
+              <Link
+                to="/day/2"
               >
-                <p>
-                  Day #
-                  2
-                </p>
-                <p />
-                <section
-                  className="completed_box"
+                <LinkAnchor
+                  href="/day/2"
+                  navigate={[Function]}
                 >
-                  <p>
-                    Hours Practiced: 
-                    2
-                  </p>
-                  <p>
-                    Goal Hours: 
-                    3
-                  </p>
-                  <p>
-                    Practice Details:
-                  </p>
-                  <p>
-                    Technique: 
-                    Hanon
-                  </p>
-                  <Link
-                    className="small"
-                    to="/day/2"
+                  <a
+                    href="/day/2"
+                    onClick={[Function]}
                   >
-                    <LinkAnchor
-                      className="small"
-                      href="/day/2"
-                      navigate={[Function]}
+                    <div
+                      className="day_box"
+                      style={
+                        Object {
+                          "backgroundColor": "yellow",
+                          "color": "black",
+                        }
+                      }
                     >
-                      <a
-                        className="small"
-                        href="/day/2"
-                        onClick={[Function]}
+                      <div
+                        className="bold"
                       >
-                        Edit Practice Details
-                      </a>
-                    </LinkAnchor>
-                  </Link>
-                </section>
-              </div>
+                        <div
+                          className="topline"
+                        >
+                          <p
+                            className="big"
+                          >
+                            Day #
+                            2
+                          </p>
+                          <i
+                            className="fas fa-pencil-alt fa-sm"
+                            onMouseEnter={[Function]}
+                            onMouseLeave={[Function]}
+                            style={
+                              Object {
+                                "backgroundColor": "yellow",
+                                "color": "black",
+                              }
+                            }
+                          />
+                        </div>
+                        <p
+                          className="big"
+                        />
+                      </div>
+                      <section
+                        className="completed_box"
+                      >
+                        <p>
+                          2
+                          /
+                          3
+                           hours
+                        </p>
+                        <p
+                          className="bold"
+                        >
+                          Practice Details:
+                        </p>
+                        <p>
+                          Technique: 
+                          Hanon
+                        </p>
+                      </section>
+                    </div>
+                  </a>
+                </LinkAnchor>
+              </Link>
             </Day>
           </div>
         </div>

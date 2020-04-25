@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-//import PropTypes from "prop-types";
 import "./DayForm.css";
 import Context from "../../Context";
 import ValidationError from "../Utils/ValidationError";
 
 class DayForm extends Component {
-  static propTypes = {};
-
   static contextType = Context;
 
   state = {
@@ -104,11 +101,10 @@ class DayForm extends Component {
   };
 
   render() {
+    const { error } = this.state;
     const hoursError = this.validateHours();
     const dayNum = this.props.location.pathname.split("/")[2];
-    const error = this.context.error;
     const { id, completed, technique, repertoire, actual_hours } = this.state;
-    console.log("error in DayForm", error);
     return (
       <form className="DayForm__form" onSubmit={this.handleSubmit}>
         <div className="DayForm__error" role="alert">
@@ -180,7 +176,9 @@ class DayForm extends Component {
           <button type="button" onClick={(e) => this.props.history.goBack()}>
             Cancel
           </button>{" "}
-          <button type="submit">Save</button>
+          <button disabled={hoursError !== undefined} type="submit">
+            Save
+          </button>
         </div>
       </form>
     );

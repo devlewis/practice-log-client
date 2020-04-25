@@ -7,10 +7,6 @@ class Day extends PureComponent {
     hover: false,
   };
 
-  getInitialState = () => {
-    return { hover: false };
-  };
-
   toggleHover = () => {
     this.setState({ hover: !this.state.hover });
   };

@@ -9,7 +9,76 @@
 
 .optional_box {
   border: solid black 2px;
-  width: fit-content;
   margin-bottom: 10px;
   padding: 2px;
+  margin-right: 0;
+}
+
+.error {
+  color: red;
+  font-size: 10px;
+}
+
+select {
+  font-size: 18px;
+  border: 1px solid black;
+  margin-left: 5px;
+}
+
+.DayForm__form input {
+  margin-bottom: 10px;
+}
+
+.optional_box p {
+  margin-top: 0;
+}
+
+#actual_hours {
+  width: 50px;
+  margin-left: 5px;
+  border: 1px solid gray;
+}
+
+#technique,
+#repertoire {
+  margin-top: 3px;
+  margin-left: 3px;
+  width: 96%;
+  border: 1px solid gray;
+}
+
+.DayForm__form {
+  width: 250px;
+  margin: auto;
+  background-color: aliceblue;
+  padding: 20px;
+  margin-top: 0px;
+}
+
+.DayForm__form h1 {
+  margin: 0;
+}
+
+.DayForm__buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 321px) {
+  .DayForm__form {
+    margin-top: 25px;
+    width: 300px;
+  }
+}
+
+@media screen and (min-width: 415px) {
+  select {
+    font-size: 0.9em;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .DayForm__form {
+    width: 500px;
+  }
 }

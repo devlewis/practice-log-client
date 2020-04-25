@@ -36,17 +36,16 @@ Array [
           Practice Day #
           1
         </h1>
-        <h2>
-          March 22
-        </h2>
+        <h2 />
         <h3>
-          Goal Number of Hours:
+          Goal Number of Hours: 
           3
         </h3>
         <div
           className="error"
           role="alert"
         />
+         
         <label
           htmlFor="completed"
         >
@@ -82,6 +81,7 @@ Array [
         </button>
          
         <button
+          disabled={false}
           type="submit"
         >
           Save
@@ -128,17 +128,16 @@ exports[`DayForm component renders the DayForm given props 1`] = `
         Practice Day #
         1
       </h1>
-      <h2>
-        March 22
-      </h2>
+      <h2 />
       <h3>
-        Goal Number of Hours:
+        Goal Number of Hours: 
         3
       </h3>
       <div
         className="error"
         role="alert"
       />
+       
       <label
         htmlFor="completed"
       >
@@ -174,6 +173,7 @@ exports[`DayForm component renders the DayForm given props 1`] = `
       </button>
        
       <button
+        disabled={false}
         type="submit"
       >
         Save

@@ -1,17 +1,25 @@
 .Setup_container {
   display: flex;
   flex-direction: column;
-  max-width: 75%;
+  max-width: 80%;
   width: fit-content;
   margin: auto;
+  justify-content: space-between;
 }
 
 .Setup_container h2 {
   margin: 20px auto;
 }
 
-.Setup_container select {
-  margin-left: 5px;
+.Select_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.Select_box select {
+  width: fit-content;
 }
 
 .Setup_buttons {
@@ -23,6 +31,7 @@
 .Setup_form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: space-between;
   background-color: aliceblue;
   padding: 10px;
@@ -34,10 +43,23 @@
 }
 
 .Setup_form input {
-  width: 30%;
+  width: 55px;
+  border: 1px solid gray;
 }
+
 @media screen and (min-width: 415px) {
-  .Setup_form input {
-    width: 10%;
+  .Setup_form {
+    height: 175px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .Setup_form {
+    height: 125px;
+    padding: 30px;
+  }
+
+  .Setup_container {
+    width: 300px;
   }
 }

@@ -52,7 +52,7 @@ class Home extends Component {
                 />
               </div>
               <div className="day_box_row">
-                <div className="day_box_DECO">
+                <div className="day_box_DECO num1">
                   <div className="bold">
                     <div className="topline">
                       <p>Day #1</p>

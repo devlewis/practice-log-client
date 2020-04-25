@@ -25,8 +25,12 @@ export default class LoginForm extends Component {
         this.props.onLoginSuccess();
       })
       .catch((res) => {
+        let error = "Could not reach server; please try again later!";
+        if (res.error) {
+          error = res.error;
+        }
         this.setState({
-          error: res.error,
+          error: error,
         });
       });
   };

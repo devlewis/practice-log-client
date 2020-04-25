@@ -28,7 +28,13 @@ export default class RegistrationForm extends Component {
         this.handleRegistrationSuccess();
       })
       .catch((res) => {
-        this.setState({ error: res.error });
+        let error = "Could not reach server; please try again later!";
+        if (res.error) {
+          error = res.error;
+        }
+        this.setState({
+          error: error,
+        });
       });
   };
 
