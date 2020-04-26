@@ -33,7 +33,7 @@ class DayList extends PureComponent {
   seeNumOfDays = () => {
     if (this.context.num_of_days === 30 && this.state.page <= 3) {
       this.setState({ page: this.state.page + 1 });
-    } else if (this.context.num_of_days === 100 && this.state.page <= 12)
+    } else if (this.context.num_of_days === 100 && this.state.page <= 13)
       this.setState({ page: this.state.page + 1 });
     else {
       this.setState({ see_all_days: true });
@@ -107,7 +107,7 @@ class DayList extends PureComponent {
 
           {this.context.num_of_days > 7 &&
             !this.state.see_all_days &&
-            ((this.context.num_of_days === 100 && this.state.page <= 12) ||
+            ((this.context.num_of_days === 100 && this.state.page <= 13) ||
               (this.context.num_of_days === 30 && this.state.page <= 3)) && (
               <i
                 onClick={this.seeNumOfDays}

@@ -3,6 +3,7 @@ import "../Setup/Setup.css";
 import Context from "../../Context";
 import TokenService from "../../services/token-service";
 import IdleService from "../../services/idle-service";
+import ValidationError from "../Utils/ValidationError";
 
 class Setup extends PureComponent {
   constructor(props) {
@@ -11,6 +12,7 @@ class Setup extends PureComponent {
     this.state = {
       num_of_days: null,
       hours: null,
+      hours_touched: false,
     };
   }
 
@@ -32,7 +34,15 @@ class Setup extends PureComponent {
     this.props.history.push("/");
   };
 
+  validateHours() {
+    const hours = this.state.hours;
+    if (isNaN(hours) || hours < 0 || hours > 24) {
+      return "please enter a number of hours between 0 and 24";
+    }
+  }
+
   render() {
+    const hoursError = this.validateHours();
     return (
       <div className="Setup_container">
         <h2>Setup</h2>
@@ -59,6 +69,7 @@ class Setup extends PureComponent {
               onChange={(e) =>
                 this.setState({
                   hours: parseFloat(e.target.value),
+                  hours_touched: true,
                 })
               }
               type="text"
@@ -69,8 +80,11 @@ class Setup extends PureComponent {
               required
             />
           </div>
+          {this.state.hours_touched && <ValidationError message={hoursError} />}
           <div className="Setup_buttons">
-            <button type="submit">Start my goal today!</button>
+            <button disabled={hoursError !== undefined} type="submit">
+              Start my goal today!
+            </button>
           </div>
         </form>
       </div>
