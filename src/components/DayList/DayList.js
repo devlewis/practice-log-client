@@ -5,6 +5,7 @@ import FinalView from "../FinalView/FinalView";
 import TokenService from "../../services/token-service";
 import IdleService from "../../services/idle-service";
 import Context from "../../Context";
+import DaysApiService from "../../services/days-api-service";
 
 class DayList extends PureComponent {
   state = {
@@ -12,6 +13,26 @@ class DayList extends PureComponent {
     num_of_days: 0,
     see_all_days: true,
   };
+
+  componentDidMount() {
+    console.log("componentDidMount");
+    DaysApiService.getGoal()
+      .then((goal) => {
+        // if the logged-in user has not created a goal yet, push to setup page
+        this.context.user = goal.user_id;
+        this.context.num_of_days = goal.num_of_days;
+        this.context.total_hours = goal.total_hours;
+        this.context.hours_goal = parseFloat(goal.hours_goal);
+        this.context.goal_id = goal.id;
+        console.log(this.context);
+      })
+      .then(
+        // fetch the days with fetched goal's id
+        DaysApiService.getDays().then((days) => {
+          this.context.days = days;
+        })
+      );
+  }
 
   handleLogout = () => {
     TokenService.clearAuthToken();
@@ -43,6 +64,9 @@ class DayList extends PureComponent {
   static contextType = Context;
 
   render() {
+    if (this.context.days.length === 0) {
+      return <div>Loading!</div>;
+    }
     let days = [];
     if (this.state.see_all_days) {
       days = this.context.days.map((day) => (
