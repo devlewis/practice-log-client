@@ -6,6 +6,7 @@ import Context from "../../Context";
 import { Route, BrowserRouter } from "react-router-dom";
 
 let value = {
+  fetchData: () => {},
   days: [
     {
       id: 1,

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import "./DayForm.css";
 import Context from "../../Context";
 import ValidationError from "../Utils/ValidationError";
@@ -22,22 +23,22 @@ class DayForm extends Component {
   };
 
   componentDidMount() {
-    const dayNum = this.props.location.pathname.split("/")[2];
-    const day = this.context.days[dayNum - 1];
-
-    this.setState({
-      id: day.id,
-      day_num: day.day_num,
-      day_date: day.day_date,
-      completed: day.completed,
-      technique: day.technique,
-      repertoire: day.repertoire,
-      actual_hours: { value: day.actual_hours },
-      touched: day.touched,
-      goal_id: day.goal_id,
-      user_id: day.user_id,
-      goal_hours: day.goal_hours,
-    });
+    const dayNum = this.props.location.pathname.split("/")[2] - 1;
+    if (this.context.days.length > 0) {
+      this.setState({
+        id: this.context.days[dayNum].id,
+        day_num: this.context.days[dayNum].day_num,
+        day_date: this.context.days[dayNum].day_date,
+        completed: this.context.days[dayNum].completed,
+        technique: this.context.days[dayNum].technique,
+        repertoire: this.context.days[dayNum].repertoire,
+        actual_hours: { value: this.context.days[dayNum].actual_hours },
+        touched: this.context.days[dayNum].touched,
+        goal_id: this.context.days[dayNum].goal_id,
+        user_id: this.context.days[dayNum].user_id,
+        goal_hours: this.context.days[dayNum].goal_hours,
+      });
+    }
   }
 
   handleSubmit = (e) => {
@@ -101,87 +102,90 @@ class DayForm extends Component {
   };
 
   render() {
-    const { error } = this.state;
-    const hoursError = this.validateHours();
-    const dayNum = this.props.location.pathname.split("/")[2];
-    const { id, completed, technique, repertoire, actual_hours } = this.state;
-    return (
-      <form className="DayForm__form" onSubmit={this.handleSubmit}>
-        <div className="DayForm__error" role="alert">
-          {error && <p>{error.message}</p>}
-        </div>
-        {id && <input type="hidden" name="id" value={id} />}
-        <div className="required_box">
-          <h1>Practice Day #{dayNum}</h1>
-          <h2>{this.state.day_date}</h2>
-          <h3>Goal Number of Hours: {this.state.goal_hours}</h3>
-          <div className="error" role="alert">
+    if (this.context.days.length === 0) {
+      return <Redirect to="/daylist/" />;
+    } else {
+      const { error } = this.state;
+      const hoursError = this.validateHours();
+      const { id, completed, technique, repertoire, actual_hours } = this.state;
+      return (
+        <form className="DayForm__form" onSubmit={this.handleSubmit}>
+          <div className="DayForm__error" role="alert">
             {error && <p>{error.message}</p>}
-          </div>{" "}
-          <label htmlFor="completed">Did you practice today?</label>
-          <select
-            onChange={this.handleChangeCompleted}
-            name="completed"
-            id="completed"
-            required
-            value={completed}
-          >
-            <option value="false">No. :-(</option>
-            <option value="true">Yes!!!</option>
-          </select>
-        </div>
-        {this.state.completed === "true" && (
-          <section>
-            <div>
-              <label htmlFor="actual_hours">How Many Hours?</label>
-              <input
-                type="number"
-                name="actual_hours"
-                id="actual_hours"
-                value={actual_hours.value}
-                onChange={this.handleChangeHours}
-              />
-              {this.state.actual_hours.touched && (
-                <ValidationError message={hoursError} />
-              )}
-            </div>
-            <div className="optional_box">
-              <p className="italics">Optional:</p>
+          </div>
+          {id && <input type="hidden" name="id" value={id} />}
+          <div className="required_box">
+            <h1>Practice Day #{this.state.day_num}</h1>
+            <h2>{this.state.day_date}</h2>
+            <h3>Goal Number of Hours: {this.state.goal_hours}</h3>
+            <div className="error" role="alert">
+              {error && <p>{error.message}</p>}
+            </div>{" "}
+            <label htmlFor="completed">Did you practice today?</label>
+            <select
+              onChange={this.handleChangeCompleted}
+              name="completed"
+              id="completed"
+              required
+              value={completed}
+            >
+              <option value="false">No. :-(</option>
+              <option value="true">Yes!!!</option>
+            </select>
+          </div>
+          {this.state.completed === "true" && (
+            <section>
+              <div>
+                <label htmlFor="actual_hours">How Many Hours?</label>
+                <input
+                  type="number"
+                  name="actual_hours"
+                  id="actual_hours"
+                  value={actual_hours.value}
+                  onChange={this.handleChangeHours}
+                />
+                {this.state.actual_hours.touched && (
+                  <ValidationError message={hoursError} />
+                )}
+              </div>
+              <div className="optional_box">
+                <p className="italics">Optional:</p>
 
-              <div>
-                <label htmlFor="technique">Technique:</label>
-                <input
-                  type="textarea"
-                  name="technique"
-                  id="technique"
-                  placeholder="ex. Hanon No. 1"
-                  value={technique}
-                  onChange={this.handleChangeTechnique}
-                />
+                <div>
+                  <label htmlFor="technique">Technique:</label>
+                  <input
+                    type="textarea"
+                    name="technique"
+                    id="technique"
+                    placeholder="ex. Hanon No. 1"
+                    value={technique}
+                    onChange={this.handleChangeTechnique}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="repertoire">Repertoire:</label>
+                  <input
+                    type="textarea"
+                    name="repertoire"
+                    id="repertoire"
+                    value={repertoire}
+                    onChange={this.handleChangeRepertoire}
+                  />
+                </div>
               </div>
-              <div>
-                <label htmlFor="repertoire">Repertoire:</label>
-                <input
-                  type="textarea"
-                  name="repertoire"
-                  id="repertoire"
-                  value={repertoire}
-                  onChange={this.handleChangeRepertoire}
-                />
-              </div>
-            </div>
-          </section>
-        )}
-        <div className="DayForm__buttons">
-          <button type="button" onClick={(e) => this.props.history.goBack()}>
-            Cancel
-          </button>{" "}
-          <button disabled={hoursError !== undefined} type="submit">
-            Save
-          </button>
-        </div>
-      </form>
-    );
+            </section>
+          )}
+          <div className="DayForm__buttons">
+            <button type="button" onClick={(e) => this.props.history.goBack()}>
+              Cancel
+            </button>{" "}
+            <button disabled={hoursError !== undefined} type="submit">
+              Save
+            </button>
+          </div>
+        </form>
+      );
+    }
   }
 }
 

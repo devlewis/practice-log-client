@@ -40,6 +40,11 @@ button[disabled] {
   background-color: red;
 }
 
+button[disabled]:hover {
+  background-color: red;
+  color: white;
+}
+
 .start {
   border: 2px solid red;
 }

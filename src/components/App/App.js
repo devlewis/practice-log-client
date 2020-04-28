@@ -130,28 +130,27 @@ class App extends PureComponent {
       updatedDay.actual_hours = 0;
     }
 
-    DaysApiService.updateDay(updatedDay)
-      .then(() => {
-        DaysApiService.getDays()
-          .then((days) => {
-            this.setState({
-              days: days,
-            });
-          })
-          .then(() => {
-            const hoursArray = this.state.days.map((day) => day.actual_hours);
+    DaysApiService.updateDay(updatedDay).then(() => {
+      DaysApiService.getDays()
+        .then((days) => {
+          this.setState({
+            days: days,
+          });
+        })
+        .then(() => {
+          const hoursArray = this.state.days.map((day) => day.actual_hours);
 
-            const hours = hoursArray.reduce((a, b) => a + b, 0);
+          const hours = hoursArray.reduce((a, b) => a + b, 0);
 
-            this.setState({
-              total_hours: hours,
-            });
-          })
-          .then(() => this.updateDataGoal());
-      })
-      .then(() => {
-        history.goBack();
-      });
+          this.setState({
+            total_hours: hours,
+          });
+        })
+        .then(() => this.updateDataGoal())
+        .then(() => {
+          history.push("/daylist");
+        });
+    });
   };
 
   updateDataGoal = () => {
@@ -179,6 +178,32 @@ class App extends PureComponent {
     this.setState({ error });
   };
 
+  setAppStateGoal = (goal) => {
+    this.setState({
+      user: goal.user_id,
+      num_of_days: goal.num_of_days,
+      total_hours: goal.total_hours,
+      hours_goal: parseFloat(goal.hours_goal),
+      goal_id: goal.id,
+    });
+  };
+
+  setAppState = (days) => {
+    this.setState({ days: days });
+  };
+
+  fetchData = () => {
+    DaysApiService.getGoal()
+      .then((goal) => {
+        this.setAppStateGoal(goal);
+      })
+      .then(() => {
+        DaysApiService.getDays().then((days) => {
+          this.setAppState(days);
+        });
+      });
+  };
+
   render() {
     const value = {
       days: this.state.days,
@@ -187,6 +212,7 @@ class App extends PureComponent {
       hours_goal: this.state.hours_goal,
       goal_id: this.state.goal_id,
       error: this.state.error,
+      fetchData: this.fetchData,
       setError: this.setError,
       onHandleSubmit: this.handleSubmit,
       onHandleDaySubmit: this.handleDaySubmit,
