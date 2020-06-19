@@ -41,11 +41,12 @@
 }
 
 .tothours {
-  border: dotted 4px aliceblue;
+  background-color: aliceblue;
+  border-radius: 10%;
   font-weight: 700;
   font-size: 1.25em;
   align-self: center;
-  padding: 2%;
+  padding: 5px 10px;
   margin-top: 10px;
   margin-bottom: 15px;
 }
@@ -57,7 +58,6 @@ h1 {
 
 @media screen and (min-width: 415px) {
   .tothours {
-    padding: 0;
     align-self: flex-end;
     margin-top: 0px;
     margin-bottom: 10px;

@@ -34,6 +34,8 @@ button {
   background-color: black;
   font-size: 1em;
   border-radius: 3%;
+  padding: 5px 50px;
+  margin: auto;
 }
 
 button[disabled] {
@@ -67,5 +69,6 @@ body {
   button:hover {
     color: black;
     background-color: white;
+    cursor: pointer;
   }
 }
