@@ -26,7 +26,7 @@ If you want to discard your current goal and start a new one, click the "Practic
 
 ### Summary
 
-This app is for logging hours and basic details for your daily practice. Users may choose goal lengths of 7, 30, or 100 consecutive days of practice, choose a daily number of hours goal, and log/edit their hours and practice notes accordingly.
+This app is for logging hours and basic details for your daily practice. Users may create an account, choose goal lengths of 7, 30, or 100 consecutive days of practice, choose a daily number of hours goal, and log/edit their hours and practice notes accordingly.
 
 ### Technologies
 
