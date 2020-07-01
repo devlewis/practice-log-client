@@ -22,7 +22,7 @@ If you want to discard your current goal and start a new one, click the "Practic
 
 ## ![](assets/Screen%20Shot%202020-04-25%20at%204.59.35%20PM.png)
 
-![](assets/Screen%20Shot%202020-04-25%20at%205.03.59%20PM.png)
+## ![](assets/Screen%20Shot%202020-04-25%20at%205.03.59%20PM.png)
 
 ### Summary
 
