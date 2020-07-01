@@ -9,8 +9,8 @@ export default class LoginForm extends Component {
 
   state = { error: null, user_name: "", password: "" };
 
-  handleSubmitJwtAuth = (ev) => {
-    ev.preventDefault();
+  handleSubmitJwtAuth = (e) => {
+    e.preventDefault();
 
     this.setState({ error: null });
     const { user_name, password } = this.state;
