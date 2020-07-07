@@ -43,7 +43,7 @@ const TokenService = {
     /*
       queue a callback that will happen 10 seconds before the token expires
       the callback is passed in as an argument so could be anything,
-        in this app, the callback is for calling the refresh endpoint
+      in this app, the callback is for calling the refresh endpoint
     */
     _timeoutId = setTimeout(callback, msUntilExpiry - _TEN_SECONDS_IN_MS);
   },
