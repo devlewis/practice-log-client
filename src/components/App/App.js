@@ -31,9 +31,8 @@ class App extends PureComponent {
     IdleService.setIdleCallback(this.logoutFromIdle);
 
     if (TokenService.hasAuthToken()) {
-      //tell the idle service to register event listeners
-      //if the user doesn't trigger one of these event listeners,
-      //the idleCallback (logout) will be invoked
+      //if the user doesn't trigger an event listener,
+      //the idleCallback will be invoked
       IdleService.registerIdleTimerResets();
 
       //Tell the token service to read the JWT, looking at the exp value
