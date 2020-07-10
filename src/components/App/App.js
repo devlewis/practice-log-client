@@ -27,28 +27,19 @@ class App extends PureComponent {
   };
 
   componentDidMount() {
-    /*
-      set the function (callback) to call when a user goes idle
-      we'll set this to logout a user when they're idle
-    */
+    //set the function (callback) to call when a user goes idle
     IdleService.setIdleCallback(this.logoutFromIdle);
 
-    /* if a user is logged in */
     if (TokenService.hasAuthToken()) {
-      /*
-        tell the idle service to register event listeners
-        the event listeners are fired when a user does something, e.g. move their mouse
-        if the user doesn't trigger one of these event listeners,
-          the idleCallback (logout) will be invoked
-      */
+      //tell the idle service to register event listeners
+      //if the user doesn't trigger one of these event listeners,
+      //the idleCallback (logout) will be invoked
       IdleService.registerIdleTimerResets();
 
-      /*
-        Tell the token service to read the JWT, looking at the exp value
-        and queue a timeout just before the token expires
-      */
+      //Tell the token service to read the JWT, looking at the exp value
+      //and queue a timeout just before the token expires
       TokenService.queueCallbackBeforeExpiry(() => {
-        /* the timoue will call this callback just before the token expires */
+        //the timeout will call this callback just before the token expires
 
         AuthApiService.postRefreshToken();
       });
@@ -57,35 +48,27 @@ class App extends PureComponent {
 
   componentWillUnmount() {
     this.updateDataGoal();
-    /*
-      when the app unmounts,
-      stop the event listeners that auto logout (clear the token from storage)
-    */
+    //stop the event listeners that auto logout (clear the token from storage)
     IdleService.unRegisterIdleResets();
-    /*
-      and remove the refresh endpoint request
-    */
+    //and remove the refresh endpoint request
     TokenService.clearCallbackBeforeExpiry();
   }
 
   logoutFromIdle = () => {
-    /* remove the token from localStorage */
+    //remove the token from localStorage
     TokenService.clearAuthToken();
-    /* remove any queued calls to the refresh endpoint */
+    //remove any queued calls to the refresh endpoint
     TokenService.clearCallbackBeforeExpiry();
-    /* remove the timeouts that auto logout when idle */
+    //remove the timeouts that auto logout when idle
     IdleService.unRegisterIdleResets();
-    /*
-      react won't know the token has been removed from local storage,
-      so we need to tell React to rerender
-    */
+    //tell React to re-render
     this.forceUpdate();
   };
 
   handleLoginFetch = async (history) => {
     //fetch the user's most recent goal
     const goal = await DaysApiService.getGoal();
-    // if the logged-in user has not created a goal yet, push to setup page
+    //if the logged-in user has not created a goal yet, push to setup page
     if (goal.length === 0) {
       return history.push("/setup");
     } else {
@@ -96,7 +79,7 @@ class App extends PureComponent {
         hours_goal: parseFloat(goal.hours_goal),
         goal_id: goal.id,
       });
-      // fetch the days with fetched goal's id
+      //fetch the days with fetched goal's id
       const days = await DaysApiService.getDays();
 
       this.setState(
@@ -167,7 +150,7 @@ class App extends PureComponent {
 
   handleLogout = () => {
     TokenService.clearAuthToken();
-    /* when logging out, clear the callbacks to the refresh api and idle auto logout */
+    // when logging out, clear the callbacks to the refresh api and idle auto logout
     TokenService.clearCallbackBeforeExpiry();
     IdleService.unRegisterIdleResets();
     this.forceUpdate();
