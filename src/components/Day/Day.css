@@ -4,8 +4,12 @@
   border: solid black 1px;
   border-radius: 2%;
   width: 80px;
-  height: 120px;
-  margin-bottom: 10px;
+  height: 140px;
+  margin-bottom: 20px;
+}
+
+.day_box .hours {
+  margin-bottom: 8px;
 }
 
 .bold {
@@ -13,20 +17,21 @@
 }
 
 .day_box .big {
-  font-size: 12px;
+  font-size: 14px;
   margin-bottom: 0;
   margin-top: 3px;
 }
 
 .day_box p {
-  font-size: 9px;
+  font-size: 13px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin: 3px 0 0 0;
 }
 
 .small {
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .dypbutton {

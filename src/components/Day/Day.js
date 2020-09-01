@@ -63,11 +63,11 @@ class Day extends PureComponent {
             </div>
           ) : (
             <section className="completed_box">
-              <p>
+              <p className="hours">
                 {this.props.actual_hours}/{this.props.goal_hours} hours
               </p>
               {(this.props.technique || this.props.repertoire) && (
-                <p className="bold">Practice Details:</p>
+                <p className="bold">Details:</p>
               )}
               {this.props.technique && <p>Technique: {this.props.technique}</p>}
               {this.props.repertoire && (
