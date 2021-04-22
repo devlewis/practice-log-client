@@ -14,8 +14,8 @@
     "react-scripts": "3.4.0"
   },
   "scripts": {
-    "start": "HTTPS=true&&react-scripts start",
-    "prebuild": "CI=true react-scripts test --colors",
+    "start": "react-scripts start",
+    "prebuild": "react-scripts test --colors",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
