@@ -205,7 +205,7 @@ h1 {
   }
 
   .container_tophalf {
-    margin-top: 30px;
+    margin-top: 50px;
     flex: 1;
   }
 
@@ -215,9 +215,7 @@ h1 {
   }
 
   .loginform_box {
-    padding-top: 40px;
-    margin-left: 20px;
-    margin-bottom: 0;
+    margin: 40px 0 0 20px;
   }
 
   .App_header {

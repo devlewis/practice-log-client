@@ -11,11 +11,13 @@ class Home extends Component {
   static defaultProps = {
     location: {},
     history: {
-      push: () => {},
+      push: () => { },
     },
   };
 
   static contextType = Context;
+
+  //dayArray= [["Day #1:", get Day],["Day #2:", get Day],["Day #3:", getDay]]
 
   onClickCurrent = () => {
     this.props.history.push("/daylist");
@@ -36,6 +38,8 @@ class Home extends Component {
     IdleService.unRegisterIdleResets();
     this.props.history.push("/");
   };
+
+
 
   render() {
     return (
@@ -108,9 +112,7 @@ class Home extends Component {
                 </div>
               ) : (
                 <div className="notloggedin">
-                  <div className="loginform_box">
-                    <LoginForm onLoginSuccess={this.handleLoginSuccess} />
-                  </div>
+                  <LoginForm onLoginSuccess={this.handleLoginSuccess} />
                 </div>
               )}
             </div>

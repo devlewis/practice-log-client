@@ -4,7 +4,7 @@ import "./LoginForm.css";
 
 export default class LoginForm extends Component {
   static defaultProps = {
-    onLoginSuccess: () => {},
+    onLoginSuccess: () => { },
   };
 
   state = { error: null, user_name: "", password: "" };
@@ -38,31 +38,33 @@ export default class LoginForm extends Component {
   render() {
     const { error } = this.state;
     return (
-      <form className="LoginForm" onSubmit={this.handleSubmitJwtAuth}>
+      <div className="loginform_box">
+        <form className="LoginForm" onSubmit={this.handleSubmitJwtAuth}>
+          <div className="user_name">
+            <label htmlFor="LoginForm__user_name">User name</label>
+            <input
+              required
+              name="user_name"
+              id="LoginForm__user_name"
+              onChange={(e) => this.setState({ user_name: e.target.value })}
+            ></input>
+            <p>demo username: YoYoMa77!</p>
+          </div>
+          <div className="password">
+            <label htmlFor="LoginForm__password">Password</label>
+            <input
+              required
+              name="password"
+              type="password"
+              id="LoginForm__password"
+              onChange={(e) => this.setState({ password: e.target.value })}
+            ></input>
+            <p>demo password: Cello123!</p>
+          </div>
+          <button type="submit">Login</button>
+        </form>
         <div role="alert">{error && <p className="red">{error}</p>}</div>
-        <div className="user_name">
-          <label htmlFor="LoginForm__user_name">User name</label>
-          <input
-            required
-            name="user_name"
-            id="LoginForm__user_name"
-            onChange={(e) => this.setState({ user_name: e.target.value })}
-          ></input>
-          <p>demo username: YoYoMa77!</p>
-        </div>
-        <div className="password">
-          <label htmlFor="LoginForm__password">Password</label>
-          <input
-            required
-            name="password"
-            type="password"
-            id="LoginForm__password"
-            onChange={(e) => this.setState({ password: e.target.value })}
-          ></input>
-          <p>demo password: Cello123!</p>
-        </div>
-        <button type="submit">Login</button>
-      </form>
+      </div>
     );
   }
 }

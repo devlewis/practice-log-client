@@ -36,6 +36,7 @@ button {
   border-radius: 3%;
   padding: 5px 50px;
   margin: auto;
+  width: 100%;
 }
 
 button[disabled] {
@@ -58,17 +59,11 @@ body {
 }
 
 @media screen and (min-width: 415px) {
-  button {
-    font-size: 0.9em;
-  }
-
   .App_header {
     margin-bottom: 0;
   }
 
   button:hover {
-    color: black;
-    background-color: white;
     cursor: pointer;
   }
 }
