@@ -1,3 +1,3 @@
 export default {
-  API_ENDPOINT: "https://shielded-tor-60909.herokuapp.com/api/",
+  API_ENDPOINT: "https://nameless-harbor-55957.herokuapp.com/api/",
 };
