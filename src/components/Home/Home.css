@@ -140,6 +140,7 @@
 }
 
 .rgstrbutton {
+  margin-top: 3em;
   width: fit-content;
 }
 
@@ -241,9 +242,5 @@ h1 {
 
   .pinfo {
     margin-top: 50px;
-  }
-
-  .rgstrbutton {
-    margin-top: 30px;
   }
 }

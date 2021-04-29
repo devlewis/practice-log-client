@@ -119,7 +119,7 @@ class Home extends Component {
           </div>
           {!TokenService.hasAuthToken() && (
             <button className="rgstrbutton" onClick={this.onClickRegister}>
-              Make a new account
+              <span>Register <i class="fas fa-arrow-right" /></span>
             </button>
           )}
           {!TokenService.hasAuthToken() && (
