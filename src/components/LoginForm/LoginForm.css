@@ -1,6 +1,6 @@
 .LoginForm {
   margin: 0 5% 5% 5%;
-  padding: 0 5% 5% 5%;
+  padding: 1.5em 5%;
   background-color: aliceblue;
   display: flex;
   flex-direction: column;
@@ -13,12 +13,7 @@
 }
 
 .LoginForm div {
-  margin-bottom: 1em;
-}
-
-.LoginForm button {
-  width: fit-content;
-  align-self: flex-end;
+  margin-bottom: 1.5em;
 }
 
 label {
@@ -44,10 +39,10 @@ label {
   text-decoration: none;
 }
 
-@media screen and (min-width: 415px) {
+/* @media screen and (min-width: 415px) {
   .LoginForm p,
   label,
   input {
     font-size: 0.9em;
-  }
-}
+  } */
+
