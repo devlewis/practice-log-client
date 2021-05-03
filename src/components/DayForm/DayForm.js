@@ -121,22 +121,24 @@ class DayForm extends Component {
             <div className="error" role="alert">
               {error && <p>{error.message}</p>}
             </div>{" "}
-            <label htmlFor="completed">Did you practice today?</label>
-            <select
-              onChange={this.handleChangeCompleted}
-              name="completed"
-              id="completed"
-              required
-              value={completed}
-            >
-              <option value="false">No. :-(</option>
-              <option value="true">Yes!!!</option>
-            </select>
+            <div className="selects">
+              <label htmlFor="completed">Did you practice today?</label>
+              <select
+                onChange={this.handleChangeCompleted}
+                name="completed"
+                id="completed"
+                required
+                value={completed}
+              >
+                <option value="false">No</option>
+                <option value="true">Yes</option>
+              </select>
+            </div>
           </div>
           {this.state.completed === "true" && (
             <section>
               <div>
-                <label htmlFor="actual_hours">How Many Hours?</label>
+                <label htmlFor="actual_hours">How many hours?</label>
                 <input
                   type="number"
                   name="actual_hours"

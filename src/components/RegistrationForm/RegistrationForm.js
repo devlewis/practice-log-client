@@ -4,7 +4,7 @@ import "./RegistrationForm.css";
 
 export default class RegistrationForm extends Component {
   static defaultProps = {
-    onRegistrationSuccess: () => {},
+    onRegistrationSuccess: () => { },
   };
 
   state = { error: null, user_name: "", password: "" };

@@ -4,21 +4,25 @@
 
 .RegistrationForm {
   background-color: aliceblue;
-  padding: 10px 10px 10px 10px;
+  padding: 10px;
   width: 300px;
-  margin: auto;
+  margin: 4em auto;
   display: flex;
   flex-direction: column;
 }
 
 .RegistrationForm h2 {
-  margin: 20px 20px;
+  margin: 20px 0 30px;
+  text-align: center;
 }
 
 .RegistrationForm .user_name input,
 .RegistrationForm .password input {
-  margin-top: 5px;
+  margin: 5px 0;
   border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .restrbuttonrow {
@@ -26,4 +30,20 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.restrbuttonrow button {
+  margin: 0;
+  width: 130px;
+  text-align: center;
+}
+
+.restrbuttonrow button:first-child {
+  background-color: dimgray;
+}
+
+@media screen and (min-width: 411px) {
+  .RegistrationForm {
+    width: 350px;
+  }
 }

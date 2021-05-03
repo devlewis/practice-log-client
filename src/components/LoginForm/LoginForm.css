@@ -7,6 +7,10 @@
   justify-content: space-evenly;
 }
 
+.LoginForm button {
+  width: 100%
+}
+
 .LoginForm p {
   margin: 0;
   color: black;
@@ -16,17 +20,6 @@
   margin-bottom: 1.5em;
 }
 
-label {
-  font-weight: 700;
-  color: black;
-  margin-bottom: 5px;
-}
-
-input,
-label {
-  width: 90%;
-  font-size: 1em;
-}
 
 .LoginForm .red {
   color: red;
@@ -39,10 +32,4 @@ label {
   text-decoration: none;
 }
 
-/* @media screen and (min-width: 415px) {
-  .LoginForm p,
-  label,
-  input {
-    font-size: 0.9em;
-  } */
 

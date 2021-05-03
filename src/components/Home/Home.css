@@ -101,13 +101,6 @@
   font-size: 2.5em;
 }
 
-.container_home {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .container_loggedin {
   height: 40vh;
   display: flex;
@@ -140,8 +133,7 @@
 }
 
 .rgstrbutton {
-  margin-top: 3em;
-  width: fit-content;
+  margin-top: 2em;
 }
 
 .pinfo {
@@ -164,9 +156,6 @@ h1 {
   height: 75px;
   margin-bottom: 10px;
   margin-right: 5px;
-}
-
-.day_box_DECO p {
   font-size: 8px;
 }
 
@@ -177,8 +166,8 @@ h1 {
 }
 
 .stand {
-  height: 80px;
-  margin-top: 0.75em;
+  height: 60px;
+  margin-bottom: 20px;
 }
 
 .tiny {
@@ -217,10 +206,6 @@ h1 {
 
   .loginform_box {
     margin: 40px 0 0 20px;
-  }
-
-  .App_header {
-    margin-bottom: 25px;
   }
 
   .container_loggedin {

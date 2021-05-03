@@ -4,6 +4,7 @@
   flex-wrap: wrap;
   align-content: flex-start;
   margin-bottom: 30px;
+  background-color: lightgray;
 }
 
 .daylisth1 {
@@ -47,8 +48,7 @@
   font-size: 1.25em;
   align-self: center;
   padding: 5px 10px;
-  margin-top: 10px;
-  margin-bottom: 15px;
+  margin:15px 0;
 }
 
 h1 {
@@ -57,11 +57,6 @@ h1 {
 }
 
 @media screen and (min-width: 415px) {
-  .tothours {
-    align-self: flex-end;
-    margin-top: 0px;
-    margin-bottom: 10px;
-  }
 
   .toprow {
     margin-bottom: 0px;
@@ -69,5 +64,6 @@ h1 {
 
   .fa-2x:hover {
     color: gray;
+    cursor: pointer;
   }
 }

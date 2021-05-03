@@ -3,8 +3,16 @@
   font-size: 1em;
 }
 
+.selects {
+  margin: 1em 0 1.5em;
+}
+
 .required_box {
-  margin-bottom: 10px;
+  margin-bottom: 1em;
+}
+
+.required_box h2 {
+  margin: .5em 0;
 }
 
 .optional_box {
@@ -20,7 +28,6 @@
 }
 
 select {
-  font-size: 18px;
   border: 1px solid black;
   margin-left: 5px;
 }
@@ -62,6 +69,10 @@ select {
 .DayForm__buttons {
   display: flex;
   justify-content: space-between;
+}
+
+.DayForm__buttons button:first-child {
+  background-color: dimgray;
 }
 
 @media screen and (min-width: 321px) {

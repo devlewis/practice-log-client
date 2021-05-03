@@ -1,3 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+*, *:before, *:after {
+box-sizing: inherit;
+}
+
+body {
+  box-sizing: border-box;
+}
+
 .App_header {
   display: flex;
   justify-content: space-between;
@@ -8,6 +20,7 @@
   text-decoration: underline;
   font-weight: 1000;
   color: black;
+  margin-bottom: 1em;
 }
 
 .header_link:hover .header_link:visited {
@@ -23,9 +36,7 @@
 
 .toprowbtns {
   align-self: baseline;
-  font-size: 0.9em;
   height: auto;
-  width: fit-content;
 }
 
 button {
@@ -34,9 +45,9 @@ button {
   background-color: black;
   font-size: 1em;
   border-radius: 3%;
-  padding: 5px 50px;
+  padding: .3em .75em;
   margin: auto;
-  width: 100%;
+  width:10em;
 }
 
 button[disabled] {
@@ -46,6 +57,23 @@ button[disabled] {
 button[disabled]:hover {
   background-color: red;
   color: white;
+}
+
+label {
+  font-weight: 700;
+  color: black;
+  margin-bottom: 5px;
+}
+
+input,
+select {
+  font-size: 1.1em;
+  padding: 5px;
+}
+
+input,
+label {
+  width: 100%;
 }
 
 .start {
@@ -58,12 +86,14 @@ body {
   font-family: "Roboto", serif;
 }
 
-@media screen and (min-width: 415px) {
+@media screen and (min-width: 411px) {
   .App_header {
-    margin-bottom: 0;
+    margin-bottom: 2em;
   }
 
-  button:hover {
+  button:hover{
     cursor: pointer;
+    -webkit-box-shadow: 5px 5px 5px -5px #000000; 
+    box-shadow: 5px 5px 5px -5px #000000;
   }
 }
