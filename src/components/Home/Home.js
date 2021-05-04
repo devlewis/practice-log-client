@@ -105,7 +105,6 @@ class Home extends Component {
                       Be careful, this will erase your current goal!
                     </p>
                   </div>
-
                   <button className="rgstrbutton" onClick={this.handleLogout}>
                     Logout
                   </button>

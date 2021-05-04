@@ -94,7 +94,8 @@
 .container_heading {
   display: flex;
   justify-content: center;
-  padding: 0 10px 0 10px;
+  padding: 0 10px;
+  margin-top: 15px;
 }
 
 .container_heading h2 {
@@ -102,12 +103,12 @@
 }
 
 .container_loggedin {
-  height: 40vh;
+  height: 18em;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 5% 5% 5%;
-  padding: 5% 5% 5% 5%;
+  padding: 5%;
   background-color: aliceblue;
   justify-content: space-between;
 }
@@ -171,7 +172,7 @@ h1 {
 }
 
 .tiny {
-  font-size: 0.2em;
+  font-size:.75em;
   text-align: center;
   width: 75%;
 }
@@ -209,10 +210,10 @@ h1 {
   }
 
   .container_loggedin {
-    height: 30vh;
+    height: 20em;
+    width: 12em;
     justify-content: space-evenly;
     margin-left: 30px;
-    height: 250px;
   }
 
   .container_heading h2 {

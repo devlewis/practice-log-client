@@ -55,7 +55,7 @@ select {
 }
 
 .DayForm__form {
-  width: 250px;
+  width: 340px;
   margin: auto;
   background-color: aliceblue;
   padding: 20px;
@@ -71,6 +71,11 @@ select {
   justify-content: space-between;
 }
 
+.DayForm__buttons button {
+  width: 9em;
+  margin: 0;
+}
+
 .DayForm__buttons button:first-child {
   background-color: dimgray;
 }
@@ -78,7 +83,6 @@ select {
 @media screen and (min-width: 321px) {
   .DayForm__form {
     margin-top: 25px;
-    width: 300px;
   }
 }
 
@@ -91,5 +95,9 @@ select {
 @media screen and (min-width: 768px) {
   .DayForm__form {
     width: 500px;
+  }
+
+  .DayForm__buttons button {
+    width: 10em
   }
 }
