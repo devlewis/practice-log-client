@@ -33,9 +33,9 @@ run `npm start`
 
 ## ![](./assets/Screenshot%202021-05-13%20085823.jpg)
 
-## ![](practice-log-client\assets\daylist.jpg)
+## ![](./assets/Screenshot%202021-05-13%20085906.jpg)
 
-## ![](practice-log-client\assets\dayform.jpg)
+## ![](./assets/Screenshot%202021-05-13%20085937.jpg)
 
 
 
