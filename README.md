@@ -31,7 +31,7 @@ run `npm start`
 ### Screenshots
 
 
-## ![](\assets\https://github.com/devlewis/practice-log-client/blob/62f751c2800ef92a834064e90e20ef89884a450d/assets/Screenshot%202021-05-13%20085823.jpg)
+## ![](\assets\Screenshot%202021-05-13%20085823.jpg)
 
 ## ![](practice-log-client\assets\daylist.jpg)
 
