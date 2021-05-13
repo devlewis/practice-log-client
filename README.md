@@ -16,11 +16,11 @@ If you want to discard your current goal and start a new one, click the "Practic
 
 ### Screenshots
 
-## ![](assets/Screen%20Shot%202020-04-25%20at%204.57.52%20PM.png)
+## ![](assets\Screenshot%202021-05-13%20085823.jpg)
 
-## ![](assets/Screen%20Shot%202020-04-25%20at%204.59.01%20PM.png)
+## ![](assets\Screenshot%202021-05-13%20085906.jpg)
 
-## ![](assets/Screen%20Shot%202020-04-25%20at%204.59.35%20PM.png)
+## ![](assets\Screenshot%202021-05-13%20085937)
 
 ## ![](assets/Screen%20Shot%202020-04-25%20at%205.03.59%20PM.png)
 
