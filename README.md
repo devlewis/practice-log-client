@@ -16,13 +16,12 @@ If you want to discard your current goal and start a new one, click the "Practic
 
 ### Screenshots
 
-## ![](assets\Screenshot%202021-05-13%20085823.jpg)
+## ![](assets\homepage.jpg)
 
-## ![](assets\Screenshot%202021-05-13%20085906.jpg)
+## ![](assets\daylist.jpg)
 
-## ![](assets\Screenshot%202021-05-13%20085937)
+## ![](assets\dayform.jpg)
 
-## ![](assets/Screen%20Shot%202020-04-25%20at%205.03.59%20PM.png)
 
 ### Summary
 
