@@ -27,6 +27,8 @@ run `npm install`
 
 run `npm start`
 
+****
+
 ### Screenshots
 
 ## ![](assets/Screen%20Shot%202020-04-25%20at%204.57.52%20PM.png)
