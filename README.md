@@ -30,7 +30,7 @@ run `npm start`
 ****
 ### Screenshots
 
-## ![](assets\Screenshot%202021-05-13%20085823.jpg)
+![](assets\Screenshot%202021-05-13%20085823.jpg)
 
 ## ![](practice-log-client\assets\daylist.jpg)
 
