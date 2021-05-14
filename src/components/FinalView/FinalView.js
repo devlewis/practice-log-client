@@ -12,38 +12,38 @@ class FinalView extends PureComponent {
 
   static contextType = Context;
 
-  render() {
-    const daysCompleted = this.context.days.filter(
-      (day) => day.completed === "true"
-    );
-    const daysCompletedHours = this.context.days.filter(
-      (day) => day.actual_hours >= this.context.hours_goal
-    );
+  daysCompleted = (days) => days.filter(d => d.completed === "true")
 
+  daysCompletedHours = (days, h_goal) => days.filter(d => d.actual_hours >= h_goal)
+
+  pushTechnique = (days, arr) => days.forEach((day) => {
+    if (day.technique !== "" && !arr.includes(day.technique)) {
+      arr.push(day.technique);
+    }
+  });
+
+  pushRepertoire = (days, arr) => days.forEach((day) => {
+    if (!arr.includes(day.repertoire) && day.repertoire !== "") {
+      arr.push(day.repertoire);
+    }
+  });
+
+  render() {
     const techniqueArr = [];
     const repertoireArr = [];
 
-    this.context.days.forEach((day) => {
-      if (day.technique !== "" && !techniqueArr.includes(day.technique)) {
-        techniqueArr.push(day.technique);
-      }
-    });
-
-    this.context.days.forEach((day) => {
-      if (!repertoireArr.includes(day.repertoire) && day.repertoire !== "") {
-        repertoireArr.push(day.repertoire);
-      }
-    });
+    this.pushTechnique(this.context.days, techniqueArr);
+    this.pushRepertoire(this.context.days, repertoireArr);
 
     return (
       <main>
         <h1>YOU DID IT!</h1>
         <p className="finalview_p">
-          You practiced {daysCompleted.length} out of {this.props.totalDays}{" "}
+          You practiced {this.daysCompleted(this.context.days).length} out of {this.props.totalDays}{" "}
           goal days!
         </p>
         <p className="finalview_p">
-          You reached your practice hourly goal {daysCompletedHours.length} out
+          You reached your practice hourly goal {this.daysCompletedHours(this.context.days, this.context.hours_goal).length} out
           of {this.props.totalDays} days.
         </p>
         <p className="finalview_p">

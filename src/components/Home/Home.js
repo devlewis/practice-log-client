@@ -17,8 +17,6 @@ class Home extends Component {
 
   static contextType = Context;
 
-  //dayArray= [["Day #1:", get Day],["Day #2:", get Day],["Day #3:", getDay]]
-
   onClickCurrent = () => {
     this.props.history.push("/daylist");
   };

@@ -5,6 +5,7 @@ import FinalView from "../FinalView/FinalView";
 import TokenService from "../../services/token-service";
 import IdleService from "../../services/idle-service";
 import Context from "../../Context";
+import constants from "../Utils/constants";
 
 class DayList extends PureComponent {
   state = {
@@ -35,9 +36,9 @@ class DayList extends PureComponent {
   };
 
   seeNumOfDays = () => {
-    if (this.context.num_of_days === 30 && this.state.page <= 3) {
+    if (this.context.num_of_days === constants.month && this.state.page < constants.four) {
       this.setState({ page: this.state.page + 1 });
-    } else if (this.context.num_of_days === 100 && this.state.page <= 13)
+    } else if (this.context.num_of_days === constants.full_100 && this.state.page < constants.two_weeks)
       this.setState({ page: this.state.page + 1 });
     else {
       this.setState({ see_all_days: true });
@@ -85,7 +86,7 @@ class DayList extends PureComponent {
 
         <div className="viewbox">
           {" "}
-          {this.context.num_of_days > 7 && !this.state.see_all_days && (
+          {this.context.num_of_days > constants.one_week && !this.state.see_all_days && (
             <div>
               <button
                 onClick={() =>
@@ -98,7 +99,7 @@ class DayList extends PureComponent {
               </button>
             </div>
           )}
-          {this.state.see_all_days && this.context.num_of_days > 7 && (
+          {this.state.see_all_days && this.context.num_of_days > constants.one_week && (
             <button className="viewbtn" onClick={this.paginate}>
               Week View
             </button>
@@ -112,10 +113,10 @@ class DayList extends PureComponent {
             ></i>
           )}
 
-          {this.context.num_of_days > 7 &&
+          {this.context.num_of_days > constants.one_week &&
             !this.state.see_all_days &&
-            ((this.context.num_of_days === 100 && this.state.page <= 13) ||
-              (this.context.num_of_days === 30 && this.state.page <= 3)) && (
+            ((this.context.num_of_days === 100 && this.state.page < constants.two_weeks) ||
+              (this.context.num_of_days === 30 && this.state.page < constants.four)) && (
               <i
                 onClick={this.seeNumOfDays}
                 className="fas fa-arrow-circle-right fa-2x"

@@ -11,42 +11,47 @@ class Day extends PureComponent {
     this.setState({ hover: !this.state.hover });
   };
 
-  render() {
-    let mystyle = {};
+  mystyle = () => {
+    let mystyle;
+    if (this.state.hover) { (mystyle = { color: "black", backgroundColor: "aliceblue" }) }
+    else if (this.props.touched && this.props.completed === "false") {
+      (mystyle = {
+        color: "white",
+        backgroundColor: "red",
+      })
+    }
+    else if (this.props.touched &&
+      this.props.completed === "true" &&
+      this.props.actual_hours < this.props.hours_goal) {
+      (mystyle = {
+        color: "black",
+        backgroundColor: "yellow",
+      })
+    }
+    else if (this.props.touched && this.props.completed === "true") {
+      (mystyle = {
+        color: "white",
+        backgroundColor: "green",
+      })
+    }
+    else { (mystyle = {}) };
+    return mystyle;
+  }
 
-    this.state.hover
-      ? (mystyle = { color: "black", backgroundColor: "aliceblue" })
-      : this.props.touched && this.props.completed === "false"
-      ? (mystyle = {
-          color: "white",
-          backgroundColor: "red",
-        })
-      : this.props.touched &&
-        this.props.completed === "true" &&
-        this.props.actual_hours < this.props.hours_goal
-      ? (mystyle = {
-          color: "black",
-          backgroundColor: "yellow",
-        })
-      : this.props.touched && this.props.completed === "true"
-      ? (mystyle = {
-          color: "white",
-          backgroundColor: "green",
-        })
-      : (mystyle = {});
+  render() {
 
     const day_num = this.props.day_num;
     const date = this.props.day_date;
 
     return (
       <Link to={`/day/${day_num}`}>
-        <div className="day_box" style={mystyle}>
+        <div className="day_box" style={this.mystyle()}>
           <div className="bold">
             <div className="topline">
               <p className="big">Day #{day_num}</p>
               <i
                 className="fas fa-pencil-alt fa-sm"
-                style={mystyle}
+                style={this.mystyle()}
                 onMouseEnter={this.toggleHover}
                 onMouseLeave={this.toggleHover}
               ></i>
